@@ -10,10 +10,15 @@ class IndexView(View):
     def get(self, request): 
         if 'user' in request.session:
             current_user = request.session['user']
+            patients = Patients.objects.filter(username=current_user)     
+            doctors = Doctors.objects.filter(username=current_user)
+
             context = {
                 'current_user': current_user,
+                'patients' : patients,
+                'doctors' : doctors,
             }
-        return render(request, 'pages/index.html', {})
+        return render(request, 'pages/index.html', context)
 
 class AdminView(View): 
     def get(self, request):
@@ -30,8 +35,11 @@ class PatientHomeView(View):
     def get(self, request):
         if 'user' in request.session:
             current_user = request.session['user']
+            patients = Patients.objects.filter(username=current_user)     
+
             context = {
                 'current_user': current_user,
+                'patients' : patients,
             }
             return render(request, 'pages/LandingP.html', context)
         else:
@@ -41,8 +49,11 @@ class DoctorHomeView(View):
     def get(self, request):
         if 'user' in request.session:
             current_user = request.session['user']
+            doctors = Doctors.objects.filter(username=current_user)
+
             context = {
                 'current_user': current_user,
+                'doctors' : doctors,
             }
             return render(request, 'pages/LandingD.html', context)
         else:
@@ -52,8 +63,13 @@ class AboutView(View):
     def get(self, request): 
         if 'user' in request.session:
             current_user = request.session['user']
+            patients = Patients.objects.filter(username=current_user)     
+            doctors = Doctors.objects.filter(username=current_user)
+
             context = {
                 'current_user': current_user,
+                'patients' : patients,
+                'doctors' : doctors,
             }
         return render(request, 'pages/About.html', context)
         
@@ -61,8 +77,13 @@ class ContactView(View):
     def get(self, request): 
         if 'user' in request.session:
             current_user = request.session['user']
+            patients = Patients.objects.filter(username=current_user)     
+            doctors = Doctors.objects.filter(username=current_user)
+
             context = {
                 'current_user': current_user,
+                'patients' : patients,
+                'doctors' : doctors,
             }
         return render(request, 'pages/Contact.html', context)
 
