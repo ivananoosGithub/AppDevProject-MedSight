@@ -68,12 +68,7 @@ class ContactView(View):
 
 class SignUpView(View): 
     def get(self, request):
-        if 'user' in request.session:
-            current_user = request.session['user']
-            context = {
-                'current_user': current_user,
-            }
-        return render(request, 'pages/SignUp.html', context)
+        return render(request, 'pages/SignUp.html', {})
     def post(self, request):        
         form = UsersForm(request.POST, request.FILES)        
         if form.is_valid():
@@ -98,12 +93,7 @@ class SignUpView(View):
 
 class SignInView(View): 
     def get(self, request):
-        if 'user' in request.session:
-            current_user = request.session['user']
-            context = {
-                'current_user': current_user,
-            }
-        return render(request, 'pages/SignIn.html', context)
+        return render(request, 'pages/SignIn.html', {})
     def post(self, request):
         if request.method == 'POST':
             username = request.POST.get('username')
