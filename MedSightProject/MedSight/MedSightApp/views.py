@@ -24,12 +24,33 @@ class AdminView(View):
     def get(self, request):
         if 'user' in request.session:
             current_user = request.session['user']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
             context = {
                 'current_user': current_user,
+                'patients' : patients,
+                'doctors' : doctors,
             }
             return render(request, 'pages/Admin.html', context)
         else:
             return HttpResponse('Please login first to view this page.') 
+    def post(self, request):
+       if request.method == 'POST':
+            if 'btnUpdatePatient' in request.POST:
+                print('Update button clicked!')
+                pid = request.POST.get("patient_id")
+                pfname = request.POST.get("first_name")
+                plname = request.POST.get("last_name")
+                pcnum = request.POST.get("contact_number")
+                pbtype = request.POST.get("blood_type")
+                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, blood_type = pbtype)
+                print(update_Patient)
+                print('Patient record updated!')
+            elif 'btnDeletePatient' in request.POST:
+                print('Delete button clicked!')
+                pid = request.POST.get("patient_id")
+                Patients.objects.filter(patient_id=pid).delete()
+                print("Patient record deleted")
 
 class PatientHomeView(View): 
     def get(self, request):
