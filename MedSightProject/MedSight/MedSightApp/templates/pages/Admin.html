@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Welcome {% if current_user %}{{current_user}}{% endif %}!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
 <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
@@ -17,8 +18,7 @@
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
     <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
- 
+    
 
 <!--   SAMPLE PULL REQ   -->
     
@@ -71,13 +71,15 @@
 <!-- -------------------------------------------------------------------------------------------------- -->
     <!-- Patients Table -->
     <br>
-    <div>
-    <h2>Patients Table</h2>
-    <a href="#" >Add</a>
-
-    <div class="row">
-    <div class="col-xs-12">
-
+    <div style="margin-top: 20px;">
+    <div class="row" style="width:90%; text-align: center; margin-left: auto; margin-right: auto;" >
+      <div class="col-xs-12">
+        <h2>Patients Table</h2>
+        <a href="#" 
+        style="float: right; text-decoration: none; 
+        font-weight: bold; background-color: #2fcff7; 
+        color: #1c1c1c; padding: 10px; border-radius: 12px;
+        padding-left: 15px; padding-right: 15px;">Add Patient</a>
     <table id="patients" class="table table-striped table-bordered" style="width:100%";>
     <thead>
         <tr>
@@ -109,11 +111,13 @@
 
         </tr>
           <!-- newModal -->
-          <div class="modal fade" id="newModal-{{patients.patient_id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" >
+          <div class="modal fade" id="newModal-{{patients.patient_id}}" 
+          tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
+          style="position: absolute; margin-left: auto; margin-right: auto;">
             <!-- Modal content -->
             <div class="modal-content">
               <div class="modal-header">
-                <h3 style="margin-left: 20px;">Edit Record - Patient ID: {{patients.patient_id}}</h3>
+                <h3>Edit Record - Patient ID: {{patients.patient_id}}</h3>
               </div>
               <form id="updateForm" method="POST">
               <div class="modal-body">         
@@ -147,11 +151,13 @@
           <!-- End of the newModal -->
 
           <!-- delModal-->
-          <div class="modal fade" id="delModal-{{patients.patient_id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" >
+          <div class="modal fade" id="delModal-{{patients.patient_id}}" 
+          tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
+          style="position: absolute; margin-left: auto; margin-right: auto;">
             <!-- Modal content -->
             <div class="modal-content">
               <div class="modal-header">
-                <h2 style="margin-left: 20px;">Delete Record - Patient ID: {{patients.patient_id}}</h2>
+                <h2>Delete Record - Patient ID: {{patients.patient_id}}</h2>
               </div>
               <form id="deleteForm" method="POST" >
                 {% csrf_token %}
@@ -172,24 +178,23 @@
             {% endfor %}
     </tbody>
     </table>
-    </div>
+      </div>
     </div>
   </div>
   <!-- End of Patients table -->
 <!-- -------------------------------------------------------------------------------------------------- -->
 
-  <br>
-
 <!-- -------------------------------------------------------------------------------------------------- -->
   <!-- Doctors Table -->
-  <br>
   <div>
-  <h2>Doctors Table</h2>
-  <a href="#" >Add</a>
-
-  <div class="row">
-  <div class="col-xs-12">
-
+  <div class="row" style="width:90%; text-align: center; margin-left: auto; margin-right: auto;" >
+    <div class="col-xs-12">
+      <h2>Doctors Table</h2>
+      <a href="#" 
+      style="float: right; text-decoration: none; 
+      font-weight: bold; background-color: #2fcff7; 
+      color: #1c1c1c; padding: 10px; border-radius: 12px;
+      padding-left: 15px; padding-right: 15px;">Add Doctor</a>
   <table id="doctors" class="table table-striped table-bordered" style="width:100%";>
   <thead>
       <tr>
@@ -221,11 +226,13 @@
 
       </tr>
         <!-- newModal -->
-        <div class="modal fade" id="newModal-{{doctors.doctor_id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" >
+        <div class="modal fade" id="newModal-{{doctors.doctor_id}}" 
+        tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
+        style="position: absolute; margin-left: auto; margin-right: auto;">
           <!-- Modal content -->
           <div class="modal-content">
             <div class="modal-header">
-              <h3 style="margin-left: 20px;">Edit Record - Doctor ID: {{doctors.doctor_id}}</h3>
+              <h3>Edit Record - Doctor ID: {{doctors.doctor_id}}</h3>
             </div>
             <form id="updateForm" method="POST">
             <div class="modal-body">         
@@ -259,11 +266,13 @@
         <!-- End of the newModal -->
 
         <!-- delModal-->
-        <div class="modal fade" id="delModal-{{doctors.doctor_id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" >
+        <div class="modal fade" id="delModal-{{doctors.doctor_id}}" 
+        tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
+        style="position: absolute; margin-left: auto; margin-right: auto;">
           <!-- Modal content -->
           <div class="modal-content">
             <div class="modal-header">
-              <h2 style="margin-left: 20px;">Delete Record - Doctor ID: {{doctors.doctor_id}}</h2>
+              <h2>Delete Record - Doctor ID: {{doctors.doctor_id}}</h2>
             </div>
             <form id="deleteForm" method="POST" >
               {% csrf_token %}
@@ -284,7 +293,7 @@
           {% endfor %}
   </tbody>
   </table>
-  </div>
+    </div>
   </div>
 </div>
 <!-- End of Doctors table -->
@@ -292,19 +301,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
 <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-  <script>
+<script>
     $(document).ready(function() {
         $('#patients').DataTable({
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            destroy: true,
+            searching: false
         });
     } );
 
     $(document).ready(function() {
         $('#doctors').DataTable({
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]]
+            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+            destroy: true,
+            searching: false
         });
     } );
     </script>
