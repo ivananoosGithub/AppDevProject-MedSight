@@ -8,3 +8,13 @@ class UsersForm(forms.ModelForm):
         model = Users
         fields= '__all__'   # Refer to ALL the fields with the '__all__' keyword
         #fields = 'donor_id, first_name,last_name, contact_number, blood_type' # Select specific fields
+
+class PatientsForm(forms.ModelForm):
+    class Meta:
+        model = Patients
+        fields= '__all__' 
+
+class DoctorsForm(forms.ModelForm):
+    class Meta:
+        model = Doctors
+        fields= '__all__' 
