@@ -24,5 +24,6 @@ urlpatterns = [
     path('createDoctor/', views.CreateDoctorView.as_view(), name="createDoctor_view"),
     path('landing_p/', views.PatientHomeView.as_view(), name="patientHome_view"),
     path('landing_d/', views.DoctorHomeView.as_view(), name="doctorHome_view"),
+    path('admin/', views.AdminView.as_view(), name="admin_view"),
     path('logout/', views.logout, name='logout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
