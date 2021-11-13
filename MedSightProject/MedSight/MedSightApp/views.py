@@ -18,7 +18,9 @@ class IndexView(View):
                 'patients' : patients,
                 'doctors' : doctors,
             }
-        return render(request, 'pages/index.html', context)
+            return render(request, 'pages/index.html', context)
+        else:
+            return render(request, 'pages/index.html', {})
 
 class AdminView(View): 
     def get(self, request):
@@ -36,14 +38,15 @@ class AdminView(View):
             return HttpResponse('Please login first to view this page.') 
     def post(self, request):
        if request.method == 'POST':
+           # Patients Table
             if 'btnUpdatePatient' in request.POST:
                 print('Update button clicked!')
                 pid = request.POST.get("patient_id")
                 pfname = request.POST.get("first_name")
                 plname = request.POST.get("last_name")
                 pcnum = request.POST.get("contact_number")
-                pbtype = request.POST.get("blood_type")
-                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, blood_type = pbtype)
+                pcadd = request.POST.get("current_address")
+                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)
                 print(update_Patient)
                 print('Patient record updated!')
             elif 'btnDeletePatient' in request.POST:
@@ -52,6 +55,24 @@ class AdminView(View):
                 Patients.objects.filter(patient_id=pid).delete()
                 print("Patient record deleted")
 
+            # Doctors Table
+            if 'btnUpdateDoctor' in request.POST:
+                print('Update button clicked!')
+                did = request.POST.get("doctor_id")
+                dfname = request.POST.get("first_name")
+                dlname = request.POST.get("last_name")
+                dcnum = request.POST.get("contact_number")
+                dcadd = request.POST.get("current_address")
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)
+                print(update_Doctor)
+                print('Doctor record updated!')
+            elif 'btnDeleteDoctor' in request.POST:
+                print('Delete button clicked!')
+                did = request.POST.get("doctor_id")
+                Doctors.objects.filter(doctor_id=pid).delete()
+                print("Doctor record deleted")
+
+            return redirect('MedSightApp:admin_view')
 class PatientHomeView(View): 
     def get(self, request):
         if 'user' in request.session:
@@ -92,7 +113,10 @@ class AboutView(View):
                 'patients' : patients,
                 'doctors' : doctors,
             }
-        return render(request, 'pages/About.html', context)
+            return render(request, 'pages/About.html', context)
+        else:
+            return render(request, 'pages/About.html', {})
+        
         
 class ContactView(View): 
     def get(self, request): 
@@ -106,7 +130,9 @@ class ContactView(View):
                 'patients' : patients,
                 'doctors' : doctors,
             }
-        return render(request, 'pages/Contact.html', context)
+            return render(request, 'pages/Contact.html', context)
+        else:
+            return render(request, 'pages/Contact.html', {})
 
 class SignUpView(View): 
     def get(self, request):
@@ -216,5 +242,5 @@ def logout(request):
         del request.session['user']
     except:
         return redirect('MedSightApp:signin_view')
-    return redirect('MedSightApp:signin_view')
+    return redirect('MedSightApp:index_view')
 

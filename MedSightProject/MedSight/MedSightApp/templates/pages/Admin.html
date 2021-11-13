@@ -46,11 +46,7 @@
           
           <div class="u-custom-menu u-nav-container" style="background-color: rgba(255, 255, 255, 0.3); margin-right: -80px;padding-left: 250%; padding-right: 50px; float:right; padding-top: 10px; padding-bottom: 2px;">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:index_view' %}" style="padding: 10px 0px;">Home</a></li>
-              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:about_view' %}" style="padding: 10px 0px;">About</a></li>
-              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
-
-              {% if current_user %}
+                {% if current_user %}
                 <li class="u-nav-item">
                 <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
                 href="#" style="padding: 10px 0px;">{{current_user}}</a></li>
@@ -70,8 +66,8 @@
   
         </nav>
       </div></header>
-    
 
+<!-- -------------------------------------------------------------------------------------------------- -->
     <!-- Patients Table -->
     <br>
     <div>
@@ -89,7 +85,7 @@
             <th>Firstname</th>           
             <th>Lastname</th>           
             <th>Contact Number</th>           
-            <th>Blood Type</th>
+            <th>Current Address</th>
             <th>Actions</th>       
         </tr>
     </thead>
@@ -102,7 +98,7 @@
             <td>{{patients.last_name}}</td>           
             <td>{{patients.contact_number}}</td>           
             <td>{{patients.current_address}}</td>
-            <td> <a type="button" href="#"
+            <td> <a type="button" class='btn btn-primary' href="#"
                  data-toggle="modal" 
                  data-target="#newModal-{{patients.patient_id}}"><span class='glyphicon glyphicon-eye-open'></a>
                 <button type="button" class='btn btn-primary'
@@ -178,7 +174,123 @@
     </div>
     </div>
   </div>
-  
+  <!-- End of Patients table -->
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+  <br>
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+  <!-- Doctors Table -->
+  <br>
+  <div>
+  <h2>Doctors Table</h2>
+  <a href="#" >Add</a>
+
+  <div class="row">
+  <div class="col-xs-12">
+
+  <table id="doctors">
+  <thead>
+      <tr>
+          <th>Doctor ID</th>
+          <th>Username</th>       
+          <th>Firstname</th>           
+          <th>Lastname</th>           
+          <th>Contact Number</th>           
+          <th>Current Address</th>
+          <th>Actions</th>       
+      </tr>
+  </thead>
+  <tbody>
+  {% for doctors in doctors %}
+      <tr>
+          <td>{{doctors.doctor_id}}</td>
+          <td>{{doctors.username_id}}</td> 
+          <td>{{doctors.first_name}}</td>           
+          <td>{{doctors.last_name}}</td>           
+          <td>{{doctors.contact_number}}</td>           
+          <td>{{doctors.current_address}}</td>
+          <td> <a type="button" class='btn btn-primary' href="#"
+               data-toggle="modal" 
+               data-target="#newModal-{{doctors.doctor_id}}"><span class='glyphicon glyphicon-eye-open'></a>
+              <button type="button" class='btn btn-primary'
+               data-toggle="modal" 
+               data-target="#delModal-{{doctors.doctor_id}}"><span class='glyphicon glyphicon-remove'></button>
+          </td>
+
+      </tr>
+        <!-- newModal -->
+        <div class="modal fade" id="newModal-{{doctors.doctor_id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" >
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 style="margin-left: 20px;">Edit Record - Doctor ID: {{doctors.doctor_id}}</h3>
+            </div>
+            <form id="updateForm" method="POST">
+            <div class="modal-body">         
+                {% csrf_token %}
+                <div class = "row">
+                  <div class = "col-sm-3" hidden>
+                    <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{doctors.doctor_id}}" required>
+                  </div> 
+                  <div class = "col-sm-3">
+                    <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{doctors.first_name}}" required>
+                  </div>         
+                  <div class = "col-sm-3">
+                    <input type="text" class="form-control" id="last_name" name = "last_name" value="{{doctors.last_name}}" required>
+                  </div>          
+                  <div class = "col-sm-3">
+                    <input type="text" class="form-control" id="contact_number" name = "contact_number" value="{{doctors.contact_number}}" required>
+                  </div>          
+                  <div class = "col-sm-3">
+                    <input type="text" class="form-control" id="current_address" name = "current_address" value="{{doctors.current_address}}" required>
+                  </div> 
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" id="btnUpdateDoctor" name="btnUpdateDoctor" class="button">Update</button>
+              <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+          </div>
+
+        </div>
+        <!-- End of the newModal -->
+
+        <!-- delModal-->
+        <div class="modal fade" id="delModal-{{doctors.doctor_id}}" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" >
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 style="margin-left: 20px;">Delete Record - Doctor ID: {{doctors.doctor_id}}</h2>
+            </div>
+            <form id="deleteForm" method="POST" >
+              {% csrf_token %}
+            <div class="modal-body">
+              <div class = "col-sm-3" hidden>
+                <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{doctors.doctor_id}}">
+              </div> 
+              Are you sure you want to delete this patient's record?
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
+              <button type="submit" id="btnDeleteDoctor" name="btnDeleteDoctor" class="button">Yes</button>
+            </div>
+            </form>
+          </div>
+        </div>
+        <!-- End of the delModal -->
+          {% endfor %}
+  </tbody>
+  </table>
+  </div>
+  </div>
+</div>
+<!-- End of Doctors table -->
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">MS Team CSIT321-G1 A.Y. 2021-2022</p>
       </div></footer>
@@ -211,6 +323,6 @@
       var captionText = document.getElementById("caption");
       captionText.innerHTML = element.alt;
     }
-    
     </script>
+
 </html>
