@@ -19,9 +19,27 @@ class IndexView(View):
         # The 'return' of the method is to display/render to the browser 'index.html'
         return render(request, 'pages/index.html', {})
 
-class HomeView(View): 
-    def get(self, request): 
-        return render(request, 'pages/Home.html', {})
+class PatientHomeView(View): 
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            context = {
+                'current_user': current_user,
+            }
+            return render(request, 'pages/LandingP.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.') 
+
+class DoctorHomeView(View): 
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            context = {
+                'current_user': current_user,
+            }
+            return render(request, 'pages/LandingD.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.') 
 
 class AboutView(View): 
     def get(self, request): 
@@ -66,7 +84,10 @@ class SignInView(View):
             check_user = Users.objects.filter(username=username, password=password)
             if check_user:
                 request.session['user'] = username
-                return redirect('MedSightApp:signin_view')
+                if Patients.objects.filter(username=username).count()>0:
+                    return redirect('MedSightApp:patientHome_view')
+                elif Doctors.objects.filter(username=username).count()>0:
+                    return redirect('MedSightApp:doctorHome_view')
             else:
                 messages.info(request, 'Incorrect Username and Password!')
                 return redirect('MedSightApp:signin_view') 
@@ -135,3 +156,4 @@ def logout(request):
     except:
         return redirect('MedSightApp:signin_view')
     return redirect('MedSightApp:signin_view')
+

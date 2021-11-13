@@ -8,7 +8,7 @@
     <meta name="keywords" content="Quality Care, Weekly Timetable, Total Health Care, Get Online Consultation, Our Team, What people say, Make an Appointment">
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Home</title>
+    <title>Welcome {% if current_user %}{{current_user}}{% endif %}!</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
 <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
@@ -48,8 +48,17 @@
               <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:index_view' %}" style="padding: 10px 0px;">Home</a></li>
               <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:about_view' %}" style="padding: 10px 0px;">About</a></li>
               <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
-              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in</a></li>
-              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:signup_view' %}" style="padding: 10px 0px;">Register</a></li>
+
+              <li class="u-nav-item">
+                {% if current_user %}
+                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
+                href="#" style="padding: 10px 0px;">{{current_user}}
+                {% else %}
+              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
+                href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in
+              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
+                href="{% url 'MedSightApp:signup_view' %}" style="padding: 10px 0px;">Register
+                {% endif %}</a></li>
             </ul>
           </div>
   

@@ -15,7 +15,6 @@ urlpatterns = [
     # Name the attribute of the path the same as the class but with underscores: "my_index_view"
     # MyIndexView is the name of the class from views.py
     # Create/Specify one path for everytime you want to render/view a html file in a browser
-    path('home/', views.HomeView.as_view(), name="home_view"),
     path('about/', views.AboutView.as_view(), name="about_view"),
     path('contact/', views.ContactView.as_view(), name="contact_view"),
     path('signin/', views.SignInView.as_view(), name="signin_view"),
@@ -23,5 +22,7 @@ urlpatterns = [
     path('role/', views.RoleView.as_view(), name="role_view"),
     path('createPatient/', views.CreatePatientView.as_view(), name="createPatient_view"),
     path('createDoctor/', views.CreateDoctorView.as_view(), name="createDoctor_view"),
+    path('landing_p/', views.PatientHomeView.as_view(), name="patientHome_view"),
+    path('landing_d/', views.DoctorHomeView.as_view(), name="doctorHome_view"),
     path('logout/', views.logout, name='logout')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
