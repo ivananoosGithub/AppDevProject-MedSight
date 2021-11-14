@@ -13,8 +13,9 @@
 <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/dropdown.js' %}" defer=""></script>
+    <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
     <meta name="generator" content="Nicepage 3.24.3, nicepage.com">
-  
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
   
@@ -55,20 +56,25 @@
               <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
               
               {% if current_user %}
-                <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
-                href="#" style="padding: 10px 0px;">{{current_user}}</a></li>
-                <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
-                {% else %}
-                <li class="u-nav-item">
+              <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <li class="u-nav-item">
+                    <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
+                    href="#" style="padding: 10px 0px;">Profile</a></li><br>
+                    <li class="u-nav-item">
+                    <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                    href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
+                </div>
+              </div>      
+              {% else %}
+              <li class="u-nav-item">
                 <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
                 href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in</a></li>
-                <li class="u-nav-item">
+              <li class="u-nav-item">
                 <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
                 href="{% url 'MedSightApp:signup_view' %}" style="padding: 10px 0px;">Register</a></li>
-                {% endif %} </ul>
+              {% endif %} </ul>
           </div>
 
         </nav>
