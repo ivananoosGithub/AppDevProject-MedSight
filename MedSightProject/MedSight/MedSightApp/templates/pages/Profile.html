@@ -170,6 +170,82 @@
             <p>{{current_user.last_name}}</p>           
             <p>{{current_user.contact_number}}</p>           
             <p>{{current_user.current_address}}</p>
+            <div class="dropdownPP">
+              <button onclick="myFunctionPP()" class="dropbtnPP">Account Settings</button>
+              <div id="dropPP" class="dropdown-content-PP">
+                    <a type="button" class='ppbtn' href="#"
+                    data-toggle="modal" 
+                    data-target="#newModal-{{current_user.doctor_id}}">Edit Account</a>
+                    <button type="button" class='ppbtn' style="border: none;"
+                    data-toggle="modal" 
+                    data-target="#delModal-{{current_user.doctor_id}}">Delete Account</button>
+              </div>
+            </div>    
+                           
+                <!-- newModal -->
+                <div class="modal fade" id="newModal-{{current_user.doctor_id}}" 
+                  tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
+                  style="position: absolute; margin-left: auto; margin-right: auto;">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h3>Edit Account | {{current_user.username}}</h3>
+                      </div>
+                      <form id="updateForm" method="POST">
+                      <div class="modal-body">         
+                          {% csrf_token %}
+                          <div class = "row">
+                            <div class = "col-sm-3" hidden>
+                              <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{current_user.doctor_id}}" required>
+                            </div> 
+                            <div class = "col-sm-3">
+                              <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{current_user.first_name}}" required>
+                            </div>         
+                            <div class = "col-sm-3">
+                              <input type="text" class="form-control" id="last_name" name = "last_name" value="{{current_user.last_name}}" required>
+                            </div>          
+                            <div class = "col-sm-3">
+                              <input type="text" class="form-control" id="contact_number" name = "contact_number" value="{{current_user.contact_number}}" required>
+                            </div>          
+                            <div class = "col-sm-3">
+                              <input type="text" class="form-control" id="current_address" name = "current_address" value="{{current_user.current_address}}" required>
+                            </div> 
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" id="btnUpdateDoctor" name="btnUpdateDoctor" class="button">Update</button>
+                        <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                      </form>
+                    </div>      
+                </div>
+                <!-- End of the newModal -->
+        
+                <!-- delModal-->
+                <div class="modal fade" id="delModal-{{current_user.doctor_id}}" 
+                  tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
+                  style="position: absolute; margin-left: auto; margin-right: auto;">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h2>Delete Account |{{current_user.username}}</h2>
+                      </div>
+                      <form id="deleteForm" method="POST" >
+                        {% csrf_token %}
+                      <div class="modal-body">
+                        <div class = "col-sm-3" hidden>
+                          <input type="text" class="form-control" id="current_user" name = "current_user"  value="{{current_user.doctor_id}}">
+                        </div> 
+                        Are you sure you want to delete your account?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
+                        <button type="submit" id="btnDeleteDoctor" name="btnDeleteDoctor" class="button">Yes</button>
+                      </div>
+                      </form>
+                    </div>
+                </div>
+                <!-- End of the delModal -->
       {% endfor %}
     </section>
   

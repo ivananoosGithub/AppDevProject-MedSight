@@ -270,13 +270,13 @@ class ProfileView(View):
                 pcadd = request.POST.get("current_address")
                 update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)
                 print(update_Patient)
-                print('Patient record updated!')
+                print('Patient account updated!')
                 return redirect('MedSightApp:profile_view')
             elif 'btnDeletePatient' in request.POST:
                 print('Delete button clicked!')
                 pid = request.POST.get("patient_id")
                 Patients.objects.filter(patient_id=pid).delete()
-                print("Patient record deleted")
+                print("Patient account deleted")
                 return redirect('MedSightApp:index_view')
             
             # Doctors Table
@@ -289,12 +289,12 @@ class ProfileView(View):
                 dcadd = request.POST.get("current_address")
                 update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)
                 print(update_Doctor)
-                print('Doctor record updated!')
+                print('Doctor account updated!')
                 return redirect('MedSightApp:profile_view')
             elif 'btnDeleteDoctor' in request.POST:
                 print('Delete button clicked!')
                 did = request.POST.get("doctor_id")
                 Doctors.objects.filter(doctor_id=did).delete()
-                print("Doctor record deleted")
+                print("Doctor account deleted")
                 return redirect('MedSightApp:index_view')
                 
