@@ -43,6 +43,57 @@
   
   /* Change color of dropdown links on hover */
   /* .dropdown-content a:hover {background-color: #ddd} */
-  
-  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-  .show {display:block;}
+
+
+  /* Dropdown Button */
+.dropbtnPP {
+  background-color: #ffffff;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdownPP {
+  background-color: #ffffff;
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content-PP {
+  background-color: #ffffff;
+  font-family: Century Gothic;
+  text-transform: capitalize;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 2px;
+  border-bottom-left-radius: 6px;
+  border-end-end-radius: 6px;
+  display: none;
+  position: absolute;
+  min-width: 70px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content-PP a {
+  color: black;
+  text-decoration: none;
+  display: block;
+}
+
+ /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+ .show {display:block;}
+
+ .ppbtn {
+   color: black;
+   background-color: #ffffff;
+   padding: 10px;
+   z-index: 1;
+ }

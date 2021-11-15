@@ -25,5 +25,6 @@ urlpatterns = [
     path('landing_p/', views.PatientHomeView.as_view(), name="patientHome_view"),
     path('landing_d/', views.DoctorHomeView.as_view(), name="doctorHome_view"),
     path('admin/', views.AdminView.as_view(), name="admin_view"),
-    path('logout/', views.logout, name='logout')
+    path('logout/', views.logout, name='logout'),
+    url('profile/', views.ProfileView.as_view(), name="profile_view"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -46,14 +46,14 @@
           <div class="u-custom-menu u-nav-container" style="background-color: rgba(255, 255, 255, 0.3); margin-right: -80px;padding-left: 250%; padding-right: 50px; float:right; padding-top: 10px; padding-bottom: 2px;">
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
               {% if patients %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 10px 0px;">Home</a></li>
+              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 10px 0px;">Home</a></li>
               {% elif doctors %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:doctorHome_view' %}" style="padding: 10px 0px;">Home</a></li>  
+              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:doctorHome_view' %}" style="padding: 10px 0px;">Home</a></li>  
               {% else %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:index_view' %}" style="padding: 10px 0px;">Home</a></li>
+              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:index_view' %}" style="padding: 10px 0px;">Home</a></li>
               {% endif %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:about_view' %}" style="padding: 10px 0px;">About</a></li>
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
+              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:about_view' %}" style="padding: 10px 0px;">About</a></li>
+              <li class="u-nav-item"><a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
               
               {% if current_user %}
               <div class="dropdown">
@@ -61,7 +61,7 @@
                 <div id="myDropdown" class="dropdown-content">
                     <li class="u-nav-item">
                     <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
-                    href="#" style="padding: 10px 0px;">Profile</a></li><br>
+                    href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
                     <li class="u-nav-item">
                     <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
                     href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
@@ -69,7 +69,7 @@
               </div>      
               {% else %}
               <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
+                <a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" 
                 href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in</a></li>
               <li class="u-nav-item">
                 <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
