@@ -3,37 +3,7 @@
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 
-<<<<<<< Updated upstream
-  <body data-home-page="{% url 'MedSightApp:index_view' %}" data-home-page-title="Home" class="u-body u-overlap"><header class="u-clearfix u-header u-header" id="sec-e995"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-    <img src="{% static 'images/logo.png' %}" style="position: absolute; width: 10%; z-index: 1; margin-left: 20px; margin-top: -24px;">
-        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" style="margin-top: -4px;">
-          <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
-            <a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="#">
-              <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
-</symbol>
-</defs></svg>
-            </a>
-          </div>
-          <div class="u-custom-menu u-nav-container" style="background-color: rgba(255, 255, 255, 0.3); margin-right: -80px;padding-left: 250%; padding-right: 50px; float:right; padding-top: 10px; padding-bottom: 2px;">
-            <ul class="u-nav u-spacing-30 u-unstyled " style="font-weight: bold;">
-              {% if patients %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 10px 0px;">Home</a></li>
-              {% elif doctors %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:doctorHome_view' %}" style="padding: 10px 0px;">Home</a></li>  
-              {% else %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:index_view' %}" style="padding: 10px 0px;">Home</a></li>
-              {% endif %}
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:about_view' %}" style="padding: 10px 0px;">About</a></li>
-              <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
-              
-              {% if current_user %}
-              <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <li class="u-nav-item">
-                    <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
-=======
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
@@ -122,7 +92,6 @@
               <div id="myDropdown" class="dropdown-content">
                 <li class="u-nav-item">
                   <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
->>>>>>> Stashed changes
                     href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
                 <li class="u-nav-item">
                   <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
