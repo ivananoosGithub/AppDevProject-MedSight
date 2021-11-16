@@ -257,11 +257,12 @@ class ProfileView(View):
             current_user = request.session['user']
             patients = Patients.objects.filter(username=current_user)     
             doctors = Doctors.objects.filter(username=current_user)
-
+            user = Users.objects.filter(username=current_user)
             context = {
                 'current_user': current_user,
                 'patients' : patients,
                 'doctors' : doctors,
+                'user' : user,
             }
         return render(request, 'pages/Profile.html', context)
 
