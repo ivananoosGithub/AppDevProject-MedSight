@@ -10,7 +10,7 @@
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Registration</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/dropdown.js' %}" defer=""></script>
@@ -98,10 +98,10 @@
                       {% if messages %}
                       <div style="text-align: center; margin-bottom: -26px; margin-top: -6px;">
                           {% for message in messages %}
-                          <p{% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align: center;">{{ message }}</p>
+                          <p {% if message.tags %} class="{{ message.tags }}"{% endif %} style="text-align: center;">{{ message }}</p>
                           {% endfor %}
                       </div>
-                    {% endif %}
+                      {% endif %}
                     <br>
                       <div class="u-form-group u-form-name u-form-group-1">
                         <label class="u-form-control-hidden u-label">Username</label>
@@ -121,8 +121,7 @@
                   <br>
 
                       <hr>
-                      <!-- TO ADD MORE USER DETAILS LIKE ADDRESS, CONTACT DETALS(NUMBER/EMAIL), AS A CERTIFIED DOCTOR OR PATIENT -->
-                      <div class="u-align-left u-form-group u-form-submit u-form-group-4" style="text-align: center;">
+                       <div class="u-align-left u-form-group u-form-submit u-form-group-4" style="text-align: center;">
                         <button type="submit" class="u-btn u-btn-round u-btn-submit u-button-style u-radius-30 u-btn-1" style="width: 440px; letter-spacing: 3px; font-size: 16px;">NEXT</button>
                       </div>      
 

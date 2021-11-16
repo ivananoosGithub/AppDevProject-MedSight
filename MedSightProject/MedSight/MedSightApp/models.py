@@ -10,7 +10,6 @@ class Users(models.Model):
     username = models.CharField(max_length = 20, unique=True)
     password = models.CharField(max_length = 20)
     email = models.CharField(max_length = 50)
-    status = models.CharField(default='active', max_length=15)
 
     class meta:
         db_table = 'Users'
@@ -25,7 +24,8 @@ class Patients(models.Model):
     last_name = models.CharField(max_length = 40)
     contact_number = models.CharField(max_length = 20)
     current_address = models.CharField(max_length = 500)
-    # profile_pic = models.ImageField(upload_to ='uploads/')
+    # <!-- TO BE FIXED profile_pic-->
+    profile_pic = models.FileField(upload_to ='upload/', null=True)
     
     class meta:
         db_table = 'Patients' 
@@ -37,8 +37,9 @@ class Doctors(models.Model):
     last_name = models.CharField(max_length = 40)
     contact_number = models.CharField(max_length = 20)
     current_address = models.CharField(max_length = 500)
-    # med_license = models.ImageField(upload_to ='uploads/')
-    # profile_pic = models.ImageField(upload_to ='uploads/')
+    # <!-- TO BE FIXED med_license&profile_pic-->
+    med_license = models.FileField(upload_to ='upload/', null=True)
+    profile_pic = models.FileField(upload_to ='upload/', null=True)
 
     class meta:
         db_table = 'Doctors' 

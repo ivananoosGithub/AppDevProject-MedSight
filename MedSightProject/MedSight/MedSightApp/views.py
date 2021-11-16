@@ -207,7 +207,9 @@ class CreatePatientView(View):
             plname = request.POST.get("last_name")
             pcnum = request.POST.get("contact_number")
             pcadd = request.POST.get("current_address")
-            form = Patients(username = fk, first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)
+            # <!-- TO BE FIXED profile_pic-->
+            ppp = request.POST.get("profile_pic")
+            form = Patients(username = fk, first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd, profile_pic = ppp)
             form.save() 
             return redirect('MedSightApp:signin_view')
         else:
@@ -230,7 +232,10 @@ class CreateDoctorView(View):
             dlname = request.POST.get("last_name")
             dcnum = request.POST.get("contact_number")
             dcadd = request.POST.get("current_address")
-            form = Doctors(username = fk, first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)
+            # <!-- TO BE FIXED med_license&profile_pic-->
+            dml = request.POST.get("med_license")
+            dpp = request.POST.get("profile_pic")
+            form = Doctors(username = fk, first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd, med_license = dml, profile_pic = dpp)
             form.save() 
             return redirect('MedSightApp:signin_view')
         else:
@@ -268,7 +273,9 @@ class ProfileView(View):
                 plname = request.POST.get("last_name")
                 pcnum = request.POST.get("contact_number")
                 pcadd = request.POST.get("current_address")
-                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)
+                # <!-- TO BE FIXED profile_pic-->
+                ppp = request.POST.get("profile_pic")
+                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd, profile_pic = ppp)
                 print(update_Patient)
                 print('Patient account updated!')
                 return redirect('MedSightApp:profile_view')
@@ -287,7 +294,10 @@ class ProfileView(View):
                 dlname = request.POST.get("last_name")
                 dcnum = request.POST.get("contact_number")
                 dcadd = request.POST.get("current_address")
-                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)
+                # <!-- TO BE FIXED med_license&profile_pic-->
+                dml = request.POST.get("med_license")
+                dpp = request.POST.get("profile_pic")
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd, med_license = dml, profile_pic = dpp)
                 print(update_Doctor)
                 print('Doctor account updated!')
                 return redirect('MedSightApp:profile_view')

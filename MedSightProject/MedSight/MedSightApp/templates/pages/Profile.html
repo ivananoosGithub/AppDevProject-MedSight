@@ -82,6 +82,9 @@
       <br>
     <section class="u-align-center u-clearfix u-custom-typography u-section-5" id="carousel_a89f" style="margin: auto;">
       {% for current_user in patients %}
+      {{ form.as_p }} 
+      <!-- TO BE FIXED profile_pic-->
+            <img src="{{current_user.profile_pic}}" style="width: 100px; height: 100px;">
             <p>{{current_user.first_name}}</p>           
             <p>{{current_user.last_name}}</p>           
             <p>{{current_user.contact_number}}</p>           
@@ -111,21 +114,25 @@
                       <form id="updateForm" method="POST">
                       <div class="modal-body">         
                           {% csrf_token %}
+                          {{ form.as_p }} 
                           <div class = "row">
                             <div class = "col-sm-3" hidden>
-                              <input type="text" class="form-control" id="patient_id" name = "patient_id"  value="{{current_user.patient_id}}" required>
-                            </div> 
+                              <input type="text" class="form-control" id="patient_id" name = "patient_id"  value="{{current_user.patient_id}}">
+                            </div>
                             <div class = "col-sm-3">
-                              <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{current_user.first_name}}" required>
+                              <input type="file" class="form-control" id="profile_pic" name = "profile_pic"  value="{{current_user.profile_pic}}" >
+                            </div>   
+                            <div class = "col-sm-3">
+                              <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{current_user.first_name}}" >
                             </div>         
                             <div class = "col-sm-3">
-                              <input type="text" class="form-control" id="last_name" name = "last_name" value="{{current_user.last_name}}" required>
+                              <input type="text" class="form-control" id="last_name" name = "last_name" value="{{current_user.last_name}}">
                             </div>          
                             <div class = "col-sm-3">
-                              <input type="text" class="form-control" id="contact_number" name = "contact_number" value="{{current_user.contact_number}}" required>
+                              <input type="text" class="form-control" id="contact_number" name = "contact_number" value="{{current_user.contact_number}}">
                             </div>          
                             <div class = "col-sm-3">
-                              <input type="text" class="form-control" id="current_address" name = "current_address" value="{{current_user.current_address}}" required>
+                              <input type="text" class="form-control" id="current_address" name = "current_address" value="{{current_user.current_address}}">
                             </div> 
                           </div>
                       </div>
@@ -166,6 +173,8 @@
       {% endfor %}
 
       {% for current_user in doctors %}
+      <!-- TO BE FIXED profile_pic and TO BE ADDED med_license-->
+            <img src="{{current_user.profile_pic}}">
             <p>{{current_user.first_name}}</p>           
             <p>{{current_user.last_name}}</p>           
             <p>{{current_user.contact_number}}</p>           
@@ -194,10 +203,14 @@
                       <form id="updateForm" method="POST">
                       <div class="modal-body">         
                           {% csrf_token %}
+                          {{ form.as_p }} 
                           <div class = "row">
                             <div class = "col-sm-3" hidden>
                               <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{current_user.doctor_id}}" required>
-                            </div> 
+                            </div>
+                            <div class = "col-sm-3">
+                              <input type="file" class="form-control" id="profile_pic" name = "profile_pic"  value="{{current_user.profile_pic}}" >
+                            </div>   
                             <div class = "col-sm-3">
                               <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{current_user.first_name}}" required>
                             </div>         

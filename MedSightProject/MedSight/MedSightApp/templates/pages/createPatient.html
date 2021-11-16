@@ -94,7 +94,7 @@
                   <p class="u-text u-text-3">Please fill up the following additional account details.</p><br>
                   <form id = "form1" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                     {% csrf_token %}
-                    
+                    {{ form.as_p }} 
                     <br>
                     {% if current_user %} 
                       <input type="text" id="username" name="username" value="{{current_user}}" readonly hidden>
@@ -107,8 +107,9 @@
                         <input type="text" id="contact_number" name = "contact_number" placeholder="Contact Number" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required>
                     <br>
                         <input type="text" id="current_address" name="current_address" placeholder="Current Address" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required>
+                    <br>Upload a Profile Image (optional) # <!-- TO BE FIXED profile_pic-->
+                        <input type="file" id="profile_pic" name="profile_pic" placeholder="Upload a Profile Image" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                     <br>
-                    
                       <hr>
                       <div class="u-align-left u-form-group u-form-submit u-form-group-4" style="text-align: center;">
                         <button type="submit" class="u-btn u-btn-round u-btn-submit u-button-style u-radius-30 u-btn-1" style="width: 440px; letter-spacing: 3px; font-size: 16px;">REGISTER</button>
