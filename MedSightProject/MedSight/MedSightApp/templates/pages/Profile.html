@@ -119,9 +119,9 @@
                             <div class = "col-sm-3" hidden>
                               <input type="text" class="form-control" id="patient_id" name = "patient_id"  value="{{current_user.patient_id}}">
                             </div>
-                            <div class = "col-sm-3">
+                            <!-- <div class = "col-sm-3">
                               <input type="file" class="form-control" id="profile_pic" name = "profile_pic"  value="{{current_user.profile_pic}}" >
-                            </div>   
+                            </div>    -->
                             <div class = "col-sm-3">
                               <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{current_user.first_name}}" >
                             </div>         
@@ -137,7 +137,7 @@
                           </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" id="btnUpdatePatient" name="btnUpdatePatient" class="button">Update</button>
+                        <button type="submit" id="btnUpdatePatientP" name="btnUpdatePatientP" class="button">Update</button>
                         <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
                       </div>
                       </form>
@@ -164,7 +164,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
-                        <button type="submit" id="btnDeletePatient" name="btnDeletePatient" class="button">Yes</button>
+                        <button type="submit" id="btnDeletePatientP" name="btnDeletePatientP" class="button">Yes</button>
                       </div>
                       </form>
                     </div>
@@ -208,9 +208,9 @@
                             <div class = "col-sm-3" hidden>
                               <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{current_user.doctor_id}}" required>
                             </div>
-                            <div class = "col-sm-3">
+                            <!-- <div class = "col-sm-3">
                               <input type="file" class="form-control" id="profile_pic" name = "profile_pic"  value="{{current_user.profile_pic}}" >
-                            </div>   
+                            </div>    -->
                             <div class = "col-sm-3">
                               <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{current_user.first_name}}" required>
                             </div>         
@@ -226,7 +226,7 @@
                           </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" id="btnUpdateDoctor" name="btnUpdateDoctor" class="button">Update</button>
+                        <button type="submit" id="btnUpdateDoctorD" name="btnUpdateDoctorD" class="button">Update</button>
                         <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
                       </div>
                       </form>
@@ -253,7 +253,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
-                        <button type="submit" id="btnDeleteDoctor" name="btnDeleteDoctor" class="button">Yes</button>
+                        <button type="submit" id="btnDeleteDoctorD" name="btnDeleteDoctorD" class="button">Yes</button>
                       </div>
                       </form>
                     </div>

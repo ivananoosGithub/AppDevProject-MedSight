@@ -25,7 +25,7 @@ class Patients(models.Model):
     contact_number = models.CharField(max_length = 20)
     current_address = models.CharField(max_length = 500)
     # <!-- TO BE FIXED profile_pic-->
-    profile_pic = models.FileField(upload_to ='upload/', null=True)
+    # profile_pic = models.ImageField(upload_to ='upload/', null=True)
     
     class meta:
         db_table = 'Patients' 
@@ -38,8 +38,8 @@ class Doctors(models.Model):
     contact_number = models.CharField(max_length = 20)
     current_address = models.CharField(max_length = 500)
     # <!-- TO BE FIXED med_license&profile_pic-->
-    med_license = models.FileField(upload_to ='upload/', null=True)
-    profile_pic = models.FileField(upload_to ='upload/', null=True)
+    # med_license = models.ImageField(upload_to ='upload/', null=True)
+    # profile_pic = models.ImageField(upload_to ='upload/', null=True)
 
     class meta:
         db_table = 'Doctors' 
