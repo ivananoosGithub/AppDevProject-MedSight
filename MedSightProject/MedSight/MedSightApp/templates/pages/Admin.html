@@ -2,35 +2,8 @@
 
 <!DOCTYPE html>
 <html style="font-size: 16px;">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Quality Care, Weekly Timetable, Total Health Care, Get Online Consultation, Our Team, What people say, Make an Appointment">
-    <meta name="description" content="">
-    <meta name="page_type" content="np-template-header-footer-from-plugin">
-    <title>Welcome {% if current_user %}{{current_user}}{% endif %}!</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
-<link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
-    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
-    <meta name="generator" content="Nicepage 3.24.3, nicepage.com">
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
-    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-    <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    
-<!--   SAMPLE PULL REQ   -->
-    
-    <script type="application/ld+json">{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "Medical Website",
-		"logo": "#"
-}</script>
-    <meta name="theme-color" content="#9fd9dd">
-    <meta property="og:title" content="Home">
-    <meta property="og:type" content="website">
-  </head>
 
+<<<<<<< Updated upstream
   <body data-home-page="{% url 'MedSightApp:index_view' %}" data-home-page-title="Home" class="u-body u-overlap"><header class="u-clearfix u-header u-header" id="sec-e995"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
     <img src="{% static 'images/logo.png' %}" style="position: absolute; width: 10%; z-index: 1; margin-left: 20px; margin-top: -24px;">
         <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" style="margin-top: -4px;">
@@ -48,289 +21,370 @@
                 {% if current_user %}
                 <li class="u-nav-item">
                 <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
-                href="#" style="padding: 10px 0px;">{{current_user}}</a></li>
-                <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
-                {% else %}
-                <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
-                href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in</a></li>
-                <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90" 
-                href="{% url 'MedSightApp:signup_view' %}" style="padding: 10px 0px;">Register</a></li>
-                {% endif %}
-            </ul>
-          </div>
-  
-        </nav>
-      </div></header>
+=======
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords"
+    content="Quality Care, Weekly Timetable, Total Health Care, Get Online Consultation, Our Team, What people say, Make an Appointment">
+  <meta name="description" content="">
+  <meta name="page_type" content="np-template-header-footer-from-plugin">
+  <title>Welcome {% if current_user %}{{current_user}}{% endif %}!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
+  <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+  <meta name="generator" content="Nicepage 3.24.3, nicepage.com">
+  <link id="u-theme-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+  <link id="u-page-google-font" rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+  <link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
 
-<!-- -------------------------------------------------------------------------------------------------- -->
-    <!-- Patients Table -->
-    <br>
-    <div style="margin-top: 20px;">
-    <div class="row" style="width:90%; text-align: center; margin-left: auto; margin-right: auto;" >
+  <!--   SAMPLE PULL REQ   -->
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "name": "Medical Website",
+      "logo": "#"
+    }
+  </script>
+  <meta name="theme-color" content="#9fd9dd">
+  <meta property="og:title" content="Home">
+  <meta property="og:type" content="website">
+</head>
+
+<body data-home-page="{% url 'MedSightApp:index_view' %}" data-home-page-title="Home" class="u-body u-overlap">
+  <header class="u-clearfix u-header u-sticky u-sticky-c02e " id="sec-e995">
+    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+      <img src="{% static 'images/logo.png' %}"
+        style="position: absolute; width: 10%; z-index: 1; margin-left: 20px; margin-top: -24px;">
+      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" style="margin-top: -4px;">
+        <div class="menu-collapse"
+          style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
+          <a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
+            href="#">
+            <svg>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+            </svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <defs>
+                <symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;">
+                  <rect y="1" width="16" height="2"></rect>
+                  <rect y="7" width="16" height="2"></rect>
+                  <rect y="13" width="16" height="2"></rect>
+                </symbol>
+              </defs>
+            </svg><img src="{% static 'images/logo.png' %}" style="position: absolute; width: 13%;">
+          </a>
+        </div>
+
+        <div class="u-custom-menu u-nav-container"
+          style="background-color: rgba(255, 255, 255, 0.3); margin-right: -80px;padding-left: 250%; padding-right: 50px; float:right; padding-top: 10px; padding-bottom: 2px;">
+          <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+            {% if current_user %}
+            <li class="u-nav-item">
+              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+>>>>>>> Stashed changes
+                href="#" style="padding: 10px 0px;">{{current_user}}</a></li>
+            <li class="u-nav-item">
+              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
+            {% else %}
+            <li class="u-nav-item">
+              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in</a></li>
+            <li class="u-nav-item">
+              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                href="{% url 'MedSightApp:signup_view' %}" style="padding: 10px 0px;">Register</a></li>
+            {% endif %}
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- -------------------------------------------------------------------------------------------------- -->
+  <!-- Patients Table -->
+  <br>
+  <div style="margin-top: 20px;">
+    <div class="row" style="width:90%; text-align: center; margin-left: auto; margin-right: auto;">
       <div class="col-xs-12">
         <h2>Patients Table</h2>
-        <a href="#" 
-        style="float: right; text-decoration: none; 
+        <a href="#" style="float: right; text-decoration: none; 
         font-weight: bold; background-color: #2fcff7; 
         color: #1c1c1c; padding: 10px; border-radius: 12px;
         padding-left: 15px; padding-right: 15px;">Add Patient</a>
-    <table id="patients" class="table table-striped table-bordered" style="width:100%";>
-    <thead>
-        <tr>
-            <th>Patient ID</th>
-            <th>Username</th>       
-            <th>Firstname</th>           
-            <th>Lastname</th>           
-            <th>Contact Number</th>           
-            <th>Current Address</th>
-            <th>Actions</th>       
-        </tr>
-    </thead>
-    <tbody>
-    {% for patients in patients %}
-        <tr>
-            <td>{{patients.patient_id}}</td>
-            <td>{{patients.username_id}}</td> 
-            <td>{{patients.first_name}}</td>           
-            <td>{{patients.last_name}}</td>           
-            <td>{{patients.contact_number}}</td>           
-            <td>{{patients.current_address}}</td>
-            <td> <a type="button" class='btn btn-primary' href="#"
-                 data-toggle="modal" 
-                 data-target="#newModal-{{patients.patient_id}}"><span class='glyphicon glyphicon-eye-open'></a>
-                <button type="button" class='btn btn-primary'
-                 data-toggle="modal" 
-                 data-target="#delModal-{{patients.patient_id}}"><span class='glyphicon glyphicon-remove'></button>
-            </td>
+        <table id="patients" class="table table-striped table-bordered" style="width:100%" ;>
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Username</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Contact Number</th>
+              <th>Current Address</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for patients in patients %}
+            <tr>
+              <td>{{patients.patient_id}}</td>
+              <td>{{patients.username_id}}</td>
+              <td>{{patients.first_name}}</td>
+              <td>{{patients.last_name}}</td>
+              <td>{{patients.contact_number}}</td>
+              <td>{{patients.current_address}}</td>
+              <td> <a type="button" class='btn btn-primary' href="#" data-toggle="modal"
+                  data-target="#newModal-{{patients.patient_id}}"><span class='glyphicon glyphicon-eye-open'></a>
+                <button type="button" class='btn btn-primary' data-toggle="modal"
+                  data-target="#delModal-{{patients.patient_id}}"><span class='glyphicon glyphicon-remove'></button>
+              </td>
 
-        </tr>
-          <!-- newModal -->
-          <div class="modal fade" id="newModal-{{patients.patient_id}}" 
-          tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
-          style="position: absolute; margin-left: auto; margin-right: auto;">
-            <!-- Modal content -->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3>Edit Record - Patient ID: {{patients.patient_id}}</h3>
-              </div>
-              <form id="updateForm" method="POST">
-              <div class="modal-body">         
-                  {% csrf_token %}
-                  <div class = "row">
-                    <div class = "col-sm-3" hidden>
-                      <input type="text" class="form-control" id="patient_id" name = "patient_id"  value="{{patients.patient_id}}" required>
-                    </div> 
-                    <div class = "col-sm-3">
-                      <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{patients.first_name}}" required>
-                    </div>         
-                    <div class = "col-sm-3">
-                      <input type="text" class="form-control" id="last_name" name = "last_name" value="{{patients.last_name}}" required>
-                    </div>          
-                    <div class = "col-sm-3">
-                      <input type="text" class="form-control" id="contact_number" name = "contact_number" value="{{patients.contact_number}}" required>
-                    </div>          
-                    <div class = "col-sm-3">
-                      <input type="text" class="form-control" id="current_address" name = "current_address" value="{{patients.current_address}}" required>
-                    </div> 
+            </tr>
+            <!-- newModal -->
+            <div class="modal fade" id="newModal-{{patients.patient_id}}" tabindex="-1" role="dialog"
+              aria-labelledby="newModalLabel" aria-hidden="true"
+              style="position: absolute; margin-left: auto; margin-right: auto;">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Edit Record - Patient ID: {{patients.patient_id}}</h3>
+                </div>
+                <form id="updateForm" method="POST">
+                  <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-sm-3" hidden>
+                        <input type="text" class="form-control" id="patient_id" name="patient_id"
+                          value="{{patients.patient_id}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="first_name" name="first_name"
+                          value="{{patients.first_name}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="last_name" name="last_name"
+                          value="{{patients.last_name}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="contact_number" name="contact_number"
+                          value="{{patients.contact_number}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="current_address" name="current_address"
+                          value="{{patients.current_address}}" required>
+                      </div>
+                    </div>
                   </div>
+                  <div class="modal-footer">
+                    <button type="submit" id="btnUpdatePatient" name="btnUpdatePatient" class="button">Update</button>
+                    <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
               </div>
-              <div class="modal-footer">
-                <button type="submit" id="btnUpdatePatient" name="btnUpdatePatient" class="button">Update</button>
-                <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-              </form>
-            </div>
 
-          </div>
-          <!-- End of the newModal -->
-
-          <!-- delModal-->
-          <div class="modal fade" id="delModal-{{patients.patient_id}}" 
-          tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
-          style="position: absolute; margin-left: auto; margin-right: auto;">
-            <!-- Modal content -->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h2>Delete Record - Patient ID: {{patients.patient_id}}</h2>
-              </div>
-              <form id="deleteForm" method="POST" >
-                {% csrf_token %}
-              <div class="modal-body">
-                <div class = "col-sm-3" hidden>
-                  <input type="text" class="form-control" id="patient_id" name = "patient_id"  value="{{patients.patient_id}}">
-                </div> 
-                Are you sure you want to delete this patient's record?
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
-                <button type="submit" id="btnDeletePatient" name="btnDeletePatient" class="button">Yes</button>
-              </div>
-              </form>
             </div>
-          </div>
-          <!-- End of the delModal -->
+            <!-- End of the newModal -->
+
+            <!-- delModal-->
+            <div class="modal fade" id="delModal-{{patients.patient_id}}" tabindex="-1" role="dialog"
+              aria-labelledby="newModalLabel" aria-hidden="true"
+              style="position: absolute; margin-left: auto; margin-right: auto;">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2>Delete Record - Patient ID: {{patients.patient_id}}</h2>
+                </div>
+                <form id="deleteForm" method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                    <div class="col-sm-3" hidden>
+                      <input type="text" class="form-control" id="patient_id" name="patient_id"
+                        value="{{patients.patient_id}}">
+                    </div>
+                    Are you sure you want to delete this patient's record?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
+                    <button type="submit" id="btnDeletePatient" name="btnDeletePatient" class="button">Yes</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- End of the delModal -->
             {% endfor %}
-    </tbody>
-    </table>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
   <!-- End of Patients table -->
-<!-- -------------------------------------------------------------------------------------------------- -->
+  <!-- -------------------------------------------------------------------------------------------------- -->
 
-<!-- -------------------------------------------------------------------------------------------------- -->
+  <!-- -------------------------------------------------------------------------------------------------- -->
   <!-- Doctors Table -->
   <div>
-  <div class="row" style="width:90%; text-align: center; margin-left: auto; margin-right: auto;" >
-    <div class="col-xs-12">
-      <h2>Doctors Table</h2>
-      <a href="#" 
-      style="float: right; text-decoration: none; 
+    <div class="row" style="width:90%; text-align: center; margin-left: auto; margin-right: auto;">
+      <div class="col-xs-12">
+        <h2>Doctors Table</h2>
+        <a href="#" style="float: right; text-decoration: none; 
       font-weight: bold; background-color: #2fcff7; 
       color: #1c1c1c; padding: 10px; border-radius: 12px;
       padding-left: 15px; padding-right: 15px;">Add Doctor</a>
-  <table id="doctors" class="table table-striped table-bordered" style="width:100%";>
-  <thead>
-      <tr>
-          <th>Doctor ID</th>
-          <th>Username</th>       
-          <th>Firstname</th>           
-          <th>Lastname</th>           
-          <th>Contact Number</th>           
-          <th>Current Address</th>
-          <th>Actions</th>       
-      </tr>
-  </thead>
-  <tbody>
-  {% for doctors in doctors %}
-      <tr>
-          <td>{{doctors.doctor_id}}</td>
-          <td>{{doctors.username_id}}</td> 
-          <td>{{doctors.first_name}}</td>           
-          <td>{{doctors.last_name}}</td>           
-          <td>{{doctors.contact_number}}</td>           
-          <td>{{doctors.current_address}}</td>
-          <td> <a type="button" class='btn btn-primary' href="#"
-               data-toggle="modal" 
-               data-target="#newModal-{{doctors.doctor_id}}"><span class='glyphicon glyphicon-eye-open'></a>
-              <button type="button" class='btn btn-primary'
-               data-toggle="modal" 
-               data-target="#delModal-{{doctors.doctor_id}}"><span class='glyphicon glyphicon-remove'></button>
-          </td>
+        <table id="doctors" class="table table-striped table-bordered" style="width:100%" ;>
+          <thead>
+            <tr>
+              <th>Doctor ID</th>
+              <th>Username</th>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Contact Number</th>
+              <th>Current Address</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for doctors in doctors %}
+            <tr>
+              <td>{{doctors.doctor_id}}</td>
+              <td>{{doctors.username_id}}</td>
+              <td>{{doctors.first_name}}</td>
+              <td>{{doctors.last_name}}</td>
+              <td>{{doctors.contact_number}}</td>
+              <td>{{doctors.current_address}}</td>
+              <td> <a type="button" class='btn btn-primary' href="#" data-toggle="modal"
+                  data-target="#newModal-{{doctors.doctor_id}}"><span class='glyphicon glyphicon-eye-open'></a>
+                <button type="button" class='btn btn-primary' data-toggle="modal"
+                  data-target="#delModal-{{doctors.doctor_id}}"><span class='glyphicon glyphicon-remove'></button>
+              </td>
 
-      </tr>
-        <!-- newModal -->
-        <div class="modal fade" id="newModal-{{doctors.doctor_id}}" 
-        tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
-        style="position: absolute; margin-left: auto; margin-right: auto;">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3>Edit Record - Doctor ID: {{doctors.doctor_id}}</h3>
-            </div>
-            <form id="updateForm" method="POST">
-            <div class="modal-body">         
-                {% csrf_token %}
-                <div class = "row">
-                  <div class = "col-sm-3" hidden>
-                    <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{doctors.doctor_id}}" required>
-                  </div> 
-                  <div class = "col-sm-3">
-                    <input type="text" class="form-control" id="first_name" name = "first_name"  value="{{doctors.first_name}}" required>
-                  </div>         
-                  <div class = "col-sm-3">
-                    <input type="text" class="form-control" id="last_name" name = "last_name" value="{{doctors.last_name}}" required>
-                  </div>          
-                  <div class = "col-sm-3">
-                    <input type="text" class="form-control" id="contact_number" name = "contact_number" value="{{doctors.contact_number}}" required>
-                  </div>          
-                  <div class = "col-sm-3">
-                    <input type="text" class="form-control" id="current_address" name = "current_address" value="{{doctors.current_address}}" required>
-                  </div> 
+            </tr>
+            <!-- newModal -->
+            <div class="modal fade" id="newModal-{{doctors.doctor_id}}" tabindex="-1" role="dialog"
+              aria-labelledby="newModalLabel" aria-hidden="true"
+              style="position: absolute; margin-left: auto; margin-right: auto;">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Edit Record - Doctor ID: {{doctors.doctor_id}}</h3>
                 </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" id="btnUpdateDoctor" name="btnUpdateDoctor" class="button">Update</button>
-              <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </form>
-          </div>
+                <form id="updateForm" method="POST">
+                  <div class="modal-body">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-sm-3" hidden>
+                        <input type="text" class="form-control" id="doctor_id" name="doctor_id"
+                          value="{{doctors.doctor_id}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="first_name" name="first_name"
+                          value="{{doctors.first_name}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="last_name" name="last_name"
+                          value="{{doctors.last_name}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="contact_number" name="contact_number"
+                          value="{{doctors.contact_number}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="text" class="form-control" id="current_address" name="current_address"
+                          value="{{doctors.current_address}}" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" id="btnUpdateDoctor" name="btnUpdateDoctor" class="button">Update</button>
+                    <button type="submit" class="button btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
+              </div>
 
-        </div>
-        <!-- End of the newModal -->
+            </div>
+            <!-- End of the newModal -->
 
-        <!-- delModal-->
-        <div class="modal fade" id="delModal-{{doctors.doctor_id}}" 
-        tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true" 
-        style="position: absolute; margin-left: auto; margin-right: auto;">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h2>Delete Record - Doctor ID: {{doctors.doctor_id}}</h2>
+            <!-- delModal-->
+            <div class="modal fade" id="delModal-{{doctors.doctor_id}}" tabindex="-1" role="dialog"
+              aria-labelledby="newModalLabel" aria-hidden="true"
+              style="position: absolute; margin-left: auto; margin-right: auto;">
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2>Delete Record - Doctor ID: {{doctors.doctor_id}}</h2>
+                </div>
+                <form id="deleteForm" method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                    <div class="col-sm-3" hidden>
+                      <input type="text" class="form-control" id="doctor_id" name="doctor_id"
+                        value="{{doctors.doctor_id}}">
+                    </div>
+                    Are you sure you want to delete this patient's record?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
+                    <button type="submit" id="btnDeleteDoctor" name="btnDeleteDoctor" class="button">Yes</button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <form id="deleteForm" method="POST" >
-              {% csrf_token %}
-            <div class="modal-body">
-              <div class = "col-sm-3" hidden>
-                <input type="text" class="form-control" id="doctor_id" name = "doctor_id"  value="{{doctors.doctor_id}}">
-              </div> 
-              Are you sure you want to delete this patient's record?
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="button btn-secondary" data-dismiss="modal">No</button>
-              <button type="submit" id="btnDeleteDoctor" name="btnDeleteDoctor" class="button">Yes</button>
-            </div>
-            </form>
-          </div>
-        </div>
-        <!-- End of the delModal -->
-          {% endfor %}
-  </tbody>
-  </table>
+            <!-- End of the delModal -->
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
-<!-- End of Doctors table -->
-<!-- -------------------------------------------------------------------------------------------------- -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="{% static 'js/dataTables.bootstrap.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
-<script>
-    $(document).ready(function() {
-        $('#patients').DataTable({
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
-            destroy: true,
-            searching: false
-        });
-    } );
+  <!-- End of Doctors table -->
+  <!-- -------------------------------------------------------------------------------------------------- -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js">
+  </script>
+  <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  <script>
+    $(document).ready(function () {
+      $('#patients').DataTable({
+        "lengthMenu": [
+          [5, 10, 15, -1],
+          [5, 10, 15, "All"]
+        ],
+        destroy: true,
+        searching: false
+      });
+    });
 
-    $(document).ready(function() {
-        $('#doctors').DataTable({
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
-            destroy: true,
-            searching: false
-        });
-    } );
-    </script>
-    
-    <script>
+    $(document).ready(function () {
+      $('#doctors').DataTable({
+        "lengthMenu": [
+          [5, 10, 15, -1],
+          [5, 10, 15, "All"]
+        ],
+        destroy: true,
+        searching: false
+      });
+    });
+  </script>
+
+  <script>
     // Script to open and close sidebar
     function w3_open() {
       document.getElementById("mySidebar").style.display = "block";
       document.getElementById("myOverlay").style.display = "block";
     }
-     
+
     function w3_close() {
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
     }
-    
+
     // Modal Image Gallery
     function onClick(element) {
       document.getElementById("img01").src = element.src;
@@ -338,11 +392,13 @@
       var captionText = document.getElementById("caption");
       captionText.innerHTML = element.alt;
     }
-    </script>
+  </script>
 
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0"><div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-variant u-text-1">MS Team CSIT321-G1 A.Y. 2021-2022</p>
-      </div></footer>
-  </body>
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0">
+    <div class="u-clearfix u-sheet u-sheet-1">
+      <p class="u-small-text u-text u-text-variant u-text-1">MS Team CSIT321-G1 A.Y. 2021-2022</p>
+    </div>
+  </footer>
+</body>
 
 </html>
