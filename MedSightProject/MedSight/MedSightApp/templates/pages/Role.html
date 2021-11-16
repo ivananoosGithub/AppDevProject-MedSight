@@ -96,13 +96,14 @@
 
                     
                     <tr>
+                      <!-- can't center the items, if naa mo fix for this, please do so -->
                       <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </td>
                       <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </td>
-                      <!-- try -->
+                      <!-- SELECTION -->
                       <td>
                       <div class="flip-card">
                         <div class="flip-card-inner">
@@ -110,40 +111,25 @@
                             <img src="{% static 'images/student.png' %}" alt="Patient" style="width:300px;height:300px;">
                           </div>
                           <div class="flip-card-back">
+                            <br><br>
                             <h1>Patient</h1>
                             <p>Needs assistance</p>
-                            <p>To be cared of</p>
-
-                            <button>
+                            <br><br><br>
+                            <button style="font-size: 23px; font-weight: bold; width: 100%; border-width: 0px;">
                               <a href="{% url 'MedSightApp:createPatient_view' %}" >
-                              <!-- <img src="{% static 'images/student.png' %}" style="width: 200px; height: 200px;"> -->
-                              <br>Select</button>
+                              Proceed</button>
                             </a>
                           </div>
                         </div>
                       </div>
-                      <!-- try end -->
+                      <!-- SELECTION -->
                     </td>
 
-                    <!-- <td>                     
-                        <button style="font-size: 23px; font-weight: bold; letter-spacing: 5px; width: 100%; border-radius: 12px; border-width: 0px;">
-                          <a href="{% url 'MedSightApp:createPatient_view' %}" >
-                          <img src="{% static 'images/student.png' %}" style="width: 200px; height: 200px;">
-                          <br>PATIENT</button>
-                        </a>
-                    </td> -->
                     <td>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
-                    <!-- <td>               
-                        <button style="font-size: 23px; font-weight: bold; letter-spacing: 5px; width: 100%; border-radius: 12px; border-width: 0px;">
-                          <a href="{% url 'MedSightApp:createDoctor_view' %}" >
-                          <img src="{% static 'images/nurse.png' %}" style="width: 200px; height: 200px;">
-                          <br>DOCTOR</button>
-                        </a>
-                    </td> -->
 
-                    <!-- try -->
+                    <!-- SELECTION -->
                       <td>
                       <div class="flip-card">
                         <div class="flip-card-inner">
@@ -151,19 +137,18 @@
                             <img src="{% static 'images/nurse.png' %}" alt="Nurse" style="width:300px;height:300px;">
                           </div>
                           <div class="flip-card-back">
+                            <br><br>
                             <h1>Doctor</h1>
-                            <p>Architect & Engineer</p>
-                            <p>We love that guy</p>
-
-                            <button style="font-size: 23px; font-weight: bold; letter-spacing: 5px; width: 100%; border-radius: 12px; border-width: 0px;">
+                            <p>Medical Professional</p>
+                            <br><br><br>
+                            <button style="font-size: 23px; font-weight: bold; width: 100%; border-width: 0px;">
                               <a href="{% url 'MedSightApp:createDoctor_view' %}" >
-                              <!-- <img src="{% static 'images/student.png' %}" style="width: 200px; height: 200px;"> -->
-                              <br>Select</button>
+                              Proceed</button>
                             </a>
                           </div>
                         </div>
                       </div>
-                      <!-- try end -->
+                      <!-- SELECTION -->
                     </td>
 
                     </tr>
