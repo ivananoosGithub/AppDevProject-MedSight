@@ -11,6 +11,7 @@
     <title>Roles</title>
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
 <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
+<link rel="stylesheet" href="{% static 'css/Role.css' %}" media="screen">
     <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <script class="u-script" type="text/javascript" src="{% static 'js/dropdown.js' %}" defer=""></script>
@@ -93,24 +94,78 @@
                   <p class="u-text u-text-3">Select only one of the two roles.</p><br>
                   <table>
 
+                    
                     <tr>
-                    <td>                     
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <!-- try -->
+                      <td>
+                      <div class="flip-card">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="{% static 'images/student.png' %}" alt="Patient" style="width:300px;height:300px;">
+                          </div>
+                          <div class="flip-card-back">
+                            <h1>Patient</h1>
+                            <p>Needs assistance</p>
+                            <p>To be cared of</p>
+
+                            <button>
+                              <a href="{% url 'MedSightApp:createPatient_view' %}" >
+                              <!-- <img src="{% static 'images/student.png' %}" style="width: 200px; height: 200px;"> -->
+                              <br>Select</button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- try end -->
+                    </td>
+
+                    <!-- <td>                     
                         <button style="font-size: 23px; font-weight: bold; letter-spacing: 5px; width: 100%; border-radius: 12px; border-width: 0px;">
                           <a href="{% url 'MedSightApp:createPatient_view' %}" >
                           <img src="{% static 'images/student.png' %}" style="width: 200px; height: 200px;">
                           <br>PATIENT</button>
                         </a>
-                    </td>
+                    </td> -->
                     <td>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
-                    <td>               
+                    <!-- <td>               
                         <button style="font-size: 23px; font-weight: bold; letter-spacing: 5px; width: 100%; border-radius: 12px; border-width: 0px;">
                           <a href="{% url 'MedSightApp:createDoctor_view' %}" >
                           <img src="{% static 'images/nurse.png' %}" style="width: 200px; height: 200px;">
                           <br>DOCTOR</button>
                         </a>
+                    </td> -->
+
+                    <!-- try -->
+                      <td>
+                      <div class="flip-card">
+                        <div class="flip-card-inner">
+                          <div class="flip-card-front">
+                            <img src="{% static 'images/nurse.png' %}" alt="Nurse" style="width:300px;height:300px;">
+                          </div>
+                          <div class="flip-card-back">
+                            <h1>Doctor</h1>
+                            <p>Architect & Engineer</p>
+                            <p>We love that guy</p>
+
+                            <button style="font-size: 23px; font-weight: bold; letter-spacing: 5px; width: 100%; border-radius: 12px; border-width: 0px;">
+                              <a href="{% url 'MedSightApp:createDoctor_view' %}" >
+                              <!-- <img src="{% static 'images/student.png' %}" style="width: 200px; height: 200px;"> -->
+                              <br>Select</button>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- try end -->
                     </td>
+
                     </tr>
             
                   </table>
