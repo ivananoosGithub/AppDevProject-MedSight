@@ -45,7 +45,7 @@
             </a>
           </div>
           <div class="u-custom-menu u-nav-container" style="background-color: rgba(255, 255, 255, 0.3); margin-right: -80px;padding-left: 250%; padding-right: 50px; float:right; padding-top: 10px; padding-bottom: 2px;">
-            <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+            <ul class="u-nav u-spacing-30 u-unstyled " style="font-weight: bold;">
               {% if patients %}
               <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 10px 0px;">Home</a></li>
               {% elif doctors %}
