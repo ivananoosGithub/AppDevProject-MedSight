@@ -145,17 +145,22 @@ class SignUpView(View):
             # try:
             username = request.POST.get("username")
             password = request.POST.get("password")
+            confirmpassword = request.POST.get("confirmpassword")
             email = request.POST.get("email")
-            if Users.objects.filter(username=username).count()>0:
-                messages.info(request, 'Username already exists!')
-                return redirect('MedSightApp:signup_view') 
+            if(confirmpassword == password):
+                if Users.objects.filter(username=username).count()>0:
+                    messages.info(request, 'Username already exists!')
+                    return redirect('MedSightApp:signup_view') 
+                else:
+                    form = Users(username = username, password = password, email = email)
+                    form.save()
+                    check_user = Users.objects.filter(username=username, password=password, email = email)
+                    if check_user:
+                        request.session['user'] = username
+                        return redirect('MedSightApp:role_view')
             else:
-                form = Users(username = username, password = password, email = email)
-                form.save()
-                check_user = Users.objects.filter(username=username, password=password, email = email)
-                if check_user:
-                    request.session['user'] = username
-                    return redirect('MedSightApp:role_view')
+                messages.info(request, 'Passwords do not match!')
+                return redirect('MedSightApp:signup_view')
         else:
             print(form.errors)
             messages.info(request, 'Account already exists! Please try another unique one.')

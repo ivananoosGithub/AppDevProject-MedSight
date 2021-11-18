@@ -11,6 +11,7 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Registration</title>
+
   <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
   <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
   <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
@@ -144,6 +145,12 @@
                   <div class="u-form-group u-form-group u-form-group-1">
                     <label class="u-form-control-hidden u-label">Password</label>
                     <input type="password" id="password" name="password" placeholder="Password" minlength="8"
+                      class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                  </div>
+                  <br>
+                  <div class="u-form-group u-form-group u-form-group-1">
+                    <label class="u-form-control-hidden u-label">Confirm Password</label>
+                    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password" minlength="8"
                       class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                   </div>
                   <br>
