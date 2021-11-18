@@ -27,6 +27,9 @@ urlpatterns = [
     path('admin/', views.AdminView.as_view(), name="admin_view"),
     path('logout/', views.logout, name='logout'),
     url('profile/', views.ProfileView.as_view(), name="profile_view"),
+
+    # temporary url for backend purposes
+    path('findDoctor/', views.FindDoctorView.as_view(), name="finddoc_view"),
 ]
 
 if settings.DEBUG:

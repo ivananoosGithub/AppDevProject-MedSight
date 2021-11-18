@@ -19,8 +19,10 @@ class IndexView(View):
                 'doctors' : doctors,
             }
             return render(request, 'pages/index.html', context)
+            # return render(request, 'pages/UserLandingPage.html', context)
         else:
             return render(request, 'pages/index.html', {})
+            # return render(request, 'pages/UserLandingPage.html.html', {})
 
 class AdminView(View): 
     def get(self, request):
@@ -314,4 +316,10 @@ class ProfileView(View):
                 Users.objects.filter(user_id=did).delete()
                 print("Doctor account deleted")
                 return redirect('MedSightApp:logout')
+
+# temporary view for backend purposes
+class FindDoctorView(View): 
+    def get(self, request): 
+        return render(request, 'pages/FindDocPage.html', {})
+        
                 
