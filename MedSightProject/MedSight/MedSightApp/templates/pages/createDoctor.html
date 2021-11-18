@@ -12,10 +12,10 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Doctors' Registration</title>
-  <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
   <link rel="stylesheet" href="{% static 'css/Home.css' %}" media="screen">
-  <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
-  <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'js/jquery1.js' %}" defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'js/nicepage1.js' %}" defer=""></script>
   <script class="u-script" type="text/javascript" src="{% static 'js/dropdown.js' %}" defer=""></script>
   <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
   <meta name="generator" content="Nicepage 3.24.3, nicepage.com">
@@ -40,78 +40,103 @@
 </head>
 
 <body data-home-page="{% url 'MedSightApp:index_view' %}" data-home-page-title="Home" class="u-body u-overlap">
-  <header class="u-clearfix u-header u-sticky u-sticky-c02e " id="sec-e995">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <img src="{% static 'images/logo.png' %}"
-        style="position: absolute; width: 10%; z-index: 1; margin-left: 20px; margin-top: -24px;">
-      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" style="margin-top: -4px;">
-        <div class="menu-collapse"
-          style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;">
-          <a class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-            href="#">
-            <svg>
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
-            </svg>
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <defs>
-                <symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;">
-                  <rect y="1" width="16" height="2"></rect>
-                  <rect y="7" width="16" height="2"></rect>
-                  <rect y="13" width="16" height="2"></rect>
-                </symbol>
-              </defs>
-            </svg>
-          </a>
-        </div>
-        <div class="u-custom-menu u-nav-container"
-          style="background-color: rgba(255, 255, 255, 0.3); margin-right: -40px;padding-left: 250%; padding-right: 50px; float:right; padding-top: 10px; padding-bottom: 2px;">
-          <ul class="u-nav u-spacing-30 u-unstyled" style="font-weight: bold;">
-            {% if patients %}
-            <li class="u-nav-item"><a
-                class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 10px 0px;">Home</a></li>
-            {% elif doctors %}
-            <li class="u-nav-item"><a
-                class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:doctorHome_view' %}" style="padding: 10px 0px;">Home</a></li>
-            {% else %}
-            <li class="u-nav-item"><a
-                class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:index_view' %}" style="padding: 10px 0px;">Home</a></li>
-            {% endif %}
-            <li class="u-nav-item"><a
-                class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:about_view' %}" style="padding: 10px 0px;">About</a></li>
-            <li class="u-nav-item"><a
-                class="u-border-2 u-border-active-palette-1-base u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:contact_view' %}" style="padding: 10px 0px;">Contact</a></li>
+  <!-- new nav bar -->
+  <header class="u-clearfix u-header u-sticky u-sticky-786f u-white u-header" id="sec-0ac4"><div class="u-clearfix u-sheet u-sheet-1">
+    <nav class="u-align-right u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1">
+      <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+        <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+          <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+</symbol>
+</defs></svg>
+        </a>
+      </div>
+      <div class="u-custom-menu u-nav-container">
+        <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+          {% if patients %}
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 6px 0px;">Home</a></li>
+          {% elif doctors %}
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 6px 0px;">Home</a></li>
+          {% else %}
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:index_view' %}" style="padding: 6px 0px;">Home</a></li>
+          {% endif %}
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:about_view' %}" style="padding: 6px 0px;">About</a></li>
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:contact_view' %}" style="padding: 6px 0px;">Contact</a></li>
+          
 
-            {% if current_user %}
-            <div class="dropdown">
-              <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
-              <div id="myDropdown" class="dropdown-content">
-                <li class="u-nav-item">
-                  <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                    href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
-                <li class="u-nav-item">
-                  <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                    href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
-              </div>
+          {% if current_user %}
+          <!-- <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
+            <div id="myDropdown" class="dropdown-content">
+              <li class="u-nav-item">
+                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                  href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
+              <li class="u-nav-item">
+                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                  href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
             </div>
-            {% else %}
-            <li class="u-nav-item">
-              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:signin_view' %}" style="padding: 10px 0px;">Log in</a></li>
-            <li class="u-nav-item">
-              <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                href="{% url 'MedSightApp:signup_view' %}" style="padding: 10px 0px;">Register</a></li>
-            {% endif %}
-          </ul>
-        </div>
+          </div> -->
+          <!-- Drop Down -->
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">{{current_user}}</a>
+            <div class="u-nav-popup">
+              <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
+                <li class="u-nav-item"><a href="{% url 'MedSightApp:profile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
+                <li class="u-nav-item"><a href="{% url 'MedSightApp:logout' %}" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
+            </ul>
+            </div>
+              </li>
+              </ul>
+          </div>
+          {% else %}
+          <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
+          {% endif %}
+          
+          <!-- Drop Down -->
+          <!-- <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">UserTest-1</a>
+            <div class="u-nav-popup">
+              <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
+            </ul>
+            </div>
+              </li>
+              </ul>
+          </div> -->
 
-      </nav>
-    </div>
-  </header>
+      <div class="u-custom-menu u-nav-container-collapse">
+        <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+          <div class="u-sidenav-overflow">
+            <div class="u-menu-close"></div>
+            <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+              <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 6px 0px;">Home</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">About</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 6px 0px;">Contact</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">UserTest-1</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4"><li class="u-nav-item"><a class="u-button-style u-nav-link">Profile</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Dashboard</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Account Settings</a>
+              </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+              </li></ul>
+              </div>
+              </li></ul>
+          </div>
+        </div>
+        <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+      </div>
+    </nav>
+    <a href="#" class="u-image u-logo u-image-1">
+      <img src="{% static 'images/logo.png' %}" class="u-logo-image u-logo-image-1">
+    </a>
+  </div><style class="u-sticky-style" data-style-id="786f">.u-sticky-fixed.u-sticky-786f, .u-body.u-sticky-fixed .u-sticky-786f {
+box-shadow: 0 2px 8px 0 rgba(128,128,128,1) !important
+}.u-sticky-fixed.u-sticky-786f:before, .u-body.u-sticky-fixed .u-sticky-786f:before {
+borders: top right bottom left !important
+}</style></header>
+
+<!-- end nav bar -->
 
   <section class="u-align-left u-clearfix u-valign-middle-sm u-valign-middle-xs u-section-3" id="carousel_af6b">
     <div class="u-clearfix u-sheet u-sheet-1">
