@@ -17,4 +17,4 @@ class PatientsForm(forms.ModelForm):
 class DoctorsForm(forms.ModelForm):
     class Meta:
         model = Doctors
-        fields= '__all__' 
+        exclude = ['prefix']
