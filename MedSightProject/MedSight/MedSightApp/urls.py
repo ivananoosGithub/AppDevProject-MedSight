@@ -30,8 +30,4 @@ urlpatterns = [
 
     # temporary url for backend purposes
     path('findDoctor/', views.FindDoctorView.as_view(), name="finddoc_view"),
-]
-
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

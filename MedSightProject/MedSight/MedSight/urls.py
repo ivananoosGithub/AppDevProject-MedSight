@@ -15,6 +15,8 @@
 
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls.static import static
+from django.conf import settings
 
 app_name = 'MedSightApp' # Specify the app name (myapp1)
 
@@ -24,4 +26,4 @@ urlpatterns = [
     # Admin page is where you login with 'python manage.py createsuperuser' account created
 
     path('MedSightApp/', include('MedSightApp.urls', namespace='MedSightApp')), 
-]   
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

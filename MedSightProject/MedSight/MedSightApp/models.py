@@ -37,9 +37,10 @@ class Doctors(models.Model):
     last_name = models.CharField(max_length = 40)
     contact_number = models.CharField(max_length = 20)
     current_address = models.CharField(max_length = 500)
+    profile_pic = models.ImageField(upload_to='images', null=True)
     # <!-- TO BE FIXED med_license&profile_pic-->
     # med_license = models.ImageField(upload_to ='upload/', null=True)
-    # profile_pic = models.ImageField(upload_to ='upload/', null=True)
+    
 
     class meta:
         db_table = 'Doctors' 
