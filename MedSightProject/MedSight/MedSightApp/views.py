@@ -220,7 +220,7 @@ class CreatePatientView(View):
             #ppp = request.POST.get("profile_pic")
             form = Patients(username = fk, first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)#, profile_pic = ppp)
             form.save() 
-            return redirect('MedSightApp:signin_view')
+            return redirect('MedSightApp:patientHome_view')
         else:
             print(form.errors)
             return HttpResponse('not valid')
@@ -235,18 +235,26 @@ class CreateDoctorView(View):
         return render(request, 'pages/createDoctor.html',context)
     def post(self, request):        
         form = DoctorsForm(request.POST, request.FILES)        
-        if form.is_valid():
+        if form.is_valid() and form.is_multipart():
             fk = form.cleaned_data.get("username")
             dfname = request.POST.get("first_name")
             dlname = request.POST.get("last_name")
+            dgend = request.POST.get("gender")            
             dcnum = request.POST.get("contact_number")
             dcadd = request.POST.get("current_address")
+            dspc = request.POST.get("specialization")
+            dprefm = "Dr."
+            dpreff = "Dra."
             # <!-- TO BE FIXED med_license&profile_pic-->
             #dml = request.POST.get("med_license")
-            #dpp = request.POST.get("profile_pic")
-            form = Doctors(username = fk, first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)#, med_license = dml, profile_pic = dpp)
+            dpp = request.FILES["profile_pic"]
+
+            if 'Male' in request.POST.get("gender"):                          
+                form = Doctors(username = fk, prefix = dprefm, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)#, med_license = dml, profile_pic = dpp)
+            else:
+                form = Doctors(username = fk, prefix = dpreff, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)#, med_license = dml, profile_pic = dpp)
             form.save() 
-            return redirect('MedSightApp:signin_view')
+            return redirect('MedSightApp:doctorHome_view')
         else:
             print(form.errors)
             return HttpResponse('not valid')
@@ -324,7 +332,18 @@ class ProfileView(View):
 
 # temporary view for backend purposes
 class FindDoctorView(View): 
-    def get(self, request): 
-        return render(request, 'pages/FindDocPage.html', {})
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            context = {
+                'current_user': current_user,
+                'patients' : patients,
+                'doctors' : doctors,
+            }
+            return render(request, 'pages/FindDocPage.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')   
         
                 
