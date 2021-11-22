@@ -47,7 +47,7 @@
 .u-section-1 .u-image-1 {
   width: 108px;
   height: 108px;
-  background-image: url("{% static 'images/dr1.PNG' %}");
+  background-image: url("images/dr1.PNG");
   background-position: 50% 50%;
   margin: 16px auto 0 46px;
 }
