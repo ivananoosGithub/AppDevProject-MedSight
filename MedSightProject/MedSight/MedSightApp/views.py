@@ -46,9 +46,10 @@ class AdminView(View):
                 pid = request.POST.get("patient_id")
                 pfname = request.POST.get("first_name")
                 plname = request.POST.get("last_name")
+                pgend = request.POST.get("gender")  
                 pcnum = request.POST.get("contact_number")
                 pcadd = request.POST.get("current_address")
-                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)
+                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, gender = pgend, contact_number = pcnum, current_address = pcadd)
                 print(update_Patient)
                 print('Patient record updated!')
             elif 'btnDeletePatient' in request.POST:
@@ -64,9 +65,10 @@ class AdminView(View):
                 did = request.POST.get("doctor_id")
                 dfname = request.POST.get("first_name")
                 dlname = request.POST.get("last_name")
+                dgend = request.POST.get("gender")  
                 dcnum = request.POST.get("contact_number")
                 dcadd = request.POST.get("current_address")
-                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd)
                 print(update_Doctor)
                 print('Doctor record updated!')
             elif 'btnDeleteDoctor' in request.POST:
@@ -214,11 +216,11 @@ class CreatePatientView(View):
             fk = form.cleaned_data.get("username")
             pfname = request.POST.get("first_name")
             plname = request.POST.get("last_name")
+            pgend = request.POST.get("gender")    
             pcnum = request.POST.get("contact_number")
             pcadd = request.POST.get("current_address")
-            # <!-- TO BE FIXED profile_pic-->
-            #ppp = request.POST.get("profile_pic")
-            form = Patients(username = fk, first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)#, profile_pic = ppp)
+            ppp = request.FILES["profile_pic"]
+            form = Patients(username = fk, first_name = pfname, last_name = plname, gender = pgend, contact_number = pcnum, current_address = pcadd, profile_pic = ppp)
             form.save() 
             return redirect('MedSightApp:patientHome_view')
         else:
@@ -245,14 +247,12 @@ class CreateDoctorView(View):
             dspc = request.POST.get("specialization")
             dprefm = "Dr."
             dpreff = "Dra."
-            # <!-- TO BE FIXED med_license&profile_pic-->
-            #dml = request.POST.get("med_license")
             dpp = request.FILES["profile_pic"]
 
             if 'Male' in request.POST.get("gender"):                          
-                form = Doctors(username = fk, prefix = dprefm, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)#, med_license = dml, profile_pic = dpp)
+                form = Doctors(username = fk, prefix = dprefm, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)
             else:
-                form = Doctors(username = fk, prefix = dpreff, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)#, med_license = dml, profile_pic = dpp)
+                form = Doctors(username = fk, prefix = dpreff, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)
             form.save() 
             return redirect('MedSightApp:doctorHome_view')
         else:
@@ -289,20 +289,21 @@ class ProfileView(View):
                 pid = request.POST.get("patient_id")
                 pfname = request.POST.get("first_name")
                 plname = request.POST.get("last_name")
+                pgend = request.POST.get("gender") 
                 pcnum = request.POST.get("contact_number")
                 pcadd = request.POST.get("current_address")
-                # <!-- TO BE FIXED profile_pic-->
-                # ppp = request.POST.get("profile_pic")
-                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, contact_number = pcnum, current_address = pcadd)#, profile_pic = ppp)
+                # ppp = request.FILES["profile_pic"]
+                update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, gender = pgend, contact_number = pcnum, current_address = pcadd)#, profile_pic = ppp)
                 print(update_Patient)
                 print('Patient account updated!')
                 return redirect('MedSightApp:profile_view')
             elif 'btnDeletePatientP' in request.POST:
                 print('Delete button clicked!')
                 pid = request.POST.get("patient_id")
-                # TO BE FIXED, its not apparently not deleting
                 Patients.objects.filter(patient_id=pid).delete()
-                Users.objects.filter(user_id=pid).delete()
+                if 'user' in request.session:
+                    current_user = request.session['user']
+                Users.objects.filter(username=current_user).delete()
                 print("Patient record deleted")
                 return redirect('MedSightApp:logout')
             
@@ -312,21 +313,21 @@ class ProfileView(View):
                 did = request.POST.get("doctor_id")
                 dfname = request.POST.get("first_name")
                 dlname = request.POST.get("last_name")
+                dgend = request.POST.get("gender") 
                 dcnum = request.POST.get("contact_number")
                 dcadd = request.POST.get("current_address")
-                # <!-- TO BE FIXED med_license&profile_pic-->
-                # dml = request.POST.get("med_license")
-                # dpp = request.POST.get("profile_pic")
-                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, contact_number = dcnum, current_address = dcadd)#, med_license = dml, profile_pic = dpp)
+                # dpp = request.FILES["profile_pic"]
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd)# ,profile_pic = dpp)
                 print(update_Doctor)
                 print('Doctor account updated!')
                 return redirect('MedSightApp:profile_view')
             elif 'btnDeleteDoctorD' in request.POST:
                 print('Delete button clicked!')
                 did = request.POST.get("doctor_id")
-                # TO BE FIXED, its not apparently not deleting
                 Doctors.objects.filter(doctor_id=did).delete()
-                Users.objects.filter(user_id=did).delete()
+                if 'user' in request.session:
+                    current_user = request.session['user']
+                Users.objects.filter(username=current_user).delete()
                 print("Doctor account deleted")
                 return redirect('MedSightApp:logout')
 

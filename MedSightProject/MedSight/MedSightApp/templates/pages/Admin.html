@@ -62,16 +62,9 @@ table.dataTable tfoot th {
     </div>
     <div class="u-custom-menu u-nav-container">
       <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
-        {% if patients %}
-        <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 6px 0px;">Home</a></li>
-        {% elif doctors %}
-        <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 6px 0px;">Home</a></li>
-        {% else %}
         <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:index_view' %}" style="padding: 6px 0px;">Home</a></li>
-        {% endif %}
         <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:about_view' %}" style="padding: 6px 0px;">About</a></li>
         <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:contact_view' %}" style="padding: 6px 0px;">Contact</a></li>
-        
 
         {% if current_user %}
         <!-- <div class="dropdown">
@@ -166,6 +159,7 @@ borders: top right bottom left !important
               <th>Username</th>
               <th>Firstname</th>
               <th>Lastname</th>
+              <th>Gender</th>
               <th>Contact Number</th>
               <th>Current Address</th>
               <th>Actions</th>
@@ -178,6 +172,7 @@ borders: top right bottom left !important
               <td>{{patients.username_id}}</td>
               <td>{{patients.first_name}}</td>
               <td>{{patients.last_name}}</td>
+              <td>{{patients.gender}}</td>
               <td>{{patients.contact_number}}</td>
               <td>{{patients.current_address}}</td>
               <td> <a type="button" class='btn btn-primary' href="#" data-toggle="modal"
@@ -215,6 +210,14 @@ borders: top right bottom left !important
                       <div class="col-sm-3">
                         <input type="text" class="form-control" id="contact_number" name="contact_number"
                           value="{{patients.contact_number}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <label for="gender">Gender</label>
+                          <select id="gender" name="gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"
+                          value="{{patients.gender}}" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
                       </div>
                       <div class="col-sm-3">
                         <input type="text" class="form-control" id="current_address" name="current_address"
@@ -282,6 +285,7 @@ borders: top right bottom left !important
               <th>Username</th>
               <th>Firstname</th>
               <th>Lastname</th>
+              <th>Gender</th>
               <th>Contact Number</th>
               <th>Current Address</th>
               <th>Actions</th>
@@ -294,6 +298,7 @@ borders: top right bottom left !important
               <td>{{doctors.username_id}}</td>
               <td>{{doctors.first_name}}</td>
               <td>{{doctors.last_name}}</td>
+              <td>{{patients.gender}}</td>
               <td>{{doctors.contact_number}}</td>
               <td>{{doctors.current_address}}</td>
               <td> <a type="button" class='btn btn-primary' href="#" data-toggle="modal"
@@ -331,6 +336,14 @@ borders: top right bottom left !important
                       <div class="col-sm-3">
                         <input type="text" class="form-control" id="contact_number" name="contact_number"
                           value="{{doctors.contact_number}}" required>
+                      </div>
+                      <div class="col-sm-3">
+                        <label for="gender">Gender</label>
+                          <select id="gender" name="gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"
+                          value="{{doctors.gender}}" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
                       </div>
                       <div class="col-sm-3">
                         <input type="text" class="form-control" id="current_address" name="current_address"
