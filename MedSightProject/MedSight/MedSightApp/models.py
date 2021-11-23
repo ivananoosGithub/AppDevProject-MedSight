@@ -1,5 +1,5 @@
 from django.db import models
-
+from passlib.hash import pbkdf2_sha256
 # Create your models here.
 # The tables will be created here, not in the phpMyAdmin database
 # 'makemigrations' command to save the contents here then 'migrate'
@@ -8,7 +8,7 @@ from django.db import models
 class Users(models.Model):
     user_id = models.AutoField(primary_key=True)
     username = models.CharField(max_length = 20, unique=True)
-    password = models.CharField(max_length = 20)
+    password = models.CharField(max_length = 256)
     email = models.CharField(max_length = 50)
 
     class meta:
@@ -40,6 +40,7 @@ class Doctors(models.Model):
     contact_number = models.CharField(max_length = 20)
     current_address = models.CharField(max_length = 500)
     specialization = models.CharField(max_length = 50)
+    experience = models.CharField(max_length = 5)
     profile_pic = models.ImageField(upload_to='images', null=True)    
 
     class meta:

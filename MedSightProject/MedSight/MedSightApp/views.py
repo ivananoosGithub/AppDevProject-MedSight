@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views.generic import View
 from .forms import *
 from .models import *
+from passlib.hash import pbkdf2_sha256
 # Create your views here.
 class IndexView(View): 
     def get(self, request): 
@@ -150,15 +151,16 @@ class SignUpView(View):
             username = request.POST.get("username")
             password = request.POST.get("password")
             confirmpassword = request.POST.get("confirmpassword")
+            enc_password = pbkdf2_sha256.encrypt(password, rounds=12000, salt_size=32)
             email = request.POST.get("email")
             if(confirmpassword == password):
                 if Users.objects.filter(username=username).count()>0:
                     messages.info(request, 'Username already exists!')
                     return redirect('MedSightApp:signup_view') 
                 else:
-                    form = Users(username = username, password = password, email = email)
+                    form = Users(username = username, password = enc_password, email = email)
                     form.save()
-                    check_user = Users.objects.filter(username=username, password=password, email = email)
+                    check_user = Users.objects.filter(username=username, password=enc_password, email = email)
                     if check_user:
                         request.session['user'] = username
                         return redirect('MedSightApp:role_view')
@@ -177,8 +179,10 @@ class SignInView(View):
         if request.method == 'POST':
             username = request.POST.get('username')
             password = request.POST.get('password')
-            check_user = Users.objects.filter(username=username, password=password)
-            if check_user:
+            check_password = pbkdf2_sha256.hash(password, rounds=20000, salt_size=16)
+            dec_password = pbkdf2_sha256.verify(password, check_password)
+            check_user = Users.objects.filter(username=username)
+            if check_user and dec_password:
                 request.session['user'] = username
                 if Patients.objects.filter(username=username).count()>0:
                     return redirect('MedSightApp:patientHome_view')
@@ -189,7 +193,7 @@ class SignInView(View):
             else:
                 messages.info(request, 'Incorrect Username and Password!')
                 return redirect('MedSightApp:signin_view') 
-        return render(request, 'pages/signin.html', {})
+        return redirect('MedSightApp:index_view')
 
 class RoleView(View):
     def get(self, request):
@@ -205,11 +209,16 @@ class RoleView(View):
 class CreatePatientView(View):
     def get(self, request):
         if 'user' in request.session:
-            current_user = request.session['user']
-            context = {
-                'current_user': current_user
-            }
-        return render(request, 'pages/createPatient.html',context)
+            if Patients.objects.filter(username=request.session['user']) or Doctors.objects.filter(username=request.session['user']):
+                return HttpResponse('You have already registered as a Patient or Doctor.')  
+            else:
+                current_user = request.session['user']
+                context = {
+                    'current_user': current_user
+                }
+                return render(request, 'pages/createPatient.html',context)
+        else:
+            return HttpResponse('Please do the initial registration to view this page.')
     def post(self, request):        
         form = PatientsForm(request.POST, request.FILES)   
         if form.is_valid():
@@ -230,11 +239,16 @@ class CreatePatientView(View):
 class CreateDoctorView(View):
     def get(self, request):
         if 'user' in request.session:
-            current_user = request.session['user']
-            context = {
-                'current_user': current_user
-            }
-        return render(request, 'pages/createDoctor.html',context)
+            if Patients.objects.filter(username=request.session['user']) or Doctors.objects.filter(username=request.session['user']):
+                return HttpResponse('You have already registered as a Patient or Doctor.')  
+            else:
+                current_user = request.session['user']
+                context = {
+                    'current_user': current_user
+                }
+                return render(request, 'pages/createDoctor.html',context)
+        else:
+            return HttpResponse('Please do the initial registration to view this page.')
     def post(self, request):        
         form = DoctorsForm(request.POST, request.FILES)        
         if form.is_valid() and form.is_multipart():
@@ -245,14 +259,15 @@ class CreateDoctorView(View):
             dcnum = request.POST.get("contact_number")
             dcadd = request.POST.get("current_address")
             dspc = request.POST.get("specialization")
+            dexp = request.POST.get("experience")
             dprefm = "Dr."
             dpreff = "Dra."
             dpp = request.FILES["profile_pic"]
 
             if 'Male' in request.POST.get("gender"):                          
-                form = Doctors(username = fk, prefix = dprefm, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)
+                form = Doctors(username = fk, prefix = dprefm, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, experience = dexp, profile_pic = dpp)
             else:
-                form = Doctors(username = fk, prefix = dpreff, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, profile_pic = dpp)
+                form = Doctors(username = fk, prefix = dpreff, first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd, specialization = dspc, experience = dexp, profile_pic = dpp)
             form.save() 
             return redirect('MedSightApp:doctorHome_view')
         else:
