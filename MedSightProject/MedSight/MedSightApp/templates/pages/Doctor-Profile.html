@@ -1,0 +1,348 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="My details">
+    <meta name="description" content="">
+    <meta name="page_type" content="np-template-header-footer-from-plugin">
+    <title>Doctor Profile</title>
+    <link rel="stylesheet" href="{% static 'css/nicepage2.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/Doctor-Profile.css' %}" media="screen">
+    <script class="u-script" type="text/javascript" src="{% static 'js/jquery2.js' %}" defer=""></script>
+    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage2.js' %}" defer=""></script>
+    <meta name="generator" content="Nicepage 3.25.0, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"logo": "images/default-logo.png"
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Doctor Profile">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body">
+    
+    <!-- new nav bar -->
+    <header class="u-clearfix u-header u-sticky u-sticky-786f u-white u-header" id="sec-0ac4"><div class="u-clearfix u-sheet u-sheet-1">
+      <nav class="u-align-right u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1">
+        <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+          <a class="u-button-style u-custom-active-border-color u-custom-active-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-hover-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base" href="#">
+            <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px;"><rect y="1" width="16" height="2"></rect><rect y="7" width="16" height="2"></rect><rect y="13" width="16" height="2"></rect>
+    </symbol>
+    </defs></svg>
+          </a>
+        </div>
+        <div class="u-custom-menu u-nav-container">
+          <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+            {% if patients %}
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 6px 0px;">Home</a></li>
+            {% elif doctors %}
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:patientHome_view' %}" style="padding: 6px 0px;">Home</a></li>
+            {% else %}
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:index_view' %}" style="padding: 6px 0px;">Home</a></li>
+            {% endif %}
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:about_view' %}" style="padding: 6px 0px;">About</a></li>
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:contact_view' %}" style="padding: 6px 0px;">Contact</a></li>
+            
+    
+            {% if current_user %}
+            <!-- <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
+              <div id="myDropdown" class="dropdown-content">
+                <li class="u-nav-item">
+                  <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                    href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
+                <li class="u-nav-item">
+                  <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
+                    href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
+              </div>
+            </div> -->
+            <!-- Drop Down -->
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">{{current_user}}</a>
+              <div class="u-nav-popup">
+                <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:profile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
+                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:logout' %}" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
+              </ul>
+              </div>
+                </li>
+                </ul>
+            </div>
+            {% else %}
+            <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
+            {% endif %}
+            
+            <!-- Drop Down -->
+            <!-- <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">UserTest-1</a>
+              <div class="u-nav-popup">
+                <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
+                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
+                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
+                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
+              </ul>
+              </div>
+                </li>
+                </ul>
+            </div> -->
+    
+        <div class="u-custom-menu u-nav-container-collapse">
+          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+            <div class="u-sidenav-overflow">
+              <div class="u-menu-close"></div>
+              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 6px 0px;">Home</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">About</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="#" style="padding: 6px 0px;">Contact</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">UserTest-1</a><div class="u-nav-popup"><ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4"><li class="u-nav-item"><a class="u-button-style u-nav-link">Profile</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Dashboard</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Account Settings</a>
+                </li><li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
+                </li></ul>
+                </div>
+                </li></ul>
+            </div>
+          </div>
+          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+        </div>
+      </nav>
+      <a href="#" class="u-image u-logo u-image-1">
+        <img src="{% static 'images/logo.png' %}" class="u-logo-image u-logo-image-1">
+      </a>
+    </div><style class="u-sticky-style" data-style-id="786f">.u-sticky-fixed.u-sticky-786f, .u-body.u-sticky-fixed .u-sticky-786f {
+    box-shadow: 0 2px 8px 0 rgba(128,128,128,1) !important
+    }.u-sticky-fixed.u-sticky-786f:before, .u-body.u-sticky-fixed .u-sticky-786f:before {
+    borders: top right bottom left !important
+    }</style></header>
+    
+    <!-- end nav bar -->
+    <section class="u-clearfix u-white u-section-1" id="sec-6f59">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-custom-font u-font-montserrat u-text u-text-default u-text-1">My Account</h2>
+        <div class="u-tabs u-tabs-1">
+          <ul class="u-border-1 u-border-grey-25 u-tab-list u-unstyled" role="tablist">
+            <li class="u-tab-item" role="presentation">
+              <a class="active u-border-6 u-border-active-palette-1-base u-border-hover-grey-15 u-border-no-left u-border-no-right u-border-no-top u-button-style u-tab-link u-text-active-palette-1-base u-text-hover-black u-tab-link-1" id="link-tab-0da5" href="#tab-0da5" role="tab" aria-controls="tab-0da5" aria-selected="true">Profile</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-border-6 u-border-active-palette-1-base u-border-hover-grey-15 u-border-no-left u-border-no-right u-border-no-top u-button-style u-tab-link u-text-active-palette-1-base u-text-hover-black u-tab-link-2" id="link-tab-14b7" href="#tab-14b7" role="tab" aria-controls="tab-14b7" aria-selected="false">Appointments</a>
+            </li>
+            <li class="u-tab-item" role="presentation">
+              <a class="u-border-6 u-border-active-palette-1-base u-border-hover-grey-15 u-border-no-left u-border-no-right u-border-no-top u-button-style u-tab-link u-text-active-palette-1-base u-text-hover-black u-tab-link-3" id="link-tab-2917" href="#tab-2917" role="tab" aria-controls="tab-2917" aria-selected="false">Analytics</a>
+            </li>
+          </ul>
+          <div class="u-tab-content">
+            <div class="u-container-style u-shape-rectangle u-tab-active u-tab-pane" id="tab-0da5" role="tabpanel" aria-labelledby="link-tab-0da5">
+              <div class="u-container-layout u-container-layout-1">
+                <div class="u-container-style u-expanded-width u-group u-radius-18 u-shape-round u-white u-group-1">
+                  <div class="u-container-layout u-container-layout-2">
+                    <div class="u-border-1 u-border-grey-25 u-line u-line-vertical u-line-1"></div>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-default u-text-2">Personal Information</h6>
+                    <h1 class="u-custom-font u-font-montserrat u-text u-text-default u-text-3">Profile</h1>
+                    <div class="u-border-1 u-border-grey-25 u-line u-line-horizontal u-line-2"></div>
+                    {% for current_user in doctors %}
+                    <!-- Update Profile Picture Button -->
+                    <a href="#" class="u-border-1 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-6 u-text-hover-palette-1-base u-text-white u-btn-1">CHANGE PHOTO</a>
+                    <!-- Delete Account Button -->
+                    <a href="#" class="u-border-1 u-border-hover-white u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius-6 u-text-hover-white u-text-palette-1-base u-white u-btn-2">DEACTIVATE</a>
+                    <div class="u-image u-image-circle u-image-1" alt="" data-image-width="853" data-image-height="1280">
+                      <!-- Insert Profile Picture IMG Here -->
+                      <img src="{{current_user.profile_pic.url}}" alt="Profile" height="170px" width="170px" style="border-radius: 90px;">
+                    </div>
+                    <div class="u-form u-form-1">
+                      <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+                        <div class="u-form-group u-form-name u-form-partition-factor-2">
+                          <label for="name-911a" class="u-label u-label-1">FIRST NAME</label>
+                          <input type="text" placeholder="First Name" id="name-911a" name="Fname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.first_name}}">
+                        </div>
+                        <div class="u-form-email u-form-group u-form-partition-factor-2">
+                          <label for="email-911a" class="u-label u-label-2">LAST NAME</label>
+                          <input type="email" placeholder="Last Name" id="email-911a" name="Lname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.last_name}}">
+                        </div>
+                        <div class="u-form-address u-form-group u-form-group-3">
+                          <label for="address-44c8" class="u-label u-label-3">ADDRESS</label>
+                          <input type="text" placeholder="Address" id="address-44c8" name="address" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.current_address}}">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
+                          <label for="text-d849" class="u-label u-label-4">CONTACT NUMBER</label>
+                          <input type="text" placeholder="Contact Number" id="text-d849" name="ConN" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white u-input-4" value="{{current_user.contact_number}}">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5">
+                          <label for="select-9398" class="u-label u-label-5">GENDER</label>
+                          <div class="u-form-select-wrapper">
+                            <select id="select-9398" name="Gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.gender}}">
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                            </select>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                          </div>
+                        </div>
+                        <div class="u-align-right u-form-group u-form-submit">
+                          <a href="#" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">SAVE<br>
+                          </a>
+                          <!-- Update Personal Information Button -->
+                          <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
+                        <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                        <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                        <input type="hidden" value="" name="recaptchaResponse">
+                      </form>
+                    </div>
+                    <!-- Username Field --> 
+                    <!-- Not Centered -->
+                    <h5 class="u-text u-text-default u-text-4">{{current_user.username_id}}</h5>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-default u-text-5">Medical Background</h6>
+                    <div class="u-border-1 u-border-grey-25 u-line u-line-horizontal u-line-3"></div>
+                    <div class="u-form u-form-2">
+                      <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
+                        <div class="u-form-group u-form-select u-form-group-7">
+                          <label for="select-c51f" class="u-label u-label-6">SPECIALIZATION</label>
+                          <div class="u-form-select-wrapper">
+                            <select id="select-c51f" name="select" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" required="required" value="{{current_user.specialization}}">
+                              <option value="Allergy and Immunology">Allergy and Immunology</option>
+                              <option value="Anesthesiology">Anesthesiology</option>
+                              <option value="Dermatology">Dermatology</option>
+                              <option value="Diagnostic radiology">Diagnostic radiology</option>
+                              <option value="Emergency medicine">Emergency medicine</option>
+                              <option value="Family medicine">Family medicine</option>
+                              <option value="Internal medicine">Internal medicine</option>
+                              <option value="Medical genetics">Medical genetics</option>
+                              <option value="Neurology">Neurology</option>
+                              <option value="Nuclear medicine">Nuclear medicine</option>
+                              <option value="Obstetrics and gynecology">Obstetrics and gynecology</option>
+                              <option value="Ophthalmology">Ophthalmology</option>
+                              <option value="Pathology">Pathology</option>
+                              <option value="Pediatrics">Pediatrics</option>
+                              <option value="Physical medicine and rehabilitation">Physical medicine and rehabilitation</option>
+                              <option value="Preventive medicine">Preventive medicine</option>
+                              <option value="Psychiatry">Psychiatry</option>
+                              <option value="Radiation oncology">Radiation oncology</option>
+                              <option value="Surgery">Surgery</option>
+                              <option value="Urology">Urology</option>
+                            </select>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                          </div>
+                        </div>
+                        <div class="u-form-group u-form-group-8">
+                          <label for="text-8f3f" class="u-label u-label-7">YEARS OF EXPERIENCE</label>
+                          <input type="text" placeholder="Experience" id="text-8f3f" name="Years" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" required="required" value="{{current_user.experience}}">
+                        </div>
+                        <div class="u-align-right u-form-group u-form-submit">
+                          <a href="#" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-4">SAVE<br>
+                          </a>
+                          <!-- Update Medical Background Button -->
+                          <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
+                        <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+                        <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+                        <input type="hidden" value="" name="recaptchaResponse">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-align-left u-container-style u-shape-rectangle u-tab-pane" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
+              <div class="u-container-layout u-container-layout-3">
+                <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                  <table class="u-table-entity">
+                    <colgroup>
+                      <col width="20%">
+                      <col width="20%">
+                      <col width="20%">
+                      <col width="20%">
+                      <col width="20%">
+                    </colgroup>
+                    <thead class="u-align-center u-palette-4-base u-table-header u-table-header-1">
+                      <tr style="height: 21px;">
+                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-1">Details</th>
+                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-2">Patient</th>
+                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-3">Date</th>
+                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-4">Time</th>
+                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-5">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="u-align-center u-table-body">
+                      <tr style="height: 75px;">
+                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-6">Dental Cleaning</td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-7">Mr. Lorax Ipsum</td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-8">09/18/2021</td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-9">01:30 PM</td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-10">Complete</td>
+                      </tr>
+                      <tr style="height: 76px;">
+                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-11"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-12"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-13"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-14"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-15"></td>
+                      </tr>
+                      <tr style="height: 76px;">
+                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-16"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-17"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-18"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-19"></td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-20"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="u-container-style u-shape-rectangle u-tab-pane" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
+              <div class="u-container-layout u-container-layout-4">
+                <div class="u-border-1 u-border-grey-15 u-container-style u-group u-shape-rectangle u-group-2">
+                  <div class="u-container-layout u-container-layout-5">
+                    <div class="u-border-1 u-border-grey-25 u-line u-line-vertical u-line-4"></div>
+                    <div class="u-border-1 u-border-grey-25 u-line u-line-vertical u-line-5"></div>
+                    <h6 class="u-align-center u-custom-font u-font-montserrat u-text u-text-6">Earnings</h6>
+                    <h6 class="u-align-left u-custom-font u-font-montserrat u-text u-text-7">Appointments Completed</h6>
+                    <h6 class="u-custom-font u-font-montserrat u-text u-text-default u-text-8">Earned This Month</h6>
+                    <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-text-9">Php 2,500.00</h3>
+                    <h3 class="u-custom-font u-font-montserrat u-text u-text-default u-text-10">14</h3>
+                    <h3 class="u-custom-font u-font-montserrat u-text u-text-11">Php 7,500.00</h3>
+                  </div>
+                </div>
+
+                <!-- Cant display dummy graphs and charts -->
+
+                <!-- <img src="{% static 'images/overview.jpg' %}" alt="" data-image-width="1291" data-image-height="469" alt=""> -->
+                <img class="u-image u-image-default u-image-2" src="{% static 'images/overview.jpg' %}" alt="" data-image-width="1291" data-image-height="469">
+                <img class="u-image u-image-default u-image-3" src="{% static 'images/ratings.jpg' %}" alt="" data-image-width="1293" data-image-height="492">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91e3"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-design" target="_blank">
+        <span>Website Design Template</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/" target="_blank">
+        <span>Website Builder Software</span>
+      </a>. 
+    </section>
+  </body>
+</html>

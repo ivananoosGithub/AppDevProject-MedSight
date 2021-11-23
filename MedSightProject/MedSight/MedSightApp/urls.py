@@ -28,6 +28,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     url('profile/', views.ProfileView.as_view(), name="profile_view"),
 
+    # url('Doctorprofile/', views.DoctorProfileView.as_view(), name="doctorProfile_view"),
+
     # temporary url for backend purposes
     path('findDoctor/', views.FindDoctorView.as_view(), name="finddoc_view"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

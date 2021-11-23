@@ -294,7 +294,8 @@ class ProfileView(View):
                 'doctors' : doctors,
                 'user' : user,
             }
-        return render(request, 'pages/Profile.html', context)
+        return render(request, 'pages/Doctor-Profile.html', context)
+        # return render(request, 'pages/Patient-Profile.html', context)
 
     def post(self, request):
        if request.method == 'POST':
