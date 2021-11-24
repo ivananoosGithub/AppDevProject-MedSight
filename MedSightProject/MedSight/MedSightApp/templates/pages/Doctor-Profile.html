@@ -170,9 +170,12 @@
                     aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                     <!-- Modal content -->
                       <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: left;">Deactivate Account</h5>
+                        </div> 
                         <form id="deleteForm" method="POST">
                           {% csrf_token %}
-                          <div class="modal-body">
+                          <div class="modal-body" style="text-align: center;">
                             <div class="col-sm-3" hidden>
                               <input type="text" class="form-control" id="current_user" name="current_user"
                                 value="{{current_user.doctor_id}}">
@@ -180,8 +183,8 @@
                             Are you sure you want to delete your account?
                           </div>
                           <div class="modal-footer">
-                            <button type="submit" data-dismiss="modal" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">No</button>
-                            <button type="submit" id="btnDeleteDoctorD" name="btnDeleteDoctorD" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">Yes</button>
+                            <button type="submit" id="btnDeleteDoctorD" name="btnDeleteDoctorD" class="btn btn-danger">Deactivate</button>
+                            <button type="submit" data-dismiss="modal" class="btn btn-default">Cancel</button>
                           </div>
                         </form>
                       </div>
@@ -253,13 +256,16 @@
                           <div class="modal fade" id="upd1Modal-{{current_user.doctor_id}}" tabindex="-1" role="dialog"
                           aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                           <!-- Modal content -->
-                          <div class="modal-content">                          
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: left;">Update Personal Information</h5>
+                            </div>                            
                               <div class="modal-body" style="text-align: center;">
-                                Save the following changes?
+                                Do you want to save the following changes?
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" id="btnUpdateDoctorD1" name="btnUpdateDoctorD1" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">CONFIRM</button>
-                                <button type="submit" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3" data-dismiss="modal">CANCEL</button>
+                                <button type="submit" id="btnUpdateDoctorD1" name="btnUpdateDoctorD1" class="btn btn-primary">CONFIRM</button>
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">CANCEL</button>
                             </div>
                           </div>
                         </div>
@@ -325,13 +331,16 @@
                           <div class="modal fade" id="upd2Modal-{{current_user.doctor_id}}" tabindex="-1" role="dialog"
                           aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                           <!-- Modal content -->
-                          <div class="modal-content">                          
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: left;">Update Medical Background</h5>
+                            </div>                          
                               <div class="modal-body" style="text-align: center;">
-                                Save the following changes?
+                                Do you want to save the following changes?
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" id="btnUpdateDoctorD2" name="btnUpdateDoctorD2" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">CONFIRM</button>
-                                <button type="submit" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3" data-dismiss="modal">CANCEL</button>
+                                <button type="submit" id="btnUpdateDoctorD2" name="btnUpdateDoctorD2" class="btn btn-primary">CONFIRM</button>
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">CANCEL</button>
                             </div>
                           </div>
                         </div>
@@ -460,19 +469,10 @@
     }
     </script>
     
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91e3"><div class="u-clearfix u-sheet u-sheet-1">
-      <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-    </div></footer>
-  <section class="u-backlink u-clearfix u-grey-80">
-    <a class="u-link" href="https://nicepage.com/templates" target="_blank">
-      <span>Templates</span>
-    </a>
-    <p class="u-text">
-      <span>created with</span>
-    </p>
-    <a class="u-link" href="https://nicepage.com/website-builder" target="_blank">
-      <span>Free Website Builder</span>
-    </a>. 
-  </section>
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">MS Team CSIT321-G1 A.Y. 2021-2022</p>
+      </div>
+    </footer>
 </body>
 </html>

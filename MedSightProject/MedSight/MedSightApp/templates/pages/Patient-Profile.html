@@ -170,9 +170,12 @@
                     aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                     <!-- Modal content -->
                     <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: left;">Deactivate Account</h5>
+                      </div>
                       <form id="deleteForm" method="POST">
                         {% csrf_token %}
-                        <div class="modal-body">
+                        <div class="modal-body" style="text-align: center;">
                           <div class="col-sm-3" hidden>
                             <input type="text" class="form-control" id="current_user" name="current_user"
                               value="{{current_user.patient_id}}">
@@ -180,8 +183,8 @@
                           Are you sure you want to delete your account?
                         </div>
                         <div class="modal-footer">
-                          <button type="submit" data-dismiss="modal" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">No</button>
-                          <button type="submit" id="btnDeletePatientP" name="btnDeletePatientP" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">Yes</button>
+                          <button type="submit" id="btnDeletePatientP" name="btnDeletePatientP" class="btn btn-danger">Deactivate</button>
+                          <button type="submit" data-dismiss="modal" class="btn btn-default">Cancel</button>
                         </div>
                       </form>
                     </div>
@@ -254,13 +257,16 @@
                           <div class="modal fade" id="updModal-{{current_user.patient_id}}" tabindex="-1" role="dialog"
                           aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                           <!-- Modal content -->
-                          <div class="modal-content">                          
+                          <div class="modal-content">   
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: left;">Update Profile</h5>
+                            </div>                       
                               <div class="modal-body" style="text-align: center;">
-                                Save the following changes?
+                                Do you want to save the following changes?
                               </div>
                               <div class="modal-footer">
-                                <button type="submit" id="btnUpdatePatientP" name="btnUpdatePatientP" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">CONFIRM</button>
-                                <button type="submit" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3" data-dismiss="modal">CANCEL</button>
+                                <button type="submit" id="btnUpdatePatientP" name="btnUpdatePatientP" class="btn btn-primary">CONFIRM</button>
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">CANCEL</button>
                             </div>
                           </div>
                         </div>
