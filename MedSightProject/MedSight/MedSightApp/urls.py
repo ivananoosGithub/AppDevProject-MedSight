@@ -29,7 +29,6 @@ urlpatterns = [
     
     path('doctor-profile/', views.DProfileView.as_view(), name="dprofile_view"),
     path('patient-profile/', views.PProfileView.as_view(), name="pprofile_view"),
-    # url('Doctorprofile/', views.DoctorProfileView.as_view(), name="doctorProfile_view"),
 
     # temporary url for backend purposes
     path('findDoctor/', views.FindDoctorView.as_view(), name="finddoc_view"),

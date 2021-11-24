@@ -134,33 +134,58 @@
                     {% for current_user in doctors %}
                     {{ form.as_p }}
                     <!-- Update Profile Picture Button -->
-                    <a href="#" style="width: 15%; padding: 5px;" class="u-border-1 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-6 u-text-hover-palette-1-base u-text-white u-btn-1">CHANGE PHOTO</a>
+                    <a href="#" type="button" data-toggle="modal" data-target="#picModal-{{current_user.doctor_id}}" style="width: 15%; padding: 5px;" class="u-border-1 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-6 u-text-hover-palette-1-base u-text-white u-btn-1">CHANGE PHOTO</a>
                     <!-- Delete Account Button -->
                     <a href="#" type="button" data-toggle="modal" data-target="#delModal-{{current_user.doctor_id}}" style="width: 15%; height: 25px;" class="u-border-1 u-border-hover-white u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius-6 u-text-hover-white u-text-palette-1-base u-white u-btn-2">DEACTIVATE</a>
                     
-                    <!-- Please ko redesign sa modal -->
+                    <!-- Please ko redesign sa modals -->
+
+                    <!-- picModal Update Profile Pic modal-->
+                    <div class="modal fade" id="picModal-{{current_user.doctor_id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
+                    <!-- Modal content -->
+                      <div class="modal-content">
+                        <form id="updateForm" method="POST">
+                          {% csrf_token %}
+                          {{ form.as_p }}
+                          <div class="modal-body" style="text-align: center;">
+                            <div class="col-sm-3" hidden>
+                              <input type="text" class="form-control" id="current_user" name="current_user"
+                                value="{{current_user.doctor_id}}">
+                            </div>
+                            <img id="blah" src="{{current_user.profile_pic.url}}" style="height: 300px; width: 300px; border-radius: 50%;"/>
+                            <input type='file' id="profile_pic" name="profile_pic" onchange="readURL(this);" style="width: 40%; margin: auto; margin-top: 50px;" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"/>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" id="btnPicDoctor" name="btnPicDoctor" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">SAVE CHANGES</button>
+                            <button type="submit" data-dismiss="modal" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">CANCEL</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- End of the picModal -->
 
                     <!-- delModal Delete account modal-->
                     <div class="modal fade" id="delModal-{{current_user.doctor_id}}" tabindex="-1" role="dialog"
                     aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                     <!-- Modal content -->
-                    <div class="modal-content">
-                      <form id="deleteForm" method="POST">
-                        {% csrf_token %}
-                        <div class="modal-body">
-                          <div class="col-sm-3" hidden>
-                            <input type="text" class="form-control" id="current_user" name="current_user"
-                              value="{{current_user.doctor_id}}">
+                      <div class="modal-content">
+                        <form id="deleteForm" method="POST">
+                          {% csrf_token %}
+                          <div class="modal-body">
+                            <div class="col-sm-3" hidden>
+                              <input type="text" class="form-control" id="current_user" name="current_user"
+                                value="{{current_user.doctor_id}}">
+                            </div>
+                            Are you sure you want to delete your account?
                           </div>
-                          Are you sure you want to delete your account?
-                        </div>
-                        <div class="modal-footer">
-                          <button type="submit" data-dismiss="modal" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">No</button>
-                          <button type="submit" id="btnDeleteDoctorD" name="btnDeleteDoctorD" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">Yes</button>
-                        </div>
-                      </form>
+                          <div class="modal-footer">
+                            <button type="submit" data-dismiss="modal" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">No</button>
+                            <button type="submit" id="btnDeleteDoctorD" name="btnDeleteDoctorD" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">Yes</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                  </div>
                   <!-- End of the delModal -->
 
                     <div class="u-image u-image-circle u-image-1" alt="" data-image-width="853" data-image-height="1280">
@@ -419,6 +444,20 @@
         var captionText = document.getElementById("caption");
         captionText.innerHTML = element.alt;
       }
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     </script>
     
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91e3"><div class="u-clearfix u-sheet u-sheet-1">

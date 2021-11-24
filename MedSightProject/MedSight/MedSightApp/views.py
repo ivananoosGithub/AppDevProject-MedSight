@@ -6,6 +6,7 @@ from django.views.generic import View
 from .forms import *
 from .models import *
 from passlib.hash import pbkdf2_sha256
+import os
 # Create your views here.
 class IndexView(View): 
     def get(self, request): 
@@ -304,9 +305,8 @@ class DProfileView(View):
                 dlname = request.POST.get("last_name")
                 dgend = request.POST.get("gender") 
                 dcnum = request.POST.get("contact_number")
-                dcadd = request.POST.get("current_address")
-                # dpp = request.FILES["profile_pic"]
-                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd)# ,profile_pic = dpp)
+                dcadd = request.POST.get("current_address")                
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd)
                 print(update_Doctor)
                 print('Doctor account updated!')
                 return redirect('MedSightApp:dprofile_view')
@@ -330,6 +330,17 @@ class DProfileView(View):
                 Users.objects.filter(username=current_user).delete()
                 print("Doctor account deleted")
                 return redirect('MedSightApp:logout')
+
+            # Update uploaded picture doesn't work yet
+            elif 'btnPicDoctor' in request.POST:
+                print('Update button clicked!')
+                did = request.POST.get("doctor_id")
+                m = Doctors.objects.get(doctor_id=did)
+                m.dpp = request.FILES['profile_pic']
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(profile_pic=m.dpp)
+                print(update_Doctor)
+                print('Doctor account updated!')
+                return redirect("MedSightApp:dprofile_view")
 
 class PProfileView(View): 
     def get(self, request): 
@@ -370,6 +381,17 @@ class PProfileView(View):
                 Users.objects.filter(username=current_user).delete()
                 print("Patient record deleted")
                 return redirect('MedSightApp:logout')
+
+            # Update uploaded picture doesn't work yet
+            elif 'btnPicPatient' in request.POST:
+                print('Update button clicked!')
+                pid = request.POST.get("patient_id")
+                m = Doctors.objects.get(patient_id=pid)
+                m.ppp = request.FILES['profile_pic']
+                update_Patient = Doctors.objects.filter(patient_id=pid).update(profile_pic=m.ppp)
+                print(update_Patient)
+                print('Patient account updated!')
+                return redirect("MedSightApp:pprofile_view")
          
 # temporary view for backend purposes
 class FindDoctorView(View): 
