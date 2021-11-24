@@ -45,4 +45,18 @@ class Doctors(models.Model):
 
     class meta:
         db_table = 'Doctors' 
-    
+
+class Appointments(models.Model):
+    appointment_id = models.AutoField(primary_key=True)
+    patient_id = models.ForeignKey(Patients, to_field='patient_id', on_delete = models.CASCADE)
+    doctor_id = models.ForeignKey(Doctors, to_field='doctor_id', on_delete = models.CASCADE)
+    apt_type = models.CharField(max_length = 10)
+    date = models.CharField(max_length = 20)
+    time = models.TimeField()
+    status = models.CharField(max_length = 20)
+
+class Ratings(models.Model):
+    rating_id = models.AutoField(primary_key=True)
+    patient_id = models.ForeignKey(Patients, to_field='patient_id', on_delete = models.CASCADE)
+    doctor_id = models.ForeignKey(Doctors, to_field='doctor_id', on_delete = models.CASCADE)
+    rating = models.IntegerField() 
