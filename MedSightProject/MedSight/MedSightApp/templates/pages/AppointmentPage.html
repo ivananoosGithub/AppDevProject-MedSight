@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 
@@ -8,8 +10,8 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Page 1</title>
-  <link rel="stylesheet" href="nicepage.css" media="screen">
-  <link rel="stylesheet" href="Page-1.css" media="screen">
+  <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/AppointmentPage.css' %}" media="screen">
   <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
   <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
   <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
@@ -109,12 +111,12 @@
                       {% elif doctors %}
                       <li class="u-nav-item"><a href="{% url 'MedSightApp:dprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
                       {% endif %}
-                      <li class="u-nav-item"><a class="u-button-style u-nav-link">Dashboard</a>
+                      <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a>
                       </li>
-                      <li class="u-nav-item"><a class="u-button-style u-nav-link">Account Settings</a>
-                      </li>
-                      <li class="u-nav-item"><a class="u-button-style u-nav-link">Logout</a>
-                      </li>
+                      <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account
+                          Settings</a></li>
+                      <li class="u-nav-item"><a href="{% url 'MedSightApp:logout' %}"
+                          class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
                     </ul>
                   </div>
                 </li>

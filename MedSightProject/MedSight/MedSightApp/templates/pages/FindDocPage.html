@@ -113,20 +113,6 @@
             href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
         {% endif %}
 
-        <!-- Drop Down -->
-        <!-- <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">UserTest-1</a>
-            <div class="u-nav-popup">
-              <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
-            </ul>
-            </div>
-              </li>
-              </ul>
-          </div> -->
-
         <div class="u-custom-menu u-nav-container-collapse">
           <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
             <div class="u-sidenav-overflow">
@@ -238,7 +224,7 @@
                 </h4>
                 <p class="u-small-text u-text u-text-default u-text-variant u-text-2">{{doctors.specialization}}</p>
                 <p class="u-small-text u-text u-text-default u-text-variant u-text-3">{{doctors.experience}} years of Experience</p>
-                <a href="https://nicepage.com/website-builder"
+                <a href="{% url 'MedSightApp:appointmentP_view' %}"
                   class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-radius-23 u-text-body-alt-color u-btn-2">Book</a>
                 <a href="https://nicepage.com/website-mockup"
                   class="u-btn u-button-style u-none u-text-custom-color-1 u-text-hover-custom-color-2 u-btn-3">View</a>

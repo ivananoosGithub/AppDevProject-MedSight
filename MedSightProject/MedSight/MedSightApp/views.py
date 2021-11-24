@@ -400,6 +400,7 @@ class FindDoctorView(View):
             current_user = request.session['user']
             patients = Patients.objects.all()
             doctors = Doctors.objects.all()
+            
             context = {
                 'current_user': current_user,
                 'patients' : patients,
@@ -408,5 +409,19 @@ class FindDoctorView(View):
             return render(request, 'pages/FindDocPage.html', context)
         else:
             return HttpResponse('Please login first to view this page.')   
-        
-                
+
+class AppointmentPageView(View): 
+    def get(self, request): 
+        if 'user' in request.session:
+            current_user = request.session['user']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+
+            context = {
+                'current_user': current_user,
+                'patients' : patients,
+                'doctors' : doctors,
+            }
+            return render(request, 'pages/AppointmentPage.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')   
