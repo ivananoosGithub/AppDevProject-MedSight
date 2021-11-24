@@ -281,21 +281,68 @@ def logout(request):
         return redirect('MedSightApp:signin_view')
     return redirect('MedSightApp:index_view')
 
-class ProfileView(View): 
+class DProfileView(View): 
     def get(self, request): 
         if 'user' in request.session:
-            current_user = request.session['user']
-            patients = Patients.objects.filter(username=current_user)     
+            current_user = request.session['user']  
             doctors = Doctors.objects.filter(username=current_user)
             user = Users.objects.filter(username=current_user)
             context = {
                 'current_user': current_user,
-                'patients' : patients,
                 'doctors' : doctors,
                 'user' : user,
             }
-        return render(request, 'pages/Doctor-Profile.html', context)
-        # return render(request, 'pages/Patient-Profile.html', context)
+            return render(request, 'pages/Doctor-Profile.html', context)
+
+    def post(self, request):
+        if request.method == 'POST':
+            # Doctors Table
+            if 'btnUpdateDoctorD1' in request.POST:
+                print('Update button clicked!')
+                did = request.POST.get("doctor_id")
+                dfname = request.POST.get("first_name")
+                dlname = request.POST.get("last_name")
+                dgend = request.POST.get("gender") 
+                dcnum = request.POST.get("contact_number")
+                dcadd = request.POST.get("current_address")
+                # dpp = request.FILES["profile_pic"]
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd)# ,profile_pic = dpp)
+                print(update_Doctor)
+                print('Doctor account updated!')
+                return redirect('MedSightApp:dprofile_view')
+
+            elif 'btnUpdateDoctorD2' in request.POST:
+                print('Update button clicked!')
+                did = request.POST.get("doctor_id")
+                dspc = request.POST.get("specialization")
+                dexp = request.POST.get("experience")
+                update_Doctor = Doctors.objects.filter(doctor_id=did).update(specialization = dspc, experience = dexp)
+                print(update_Doctor)
+                print('Doctor account updated!')
+                return redirect('MedSightApp:dprofile_view')
+
+            elif 'btnDeleteDoctorD' in request.POST:
+                print('Delete button clicked!')
+                did = request.POST.get("doctor_id")
+                Doctors.objects.filter(doctor_id=did).delete()
+                if 'user' in request.session:
+                    current_user = request.session['user']
+                Users.objects.filter(username=current_user).delete()
+                print("Doctor account deleted")
+                return redirect('MedSightApp:logout')
+
+class PProfileView(View): 
+    def get(self, request): 
+        if 'user' in request.session:
+            current_user = request.session['user']  
+            patients = Patients.objects.filter(username=current_user)
+            user = Users.objects.filter(username=current_user)
+            context = {
+                'current_user': current_user,
+                'patients' : patients,
+                'user' : user,
+            }
+            return render(request, 'pages/Patient-Profile.html', context)
 
     def post(self, request):
        if request.method == 'POST':
@@ -312,7 +359,8 @@ class ProfileView(View):
                 update_Patient = Patients.objects.filter(patient_id=pid).update(first_name = pfname, last_name = plname, gender = pgend, contact_number = pcnum, current_address = pcadd)#, profile_pic = ppp)
                 print(update_Patient)
                 print('Patient account updated!')
-                return redirect('MedSightApp:profile_view')
+                return redirect('MedSightApp:pprofile_view')
+
             elif 'btnDeletePatientP' in request.POST:
                 print('Delete button clicked!')
                 pid = request.POST.get("patient_id")
@@ -322,31 +370,7 @@ class ProfileView(View):
                 Users.objects.filter(username=current_user).delete()
                 print("Patient record deleted")
                 return redirect('MedSightApp:logout')
-            
-            # Doctors Table
-            if 'btnUpdateDoctorD' in request.POST:
-                print('Update button clicked!')
-                did = request.POST.get("doctor_id")
-                dfname = request.POST.get("first_name")
-                dlname = request.POST.get("last_name")
-                dgend = request.POST.get("gender") 
-                dcnum = request.POST.get("contact_number")
-                dcadd = request.POST.get("current_address")
-                # dpp = request.FILES["profile_pic"]
-                update_Doctor = Doctors.objects.filter(doctor_id=did).update(first_name = dfname, last_name = dlname, gender = dgend, contact_number = dcnum, current_address = dcadd)# ,profile_pic = dpp)
-                print(update_Doctor)
-                print('Doctor account updated!')
-                return redirect('MedSightApp:profile_view')
-            elif 'btnDeleteDoctorD' in request.POST:
-                print('Delete button clicked!')
-                did = request.POST.get("doctor_id")
-                Doctors.objects.filter(doctor_id=did).delete()
-                if 'user' in request.session:
-                    current_user = request.session['user']
-                Users.objects.filter(username=current_user).delete()
-                print("Doctor account deleted")
-                return redirect('MedSightApp:logout')
-
+         
 # temporary view for backend purposes
 class FindDoctorView(View): 
     def get(self, request):

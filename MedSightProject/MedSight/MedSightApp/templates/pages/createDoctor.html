@@ -62,25 +62,12 @@
           {% endif %}
           <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:about_view' %}" style="padding: 6px 0px;">About</a></li>
           <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:contact_view' %}" style="padding: 6px 0px;">Contact</a></li>
-          
 
           {% if current_user %}
-          <!-- <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
-            <div id="myDropdown" class="dropdown-content">
-              <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                  href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
-              <li class="u-nav-item">
-                <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                  href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
-            </div>
-          </div> -->
-          <!-- Drop Down -->
           <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">{{current_user}}</a>
             <div class="u-nav-popup">
               <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
-                <li class="u-nav-item"><a href="{% url 'MedSightApp:profile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
                 <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
                 <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
                 <li class="u-nav-item"><a href="{% url 'MedSightApp:logout' %}" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
@@ -92,20 +79,6 @@
           {% else %}
           <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
           {% endif %}
-          
-          <!-- Drop Down -->
-          <!-- <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">UserTest-1</a>
-            <div class="u-nav-popup">
-              <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
-                <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
-            </ul>
-            </div>
-              </li>
-              </ul>
-          </div> -->
 
       <div class="u-custom-menu u-nav-container-collapse">
         <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -166,6 +139,7 @@ borders: top right bottom left !important
                   <br>
                   <label for="gender">Gender</label>
                   <select id="gender" name="gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                    <option selected hidden>Select your Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select>
@@ -199,8 +173,7 @@ borders: top right bottom left !important
                     <option value="Surgery">Surgery</option>
                     <option value="Urology">Urology</option>
                   </select>
-                  <!-- <br>Upload Medical License Proof # <!-- TO BE FIXED med_license&profile_pic-->
-                  <!-- <input type="file" id="med_license" name="med_license" placeholder="Upload Medical License Proof" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""> -->
+                  
                   <br>Upload a Profile Image
                         <input type="file" id="profile_pic" name="profile_pic" placeholder="Upload a Profile Image" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
                     <br>

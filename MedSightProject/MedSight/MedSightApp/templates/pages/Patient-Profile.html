@@ -9,6 +9,7 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>Patient Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/nicepage2.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/Patient-Profile.css' %}" media="screen">
@@ -56,22 +57,14 @@
             
     
             {% if current_user %}
-            <!-- <div class="dropdown">
-              <button onclick="myFunction()" class="dropbtn">{{current_user}}</button>
-              <div id="myDropdown" class="dropdown-content">
-                <li class="u-nav-item">
-                  <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                    href="{% url 'MedSightApp:profile_view' %}" style="padding: 10px 0px;">Profile</a></li><br>
-                <li class="u-nav-item">
-                  <a class="u-border-2 u-border-hover-white u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-grey-90 u-text-hover-grey-90"
-                    href="{% url 'MedSightApp:logout' %}" style="padding: 10px 0px;">Logout</a></li>
-              </div>
-            </div> -->
-            <!-- Drop Down -->
             <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">{{current_user}}</a>
               <div class="u-nav-popup">
                 <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
-                  <li class="u-nav-item"><a href="{% url 'MedSightApp:profile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  {% if patients %}
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:pprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  {% elif doctors %}
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:dprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  {% endif %}
                   <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
                   <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
                   <li class="u-nav-item"><a href="{% url 'MedSightApp:logout' %}" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
@@ -83,20 +76,6 @@
             {% else %}
             <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
             {% endif %}
-            
-            <!-- Drop Down -->
-            <!-- <li class="u-nav-item"><a class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base" style="padding: 6px 0px;">UserTest-1</a>
-              <div class="u-nav-popup">
-                <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
-                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
-                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a></li>
-                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account Settings</a></li>
-                  <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Logout</a></li>
-              </ul>
-              </div>
-                </li>
-                </ul>
-            </div> -->
     
         <div class="u-custom-menu u-nav-container-collapse">
           <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
@@ -155,60 +134,123 @@
                     {% for current_user in patients %}
                     {{ form.as_p }}
                     <!-- Update Profile Photo Button -->
-                    <a href="#" class="u-border-1 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-6 u-text-hover-palette-1-base u-text-white u-btn-1">CHANGE PHOTO</a>
+                    <a href="#" style="width: 15%; padding: 5px;" class="u-border-1 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-button-style u-hover-white u-palette-1-base u-radius-6 u-text-hover-palette-1-base u-text-white u-btn-1">CHANGE PHOTO</a>
                     <!-- Delete Account Button -->
-                    <a href="#" class="u-border-1 u-border-hover-white u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius-6 u-text-hover-white u-text-palette-1-base u-white u-btn-2">DEACTIVATE</a>
+                    <a href="#" type="button" data-toggle="modal" data-target="#delModal-{{current_user.patient_id}}" style="width: 15%; height: 25px;" class="u-border-1 u-border-hover-white u-border-palette-1-base u-btn u-btn-round u-button-style u-hover-palette-1-base u-radius-6 u-text-hover-white u-text-palette-1-base u-white u-btn-2">DEACTIVATE</a>
+                    
+                    <!-- Please ko redesign sa modal -->
+
+                    <!-- delModal Delete account modal-->
+                    <div class="modal fade" id="delModal-{{current_user.patient_id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                      <form id="deleteForm" method="POST">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <div class="col-sm-3" hidden>
+                            <input type="text" class="form-control" id="current_user" name="current_user"
+                              value="{{current_user.patient_id}}">
+                          </div>
+                          Are you sure you want to delete your account?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" data-dismiss="modal" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">No</button>
+                          <button type="submit" id="btnDeletePatientP" name="btnDeletePatientP" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">Yes</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- End of the delModal -->
+                  
                     <div class="u-image u-image-circle u-image-1" alt="" data-image-width="853" data-image-height="1280">
                       <!-- Insert Profile Photo Here -->
                       <img src="{{current_user.profile_pic.url}}" alt="Profile" height="170px" width="170px" style="border-radius: 90px;">
                     </div>
                     <div class="u-form u-form-1">
 
-                      <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;">
-                        <div class="u-form-group u-form-name u-form-partition-factor-2">
-                          <label for="name-911a" class="u-label u-label-1">FIRST NAME</label>
-                          <input type="text" placeholder="First Name" id="name-911a" name="Fname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.first_name}}">
+                      <form id="updateForm" method="POST" class="u-clearfix u-form-spacing-10 u-inner-form" style="padding: 10px;" autocomplete="off">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="col-sm-3" hidden>
+                          <input type="text" class="form-control" id="patient_id" name="patient_id"
+                            value="{{current_user.patient_id}}">
                         </div>
-                        <div class="u-form-email u-form-group u-form-partition-factor-2">
-                          <label for="email-911a" class="u-label u-label-2">LAST NAME</label>
-                          <input type="text" placeholder="Last Name" id="name-911a" name="Lname" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.last_name}}">
-                        </div>
-                        <div class="u-form-address u-form-group u-form-group-3">
-                          <label for="address-44c8" class="u-label u-label-3">ADDRESS</label>
-                          <input type="text" placeholder="Address" id="address-44c8" name="address" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.current_address}}">
-                        </div>
-                        <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
-                          <label for="text-d849" class="u-label u-label-4">CONTACT NUMBER</label>
-                          <input type="text" placeholder="Contact Number" id="text-d849" name="ConN" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white u-input-4" value="{{current_user.contact_number}}">
-                        </div>
-                        <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5">
-                          <label for="select-9398" class="u-label u-label-5">GENDER</label>
-                          <div class="u-form-select-wrapper">
-                            <select id="select-9398" name="Gender" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" value="{{current_user.gender}}">
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                            </select>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                        
+                        <div style="display: flex;">
+                          <div class="u-form-group u-form-name u-form-partition-factor-2" style="width: 50%; margin-right: 5%;">
+                            <label for="first_name" class="u-label u-label-1">FIRST NAME</label>
+                            <input type="text" placeholder="First Name" id="first_name" name="first_name" 
+                            class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" 
+                            value="{{current_user.first_name}}">
+                          </div>
+                          
+                          <div class="u-form-email u-form-group u-form-partition-factor-2" style="width: 50%;">
+                            <label for="last_name" class="u-label u-label-2">LAST NAME</label>
+                            <input type="text" placeholder="Last Name" id="last_name" name="last_name" 
+                            class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" 
+                            value="{{current_user.last_name}}">
                           </div>
                         </div>
-                        <div class="u-align-right u-form-group u-form-submit">
-                          <a href="#" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">SAVE<br>
-                          </a>
-                          <!-- Update Profile Details Button -->
-                          <input type="submit" value="submit" class="u-form-control-hidden">
+
+                        <div class="u-form-address u-form-group u-form-group-3">
+                          <label for="current_address" class="u-label u-label-3">ADDRESS</label>
+                          <input type="text" placeholder="Address" id="current_address" name="current_address" 
+                          class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white" 
+                          value="{{current_user.current_address}}">
                         </div>
-                        <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                        <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                        <input type="hidden" value="" name="recaptchaResponse">
+
+                        <div style="display: flex;">
+                          <div class="u-form-group u-form-partition-factor-2 u-form-group-4" style="width: 50%; margin-right: 5%;">
+                            <label for="contact_number" class="u-label u-label-4">CONTACT NUMBER</label>
+                            <input type="text" placeholder="Contact Number" id="contact_number" name="contact_number" 
+                            class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white u-input-4" 
+                            value="{{current_user.contact_number}}">
+                          </div>
+
+                          <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-5" style="width: 50%;">
+                            <label for="gender" class="u-label u-label-5">GENDER</label>
+                            <div class="u-form-select-wrapper">
+                              <select id="gender" name="gender" 
+                              class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-9 u-white"
+                              value="{{current_user.gender}}">
+                                <option selected hidden>{{current_user.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                              </select>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                            </div>
+                          </div>
+                        </div>
+                      
+                        <div class="u-align-right u-form-group u-form-submit">
+                          <!-- Update Profile Details Button -->
+                          <button type="button" data-toggle="modal" data-target="#updModal-{{current_user.patient_id}}" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">SAVE CHANGES</button>
+                          <div class="modal fade" id="updModal-{{current_user.patient_id}}" tabindex="-1" role="dialog"
+                          aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
+                          <!-- Modal content -->
+                          <div class="modal-content">                          
+                              <div class="modal-body" style="text-align: center;">
+                                Save the following changes?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="submit" id="btnUpdatePatientP" name="btnUpdatePatientP" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3">CONFIRM</button>
+                                <button type="submit" class="u-border-2 u-border-hover-palette-1-base u-border-white u-btn u-btn-round u-btn-submit u-button-style u-hover-white u-palette-1-base u-radius-8 u-text-hover-palette-1-base u-text-white u-btn-3" data-dismiss="modal">CANCEL</button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End of the updModal -->
+                        </div>
                       </form>
                     </div>
+                    <!-- Please ko fix sa username wala nag center ubos sa image -->
                     <!-- Username -->
-                    <h5 class="u-text u-text-default u-text-4">{{current_user.username_id}}</h5>
+                    <h5 class="u-text u-text-default u-text-4" >{{current_user.username_id}}</h5>
                   </div>
                 </div>
               </div>
             </div>
-            {% endfor %}
+            
 
             <div class="u-align-left u-container-style u-shape-rectangle u-tab-pane" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
               <div class="u-container-layout u-container-layout-3">
@@ -263,9 +305,37 @@
           </div>
         </div>
       </div>
+      {% endfor %}
     </section>
     
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js">
+    </script>
+    <script type="text/javascript" src="{% static 'js/dataTables.bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+  
+    <script>
+      // Script to open and close sidebar
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
+  
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
+  
+      // Modal Image Gallery
+      function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+      }
+    </script>
+  
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91e3"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
       </div></footer>

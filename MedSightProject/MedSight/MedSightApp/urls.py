@@ -26,8 +26,9 @@ urlpatterns = [
     path('landing_d/', views.DoctorHomeView.as_view(), name="doctorHome_view"),
     path('admin/', views.AdminView.as_view(), name="admin_view"),
     path('logout/', views.logout, name='logout'),
-    url('profile/', views.ProfileView.as_view(), name="profile_view"),
-
+    
+    path('doctor-profile/', views.DProfileView.as_view(), name="dprofile_view"),
+    path('patient-profile/', views.PProfileView.as_view(), name="pprofile_view"),
     # url('Doctorprofile/', views.DoctorProfileView.as_view(), name="doctorProfile_view"),
 
     # temporary url for backend purposes
