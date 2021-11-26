@@ -435,19 +435,20 @@ class AppointmentPageView(View):
         else:
             return HttpResponse('Please login first to view this page.')
 
-    def post(self, request):        
-        form = AppointmentsForm(request.POST, request.FILES)   
-        if form.is_valid():
-            fk = form.cleaned_data.get("username")
-            pfname = request.POST.get("first_name")
-            plname = request.POST.get("last_name")
-            pgend = request.POST.get("gender")    
-            pcnum = request.POST.get("contact_number")
-            pcadd = request.POST.get("current_address")
-            ppp = request.FILES["profile_pic"]
-            form = Patients(username = fk, first_name = pfname, last_name = plname, gender = pgend, contact_number = pcnum, current_address = pcadd, profile_pic = ppp)
-            form.save() 
-            return redirect('MedSightApp:patientHome_view')
+    def post(self, request):
+        if request.method == 'POST':
+            form = AppointmentsForm(request.POST, request.FILES)          
+            if 'Next3' in request.POST:                
+                pid = request.POST.get("virtual_patient")
+                did = request.POST.get("virtual_doctor")
+                atype = "Virtual"   
+                date = request.POST.get("virtual_date")
+                time = request.POST.get("virtual_time")
+                areason = request.POST.get("virtual_reason")
+                astatus = "active" 
+                form = Appointments(patient_id = pid, doctor_id = did, apt_type = atype, date = apt_date, time = apt_time, status = astatus, reason = areason)
+                form.save() 
+                return redirect('MedSightApp:index_view')
         else:
             print(form.errors)
             return HttpResponse('not valid')
