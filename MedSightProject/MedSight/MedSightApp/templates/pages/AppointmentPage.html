@@ -12,6 +12,7 @@
   <title>Page 1</title>
   <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
   <link rel="stylesheet" href="{% static 'css/AppointmentPage.css' %}" media="screen">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script class="u-script" type="text/javascript" src="{% static 'js/jquery1.js' %}" defer=""></script>
   <script class="u-script" type="text/javascript" src="{% static 'js/nicepage1.js' %}" defer=""></script>
   <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
@@ -156,13 +157,22 @@
           <div class="u-layout-row">
             <div class="u-align-center u-container-style u-layout-cell u-size-22 u-layout-cell-1">
               <div class="u-container-layout u-container-layout-1">
-                <img class="u-image u-image-default u-image-1" src="images/logo.png" alt="" data-image-width="1971"
-                  data-image-height="809">
+                {% for doctors in doctors %}
+                  {% if current_doctor == doctors.username_id  %}
+                <div class="u-image u-image-circle u-image-1" alt="" data-image-width="321" data-image-height="314"><img
+                    src="{{ doctors.profile_pic.url }}" alt="Profile" height="110px" width="110px" style="border-radius: 60px;" /></div>
                 <div class="u-image u-image-circle u-image-2" alt="" data-image-width="960" data-image-height="960">
                 </div>
-                <h4 class="u-text u-text-default u-text-1"><b>Dr. Ariana Grande</b>
+                <h4 class="u-text u-text-default u-text-1"><b>{{doctors.prefix}} {{doctors.first_name}}
+                    {{doctors.last_name}}</b>
+
                   <br>
-                  <span style="font-size: 1.25rem;">General Dentistry</span>
+                  <span style="font-size: 1.25rem;">{{doctors.specialization}}</span>
+
+                  <br>
+                  <span style="font-size: 1.25rem;">{{doctors.experience}} Years of Experience</span>
+                    {% endif %}
+                {% endfor %}
                 </h4>
               </div>
             </div>
@@ -200,7 +210,9 @@
                         </div>
                       </div>
                     </div>
-                    <h3 class="u-custom-font u-text u-text-default u-text-font u-text-7">Hi Test1!</h3>
+                    {% for patients in patients %}
+                      {% if current_user == patients.username_id  %}
+                    <h3 class="u-custom-font u-text u-text-default u-text-font u-text-7">Hi {{patients.first_name}} {{patients.last_name}}</h3>
                     <h3 class="u-custom-font u-text u-text-black u-text-font u-text-8">I would like to know if you want
                       a Face-to-Face or Virtual appointment, please answer the following...&nbsp;</h3>
                     <a 
@@ -209,6 +221,8 @@
                     <a 
                       id="Next2" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-6-base u-palette-4-dark-1 u-radius-50 u-btn-3">I
                       would like to request for a clinic visit</a>
+                      {% endif %}
+                    {% endfor %}
                     <p class="u-align-left u-text u-text-body-alt-color u-text-default u-text-9">1</p>
                   </div>
                 </div>
@@ -286,7 +300,7 @@
                           <div class="u-container-layout u-valign-middle u-container-layout-7">
                             <div class="u-form-date u-form-group u-form-group-4">
                               <label for="date-d2b6" class="u-form-control-hidden u-label"></label>
-                              <input type="date" id="date-d2b6" name="date"
+                              <input type="date" id="virtual_date" name="virtual_date"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-4" required="">
                             </div>
                           </div>
@@ -303,15 +317,14 @@
                           <div class="u-container-layout u-container-layout-8">
                             <div class="u-form-group u-form-group-3">
                               <label for="message-6797" class="u-form-control-hidden u-label"></label>
-                              <input placeholder="Reason" rows="4" cols="50" id="message-6797" name="message"
+                              <input placeholder="Reason" rows="4" cols="50" id="virtual_reason" name="virtual_reason"
                                 class="u-input  u-palette-5-light-3 u-radius-50" required="required"
                                 type="text">
                             </div>
                           </div>
                         </div>
-                        <a id="Next3"
-                          class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2">CONTINUE</a>
-                        
+                <button id="Next3" type="submit"
+                  class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2" onclick="myFunction()" disabled>CONTINUE</button>
                       </div>
                     </div>
                     <div class="u-container-style u-group u-group-9">
@@ -391,7 +404,7 @@
                           <div class="u-container-layout u-valign-middle u-container-layout-7">
                             <div class="u-form-date u-form-group u-form-group-4">
                               <label for="date-d2b6" class="u-form-control-hidden u-label"></label>
-                              <input type="date" id="date-d2b6" name="date"
+                              <input type="date" id="appointment_date" name="appointment_date"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-4" required="">
                             </div>
                           </div>
@@ -407,14 +420,14 @@
                           <div class="u-container-layout u-container-layout-8">
                             <div class="u-form-group u-form-group-3">
                               <label for="message-6797" class="u-form-control-hidden u-label"></label>
-                              <input placeholder="Reason" rows="4" cols="50" id="message-6797" name="message"
+                              <input placeholder="Reason" rows="4" cols="50" id="clinic_reason" name="clinic_reason"
                                 class="u-input  u-palette-5-light-3 u-radius-50" required="required"
                                 type="text">
                             </div>
                           </div>
                         </div>
-                        <a id="Next4"
-                          class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2">CONTINUE</a>
+                <button id="Next4" type="submit"
+                  class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2" onclick="myFunction()" disabled>CONTINUE</button>
                       </div>
                     </div>
                   </div>
@@ -462,6 +475,8 @@
                           <span style="font-weight: 400; font-size: 0.875rem;">Patient details are required for your medical record.
                             Please fill in all the details below.</span>
                         </h3>
+                        {% for patients in patients %}
+                          {% if current_user == patients.username_id  %}
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-7">
                           <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>FIRST NAME</b>
                           </span>&nbsp;<span class="u-icon u-text-palette-2-base u-icon-3"><svg class="u-svg-content"
@@ -475,7 +490,7 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" required="required"
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.first_name}}" required="required"
                                 type="text">
                             </div>
                           </div>
@@ -493,13 +508,13 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" required="required"
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.last_name}}"required="required"
                                 type="text">
                             </div>
                           </div>
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-9">
-                          <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>ADDRESS&nbsp;</b>
+                          <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>CURRENT ADDRESS&nbsp;</b>
                           </span><span class="u-icon u-text-palette-2-base u-icon-5"><svg class="u-svg-content"
                               viewBox="0 0 53.867 53.867" x="0px" y="0px" style="width: 1em; height: 1em;">
                               <polygon style="fill:currentColor;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
@@ -511,7 +526,7 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" required="required"
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.current_address}}"required="required"
                                 type="text">
                             </div>
                           </div>
@@ -553,7 +568,7 @@
                           <div class="u-container-layout u-container-layout-10">
                             <div class="u-form-group u-form-phone u-form-group-6">
                               <label for="phone-9f62" class="u-form-control-hidden u-label"></label>
-                              <input type="tel" placeholder="Enter your mobile number (e.g. 09957515220)" id="phone-9f62" name="phone"
+                              <input type="tel" value="{{patients.contact_number}}" id="phone-9f62" name="phone"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-6" required=""
                                 pattern="1234567890">
                             </div>
@@ -561,6 +576,8 @@
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-12">
                           <span style="font-size: 0.75rem;"><b>
+                        {% for users in users %}
+                          {% if current_user == users.username  %}
                               <span class="u-text-grey-40">EMAIL</span></b>
                             <span class="u-text-grey-25">(Optional)</span><b>&nbsp;&nbsp;</b>
                           </span><span class="u-icon u-text-palette-2-base u-icon-8"><svg class="u-svg-content"
@@ -573,9 +590,11 @@
                           <div class="u-container-layout u-container-layout-11">
                             <div class="u-form-email u-form-group u-form-group-2">
                               <label for="email-6797" class="u-form-control-hidden u-label"></label>
-                              <input type="email" placeholder="" id="email-6797" name="email"
+                              <input type="email" placeholder="" id="email-6797" name="email" value="{{users.email}}"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-2" required="">
-                            </div>
+                          {% endif %}
+                        {% endfor %}
+                            </div>       
                           </div>
                         </div>
                         <div
@@ -591,6 +610,8 @@
                             </span>
                           </font>
                         </h3>
+                        {% endif %}
+                        {% endfor %}
                         <a id="Next5"
                           class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2">CONTINUE</a>
                       </div>
@@ -640,6 +661,8 @@
                           <span style="font-weight: 400; font-size: 0.875rem;">Patient details are required for your medical record.
                             Please fill in all the details below.</span>
                         </h3>
+                        {% for patients in patients %}
+                          {% if current_user == patients.username_id  %}
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-7">
                           <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>FIRST NAME</b>
                           </span>&nbsp;<span class="u-icon u-text-palette-2-base u-icon-3"><svg class="u-svg-content"
@@ -653,7 +676,7 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" required="required"
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.first_name}}" required="required"
                                 type="text">
                             </div>
                           </div>
@@ -671,13 +694,13 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" required="required"
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.last_name}}"required="required"
                                 type="text">
                             </div>
                           </div>
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-9">
-                          <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>ADDRESS&nbsp;</b>
+                          <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>CURRENT ADDRESS&nbsp;</b>
                           </span><span class="u-icon u-text-palette-2-base u-icon-5"><svg class="u-svg-content"
                               viewBox="0 0 53.867 53.867" x="0px" y="0px" style="width: 1em; height: 1em;">
                               <polygon style="fill:currentColor;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
@@ -689,7 +712,7 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" required="required"
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.current_address}}"required="required"
                                 type="text">
                             </div>
                           </div>
@@ -731,7 +754,7 @@
                           <div class="u-container-layout u-container-layout-10">
                             <div class="u-form-group u-form-phone u-form-group-6">
                               <label for="phone-9f62" class="u-form-control-hidden u-label"></label>
-                              <input type="tel" placeholder="Enter your mobile number (e.g. 09957515220)" id="phone-9f62" name="phone"
+                              <input type="tel" value="{{patients.contact_number}}" id="phone-9f62" name="phone"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-6" required=""
                                 pattern="1234567890">
                             </div>
@@ -739,6 +762,8 @@
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-12">
                           <span style="font-size: 0.75rem;"><b>
+                        {% for users in users %}
+                          {% if current_user == users.username  %}
                               <span class="u-text-grey-40">EMAIL</span></b>
                             <span class="u-text-grey-25">(Optional)</span><b>&nbsp;&nbsp;</b>
                           </span><span class="u-icon u-text-palette-2-base u-icon-8"><svg class="u-svg-content"
@@ -751,9 +776,11 @@
                           <div class="u-container-layout u-container-layout-11">
                             <div class="u-form-email u-form-group u-form-group-2">
                               <label for="email-6797" class="u-form-control-hidden u-label"></label>
-                              <input type="email" placeholder="" id="email-6797" name="email"
+                              <input type="email" placeholder="" id="email-6797" name="email" value="{{users.email}}"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-2" required="">
-                            </div>
+                          {% endif %}
+                        {% endfor %}
+                            </div>       
                           </div>
                         </div>
                         <div
@@ -769,6 +796,8 @@
                             </span>
                           </font>
                         </h3>
+                        {% endif %}
+                        {% endfor %}
                         <a id="Next6"
                           class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2">CONTINUE</a>
                       </div>
@@ -890,6 +919,32 @@
       Card4_1.style.left = "-3500px";
     }
 
+  </script>
+
+  <script>
+    $("#virtual_reason").keyup(function() {
+      var len = $('#virtual_reason').val().length;
+      if (len >= 1){
+        $("#Next3").prop('disabled', false);
+      }
+      else
+      {
+        $("#Next3").prop('disabled', true);
+      }
+    });
+  </script>
+
+  <script>
+    $("#clinic_reason").keyup(function() {
+      var len = $('#clinic_reason').val().length;
+      if (len >= 1){
+        $("#Next4").prop('disabled', false);
+      }
+      else
+      {
+        $("#Next4").prop('disabled', true);
+      }
+    });
   </script>
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0">
     <div class="u-clearfix u-sheet u-sheet-1">

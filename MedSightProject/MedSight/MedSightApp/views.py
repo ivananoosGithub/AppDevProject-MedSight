@@ -400,7 +400,6 @@ class FindDoctorView(View):
             current_user = request.session['user']
             patients = Patients.objects.all()
             doctors = Doctors.objects.all()
-            
             context = {
                 'current_user': current_user,
                 'patients' : patients,
@@ -408,20 +407,47 @@ class FindDoctorView(View):
             }
             return render(request, 'pages/FindDocPage.html', context)
         else:
-            return HttpResponse('Please login first to view this page.')   
+            return HttpResponse('Please login first to view this page.')
 
-class AppointmentPageView(View): 
-    def get(self, request): 
+    def post(self, request):
+        if request.method == 'POST':
+            current_doctor = request.POST.get("doctor_id")
+            request.session['doctor'] = current_doctor
+            return redirect("MedSightApp:appointmentP_view")
+        return render(request, 'pages/FindDocPage.html', {})
+
+class AppointmentPageView(View):
+    def get(self, request):
         if 'user' in request.session:
             current_user = request.session['user']
+            current_doctor = request.session['doctor']
             patients = Patients.objects.all()
             doctors = Doctors.objects.all()
-
+            users = Users.objects.all()
             context = {
                 'current_user': current_user,
+                'current_doctor': current_doctor,
                 'patients' : patients,
                 'doctors' : doctors,
+                'users' : users,
             }
             return render(request, 'pages/AppointmentPage.html', context)
         else:
-            return HttpResponse('Please login first to view this page.')   
+            return HttpResponse('Please login first to view this page.')
+
+    def post(self, request):        
+        form = AppointmentsForm(request.POST, request.FILES)   
+        if form.is_valid():
+            fk = form.cleaned_data.get("username")
+            pfname = request.POST.get("first_name")
+            plname = request.POST.get("last_name")
+            pgend = request.POST.get("gender")    
+            pcnum = request.POST.get("contact_number")
+            pcadd = request.POST.get("current_address")
+            ppp = request.FILES["profile_pic"]
+            form = Patients(username = fk, first_name = pfname, last_name = plname, gender = pgend, contact_number = pcnum, current_address = pcadd, profile_pic = ppp)
+            form.save() 
+            return redirect('MedSightApp:patientHome_view')
+        else:
+            print(form.errors)
+            return HttpResponse('not valid')
