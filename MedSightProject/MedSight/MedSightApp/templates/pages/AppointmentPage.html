@@ -9,10 +9,18 @@
   <meta name="keywords" content="Find a doctor or request an appointment">
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
-  <title>Page 1</title>
+  <title>Appointment Page</title>
   <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
   <link rel="stylesheet" href="{% static 'css/AppointmentPage.css' %}" media="screen">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
   <script class="u-script" type="text/javascript" src="{% static 'js/jquery1.js' %}" defer=""></script>
   <script class="u-script" type="text/javascript" src="{% static 'js/nicepage1.js' %}" defer=""></script>
   <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
@@ -76,14 +84,23 @@
             <li class="u-nav-item"><a
                 class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base"
                 href="{% url 'MedSightApp:contact_view' %}" style="padding: 6px 0px;">Contact</a></li>
+
+            {% if current_user %}
+
+            <li class="u-nav-item"><a
+                class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base"
+                style="padding: 6px 0px;">{{current_user}}</a>
               <div class="u-nav-popup">
                 <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
                   {% if patients %}
-                  <li class="u-nav-item"><a href="{% url 'MedSightApp:pprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:pprofile_view' %}"
+                      class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
                   {% elif doctors %}
-                  <li class="u-nav-item"><a href="{% url 'MedSightApp:dprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:dprofile_view' %}"
+                      class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
                   {% endif %}
-                  <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a>
+                  <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}"
+                      class="u-button-style u-nav-link u-palette-4-base">Dashboard</a>
                   </li>
                   <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account
                       Settings</a></li>
@@ -92,12 +109,13 @@
                 </ul>
               </div>
             </li>
-            <li class="u-nav-item"><a
-                class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base"
-                href="Page-1.html" style="padding: 6px 0px;">Page 1</a>
-            </li>
           </ul>
         </div>
+        {% else %}
+        <li class="u-nav-item"><a
+            class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base"
+            href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
+        {% endif %}
         <div class="u-custom-menu u-nav-container-collapse">
           <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
             <div class="u-inner-container-layout u-sidenav-overflow">
@@ -111,15 +129,22 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html"
                     style="padding: 6px 0px;">Contact</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" style="padding: 6px 0px;">UserTest-1</a>
+                {% if current_user %}
+
+                <li class="u-nav-item"><a
+                    class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base"
+                    style="padding: 6px 0px;">{{current_user}}</a>
                   <div class="u-nav-popup">
-                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-4">
+                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-nav-2">
                       {% if patients %}
-                      <li class="u-nav-item"><a href="{% url 'MedSightApp:pprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                      <li class="u-nav-item"><a href="{% url 'MedSightApp:pprofile_view' %}"
+                          class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
                       {% elif doctors %}
-                      <li class="u-nav-item"><a href="{% url 'MedSightApp:dprofile_view' %}" class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
+                      <li class="u-nav-item"><a href="{% url 'MedSightApp:dprofile_view' %}"
+                          class="u-button-style u-nav-link u-palette-4-base">Profile</a></li>
                       {% endif %}
-                      <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}" class="u-button-style u-nav-link u-palette-4-base">Dashboard</a>
+                      <li class="u-nav-item"><a href="{% url 'MedSightApp:admin_view' %}"
+                          class="u-button-style u-nav-link u-palette-4-base">Dashboard</a>
                       </li>
                       <li class="u-nav-item"><a href="#" class="u-button-style u-nav-link u-palette-4-base">Account
                           Settings</a></li>
@@ -133,6 +158,11 @@
           </div>
           <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
         </div>
+        {% else %}
+        <li class="u-nav-item"><a
+            class="u-border-2 u-border-active-palette-4-base u-border-hover-palette-4-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-4-base u-text-grey-90 u-text-hover-palette-4-base"
+            href="{% url 'MedSightApp:signin_view' %}" style="padding: 6px 0px;">Sign in</a></li>
+        {% endif %}
       </nav>
       <a href="#" class="u-image u-logo u-image-1">
         <img src="{% static 'images/logo.png' %}" class="u-logo-image u-logo-image-1">
@@ -157,11 +187,15 @@
           <div class="u-layout-row">
             <div class="u-align-center u-container-style u-layout-cell u-size-22 u-layout-cell-1">
               <div class="u-container-layout u-container-layout-1">
+                <img class="u-image u-image-default u-image-1" src="{% static 'images/logo.png' %}" alt=""
+                  data-image-width="1971" data-image-height="809">
                 {% for doctors in doctors %}
-                  {% if current_doctor == doctors.username_id  %}
-                <div class="u-image u-image-circle u-image-1" alt="" data-image-width="321" data-image-height="314"><img
-                    src="{{ doctors.profile_pic.url }}" alt="Profile" height="110px" width="110px" style="border-radius: 60px;" /></div>
+                {% if current_doctor == doctors.username_id  %}
+                <!-- <div class="u-image u-image-circle u-image-2" alt="" data-image-width="960" data-image-height="960"><img
+                    src="{{ doctors.profile_pic.url }}" alt="Profile" height="110px" width="110px" style="border-radius: 60px;" /></div> -->
                 <div class="u-image u-image-circle u-image-2" alt="" data-image-width="960" data-image-height="960">
+                  <img src="{{ doctors.profile_pic.url }}" style="border-radius: 60px;" alt="Profile" width="136"
+                    height="136px" />
                 </div>
                 <h4 class="u-text u-text-default u-text-1"><b>{{doctors.prefix}} {{doctors.first_name}}
                     {{doctors.last_name}}</b>
@@ -171,12 +205,12 @@
 
                   <br>
                   <span style="font-size: 1.25rem;">{{doctors.experience}} Years of Experience</span>
-                    {% endif %}
-                {% endfor %}
+                  {% endif %}
+                  {% endfor %}
                 </h4>
               </div>
             </div>
-            
+
             <div id="Card1" class="u-container-style u-layout-cell u-size-38 u-layout-cell-2">
               <div class="u-container-layout u-container-layout-2">
                 <div class="u-container-style u-expanded-width u-group u-radius-25 u-shape-round u-white u-group-1">
@@ -201,7 +235,7 @@
                             <p class="u-align-left u-text u-text-body-alt-color u-text-4">3</p>
                           </div>
                         </div>
-                        <p class="u-align-right u-text u-text-body-alt-color u-text-5">3</p>
+                        <p class="u-align-right u-text u-text-body-alt-color u-text-5">4</p>
                         <div class="u-container-style u-group u-group-5">
                           <div class="u-container-layout">
                             <div class="u-align-left u-grey-10 u-shape u-shape-circle u-shape-4"></div>
@@ -211,17 +245,38 @@
                       </div>
                     </div>
                     {% for patients in patients %}
-                      {% if current_user == patients.username_id  %}
-                    <h3 class="u-custom-font u-text u-text-default u-text-font u-text-7">Hi {{patients.first_name}} {{patients.last_name}}</h3>
+                    {% if current_user == patients.username_id  %}
+                    <h3 class="u-custom-font u-text u-text-default u-text-font u-text-7">Hi {{patients.first_name}}
+                      {{patients.last_name}}!!!</h3>
                     <h3 class="u-custom-font u-text u-text-black u-text-font u-text-8">I would like to know if you want
                       a Face-to-Face or Virtual appointment, please answer the following...&nbsp;</h3>
-                    <a 
-                      id="Next1" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-6-base u-palette-4-dark-1 u-radius-50 u-btn-2">I
-                      would like to request for a virtual consult</a>
-                    <a 
-                      id="Next2" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-6-base u-palette-4-dark-1 u-radius-50 u-btn-3">I
-                      would like to request for a clinic visit</a>
-                      {% endif %}
+                      <div class="dropdown">
+                        <button type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+                          class="dropdown-toggle u-border-none u-btn u-btn-round u-button-style u-hover-palette-6-base u-palette-4-dark-1 u-radius-50 u-btn-2">I
+                          would like to request for a virtual consult</button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="Next2"
+                            class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-6-base u-palette-4-dark-1 u-radius-50 u-btn-3">I
+                              would like to request for a clinic visit</a>
+                            
+                          </div>
+                      </div>
+
+                      
+                      <!-- <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Dropdown button
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div> -->
+                    <!-- <a id="Next2"
+                      class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-6-base u-palette-4-dark-1 u-radius-50 u-btn-3">I
+                      would like to request for a clinic visit</a> -->
+                    {% endif %}
                     {% endfor %}
                     <p class="u-align-left u-text u-text-body-alt-color u-text-default u-text-9">1</p>
                   </div>
@@ -269,46 +324,50 @@
                               </path>
                             </svg><img></span>&nbsp;Back
                         </a>
-                        <h3 class="u-custom-font u-text u-text-default u-text-font u-text-6"><span class="u-icon u-icon-2"><svg
-                              class="u-svg-content" viewBox="0 0 47.94 47.94" x="0px" y="0px" style="width: 1em; height: 1em;">
+                        <h3 class="u-custom-font u-text u-text-default u-text-font u-text-6"><span
+                            class="u-icon u-icon-2"><svg class="u-svg-content" viewBox="0 0 47.94 47.94" x="0px" y="0px"
+                              style="width: 1em; height: 1em;">
                               <path style="fill:currentColor;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757
                 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042
                 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685
                 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528
                 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956
                 C22.602,0.567,25.338,0.567,26.285,2.486z"></path>
-                <!--- START OF VIRTUAL CONSULTATION -->
-                  <form action="" method="post"> {% csrf_token %} {{ form1.as_p }}
+                              <!--- START OF VIRTUAL CONSULTATION -->
+                              <form action="" method="post"> {% csrf_token %} {{ form1.as_p }}
                             </svg><img></span>&nbsp;<span class="u-icon u-icon-3"></span>Virtual Consultation
                         </h3>
-                  {% for users in users %}
-                    {% if current_user == patients.username_id %}
-                  <input type="text" id="virtual_patient" name="virtual_patient" value="{{patients.id}}" readonly hidden>
-                    {% endif %}
-                  {% endfor %}
+                        {% for users in users %}
+                        {% if current_user == patients.username_id %}
+                        <input type="text" id="virtual_patient" name="virtual_patient" value="{{patients.id}}" readonly
+                          hidden>
+                        {% endif %}
+                        {% endfor %}
 
-                  {% for doctors in doctors %}
-                    {% if current_doctor == doctors.username_id %}
-                  <input type="text" id="virtual_doctor" name="virtual_doctor" value="{{doctors.id}}" readonly hidden>
-                    {% endif %}
-                  {% endfor %}
+                        {% for doctors in doctors %}
+                        {% if current_doctor == doctors.username_id %}
+                        <input type="text" id="virtual_doctor" name="virtual_doctor" value="{{doctors.id}}" readonly
+                          hidden>
+                        {% endif %}
+                        {% endfor %}
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-7">
                           <span style="font-size: 1.25rem;">Schedules:</span>
                           <br>
-                              <select id="virtual_time" name="virtual_time"
-                                  class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5" required="required">
-                                  <option value="Monday: 8am - 4pm">Monday: 8am - 4pm</option>
-                                  <option value="Monday: 8am - 4pm">Tuesday: 8am - 4pm</option>
-                                  <option value="Wednesday: 8am - 4pm">Wednesday: 8am - 4pm</option>
-                                  <option value="Thursday: 8am - 4pm">Thursday: 8am - 4pm</option>
-                                  <option value="Friday: 8am - 4pm">Friday: 8am - 4pm</option>
-                              </select>
+                          <select id="virtual_time" name="virtual_time"
+                            class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5"
+                            required="required">
+                            <option value="Monday: 8am - 4pm">Monday: 8am - 4pm</option>
+                            <option value="Monday: 8am - 4pm">Tuesday: 8am - 4pm</option>
+                            <option value="Wednesday: 8am - 4pm">Wednesday: 8am - 4pm</option>
+                            <option value="Thursday: 8am - 4pm">Thursday: 8am - 4pm</option>
+                            <option value="Friday: 8am - 4pm">Friday: 8am - 4pm</option>
+                          </select>
                         </h3>
-                        
-                        <h3 class="u-custom-font u-text u-text-black u-text-font u-text-8" >
+
+                        <h3 class="u-custom-font u-text u-text-black u-text-font u-text-8">
                           <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>SCHEDULED ON</b></span>&nbsp;<span
-                            class="u-icon u-text-palette-2-base u-icon-5"><svg class="u-svg-content" viewBox="0 0 53.867 53.867"
-                              x="0px" y="0px" style="width: 1em; height: 1em;">
+                            class="u-icon u-text-palette-2-base u-icon-5"><svg class="u-svg-content"
+                              viewBox="0 0 53.867 53.867" x="0px" y="0px" style="width: 1em; height: 1em;">
                               <polygon style="fill:currentColor;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
@@ -323,25 +382,27 @@
                           </div>
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-9">
-                          <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>REASON FOR APPOINTMENT</b></span>&nbsp;<span
-                            class="u-icon u-text-palette-2-base u-icon-7"><svg class="u-svg-content" viewBox="0 0 53.867 53.867"
-                              x="0px" y="0px" style="width: 1em; height: 1em;">
+                          <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>REASON FOR
+                              APPOINTMENT</b></span>&nbsp;<span class="u-icon u-text-palette-2-base u-icon-7"><svg
+                              class="u-svg-content" viewBox="0 0 53.867 53.867" x="0px" y="0px"
+                              style="width: 1em; height: 1em;">
                               <polygon style="fill:currentColor;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-8">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-8">
                           <div class="u-container-layout u-container-layout-8">
                             <div class="u-form-group u-form-group-3">
                               <label for="message-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="Reason" rows="4" cols="50" id="virtual_reason" name="virtual_reason"
-                                class="u-input  u-palette-5-light-3 u-radius-50" required="required"
-                                type="text">
+                                class="u-input  u-palette-5-light-3 u-radius-50" required="required" type="text">
                             </div>
                           </div>
                         </div>
-                <input id="Next3" name="Next3" type="submit"
-                  class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2" onclick="myFunction()" disabled></input> </form>
+                        <input id="Next3" name="Next3" type="submit"
+                          class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2"
+                          onclick="myFunction()" disabled></input> </form>
                       </div>
                     </div>
                     <div class="u-container-style u-group u-group-9">
@@ -349,7 +410,7 @@
                     </div>
                   </div>
                 </section>
-                
+
                 <!--- END OF VIRTUAL CONSULTATION -->
 
 
@@ -395,8 +456,9 @@
                               </path>
                             </svg><img></span>&nbsp;Back
                         </a>
-                        <h3 class="u-custom-font u-text u-text-default u-text-font u-text-6"><span class="u-icon u-icon-2"><svg
-                              class="u-svg-content" viewBox="0 0 47.94 47.94" x="0px" y="0px" style="width: 1em; height: 1em;">
+                        <h3 class="u-custom-font u-text u-text-default u-text-font u-text-6"><span
+                            class="u-icon u-icon-2"><svg class="u-svg-content" viewBox="0 0 47.94 47.94" x="0px" y="0px"
+                              style="width: 1em; height: 1em;">
                               <path style="fill:currentColor;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757
                 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042
                 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685
@@ -404,24 +466,25 @@
                 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956
                 C22.602,0.567,25.338,0.567,26.285,2.486z"></path>
 
-                <!--- START OF CLINIC CONSULTATION -->
+                              <!--- START OF CLINIC CONSULTATION -->
                             </svg><img></span>&nbsp;<span class="u-icon u-icon-3"></span>Clinic Visit Consult
                         </h3>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-7">
                           <span style="font-size: 1.25rem;">Schedules:</span>
                           <br>
-                            <select id="clinic_time" name="clinic_time"
-                                  class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5" required="required">
-                                  <option value="Monday: 8am - 4pm">Monday: 8am - 4pm</option>
-                                  <option value="Monday: 8am - 4pm">Tuesday: 8am - 4pm</option>
-                                  <option value="Wednesday: 8am - 4pm">Wednesday: 8am - 4pm</option>
-                                  <option value="Thursday: 8am - 4pm">Thursday: 8am - 4pm</option>
-                                  <option value="Friday: 8am - 4pm">Friday: 8am - 4pm</option>
-                              </select>
+                          <select id="clinic_time" name="clinic_time"
+                            class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5"
+                            required="required">
+                            <option value="Monday: 8am - 4pm">Monday: 8am - 4pm</option>
+                            <option value="Monday: 8am - 4pm">Tuesday: 8am - 4pm</option>
+                            <option value="Wednesday: 8am - 4pm">Wednesday: 8am - 4pm</option>
+                            <option value="Thursday: 8am - 4pm">Thursday: 8am - 4pm</option>
+                            <option value="Friday: 8am - 4pm">Friday: 8am - 4pm</option>
+                          </select>
                         </h3>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-8">SCHEDULED ON&nbsp;<span
-                            class="u-icon u-text-palette-2-base u-icon-5"><svg class="u-svg-content" viewBox="0 0 53.867 53.867"
-                              x="0px" y="0px" style="width: 1em; height: 1em;">
+                            class="u-icon u-text-palette-2-base u-icon-5"><svg class="u-svg-content"
+                              viewBox="0 0 53.867 53.867" x="0px" y="0px" style="width: 1em; height: 1em;">
                               <polygon style="fill:currentColor;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
@@ -435,25 +498,27 @@
                             </div>
                           </div>
                         </div>
-                        <h3 class="u-custom-font u-text u-text-black u-text-font u-text-9">REASON FOR APPOINTMENT&nbsp;<span
-                            class="u-icon u-text-palette-2-base u-icon-7"><svg class="u-svg-content" viewBox="0 0 53.867 53.867"
-                              x="0px" y="0px" style="width: 1em; height: 1em;">
+                        <h3 class="u-custom-font u-text u-text-black u-text-font u-text-9">REASON FOR
+                          APPOINTMENT&nbsp;<span class="u-icon u-text-palette-2-base u-icon-7"><svg
+                              class="u-svg-content" viewBox="0 0 53.867 53.867" x="0px" y="0px"
+                              style="width: 1em; height: 1em;">
                               <polygon style="fill:currentColor;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-8">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-8">
                           <div class="u-container-layout u-container-layout-8">
                             <div class="u-form-group u-form-group-3">
                               <label for="message-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="Reason" rows="4" cols="50" id="clinic_reason" name="clinic_reason"
-                                class="u-input  u-palette-5-light-3 u-radius-50" required="required"
-                                type="text">
+                                class="u-input  u-palette-5-light-3 u-radius-50" required="required" type="text">
                             </div>
                           </div>
                         </div>
-                <button id="Next4" type="submit"
-                  class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2" onclick="myFunction()" disabled>CONTINUE</button>
+                        <button id="Next4" type="submit"
+                          class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-2"
+                          onclick="myFunction()" disabled>CONTINUE</button>
                       </div>
                     </div>
                   </div>
@@ -490,7 +555,7 @@
                             </div>
                           </div>
                         </div>
-                        <a id = "Back3"
+                        <a id="Back3"
                           class="u-border-none u-btn u-button-style u-none u-text-active-palette-4-base u-text-black u-text-hover-palette-4-base u-btn-1"><span
                             class="u-icon u-text-palette-4-base"><svg class="u-svg-content" viewBox="0 0 16 16"
                               style="width: 1em; height: 1em;">
@@ -499,12 +564,14 @@
                               </path>
                             </svg><img></span>&nbsp;Back
                         </a>
-                        <h3 class="u-custom-font u-text u-text-font u-text-6"><span class="u-icon u-icon-2"></span>Patient Details<br>
-                          <span style="font-weight: 400; font-size: 0.875rem;">Patient details are required for your medical record.
+                        <h3 class="u-custom-font u-text u-text-font u-text-6"><span
+                            class="u-icon u-icon-2"></span>Patient Details<br>
+                          <span style="font-weight: 400; font-size: 0.875rem;">Patient details are required for your
+                            medical record.
                             Please fill in all the details below.</span>
                         </h3>
                         {% for patients in patients %}
-                          {% if current_user == patients.username_id  %}
+                        {% if current_user == patients.username_id  %}
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-7">
                           <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>FIRST NAME</b>
                           </span>&nbsp;<span class="u-icon u-text-palette-2-base u-icon-3"><svg class="u-svg-content"
@@ -518,8 +585,8 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.first_name}}" required="required"
-                                type="text">
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1"
+                                value="{{patients.first_name}}" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -536,8 +603,8 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.last_name}}"required="required"
-                                type="text">
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1"
+                                value="{{patients.last_name}}" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -554,8 +621,8 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.current_address}}"required="required"
-                                type="text">
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1"
+                                value="{{patients.current_address}}" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -567,17 +634,20 @@
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-9">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-9">
                           <div class="u-container-layout u-container-layout-9">
                             <div class="u-form-group u-form-select u-form-group-5">
                               <label for="select-97ec" class="u-form-control-hidden u-label"></label>
                               <div class="u-form-select-wrapper">
                                 <select id="select-97ec" name="select"
-                                  class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5" required="required">
+                                  class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5"
+                                  required="required">
                                   <option value="Male">Male</option>
                                   <option value="Female">Female</option>
                                 </select>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
+                                  class="u-caret">
                                   <path fill="currentColor" d="M4 8L0 4h8z"></path>
                                 </svg>
                               </div>
@@ -592,7 +662,8 @@
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-10">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-10">
                           <div class="u-container-layout u-container-layout-10">
                             <div class="u-form-group u-form-phone u-form-group-6">
                               <label for="phone-9f62" class="u-form-control-hidden u-label"></label>
@@ -604,8 +675,8 @@
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-12">
                           <span style="font-size: 0.75rem;"><b>
-                        {% for users in users %}
-                          {% if current_user == users.username  %}
+                              {% for users in users %}
+                              {% if current_user == users.username  %}
                               <span class="u-text-grey-40">EMAIL</span></b>
                             <span class="u-text-grey-25">(Optional)</span><b>&nbsp;&nbsp;</b>
                           </span><span class="u-icon u-text-palette-2-base u-icon-8"><svg class="u-svg-content"
@@ -614,26 +685,27 @@
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-11">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-11">
                           <div class="u-container-layout u-container-layout-11">
                             <div class="u-form-email u-form-group u-form-group-2">
                               <label for="email-6797" class="u-form-control-hidden u-label"></label>
                               <input type="email" placeholder="" id="email-6797" name="email" value="{{users.email}}"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-2" required="">
-                          {% endif %}
-                        {% endfor %}
-                            </div>       
+                              {% endif %}
+                              {% endfor %}
+                            </div>
                           </div>
                         </div>
-                        <div
-                          class="u-align-left     u-white u-group-12">
+                        <div class="u-align-left     u-white u-group-12">
                           <input type="checkbox" id="agree-43a8" name="agree" class="u-agree-checkbox" required="">
                           <div class="u-container-layout u-container-layout-12">
                           </div>
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-13">
                           <font color="#999999">
-                            <span style="font-size: 12px;"><b>I have read, understood, and accepted the Terms &amp; Conditions and
+                            <span style="font-size: 12px;"><b>I have read, understood, and accepted the Terms &amp;
+                                Conditions and
                                 Privacy Policy</b>
                             </span>
                           </font>
@@ -676,7 +748,7 @@
                             </div>
                           </div>
                         </div>
-                        <a id = "Back4"
+                        <a id="Back4"
                           class="u-border-none u-btn u-button-style u-none u-text-active-palette-4-base u-text-black u-text-hover-palette-4-base u-btn-1"><span
                             class="u-icon u-text-palette-4-base"><svg class="u-svg-content" viewBox="0 0 16 16"
                               style="width: 1em; height: 1em;">
@@ -685,12 +757,14 @@
                               </path>
                             </svg><img></span>&nbsp;Back
                         </a>
-                        <h3 class="u-custom-font u-text u-text-font u-text-6"><span class="u-icon u-icon-2"></span>Patient Details<br>
-                          <span style="font-weight: 400; font-size: 0.875rem;">Patient details are required for your medical record.
+                        <h3 class="u-custom-font u-text u-text-font u-text-6"><span
+                            class="u-icon u-icon-2"></span>Patient Details<br>
+                          <span style="font-weight: 400; font-size: 0.875rem;">Patient details are required for your
+                            medical record.
                             Please fill in all the details below.</span>
                         </h3>
                         {% for patients in patients %}
-                          {% if current_user == patients.username_id  %}
+                        {% if current_user == patients.username_id  %}
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-7">
                           <span style="font-size: 0.75rem;" class="u-text-grey-40"><b>FIRST NAME</b>
                           </span>&nbsp;<span class="u-icon u-text-palette-2-base u-icon-3"><svg class="u-svg-content"
@@ -704,8 +778,8 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.first_name}}" required="required"
-                                type="text">
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1"
+                                value="{{patients.first_name}}" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -722,8 +796,8 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.last_name}}"required="required"
-                                type="text">
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1"
+                                value="{{patients.last_name}}" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -740,8 +814,8 @@
                             <div class="u-form-group u-form-group-1">
                               <label for="name-6797" class="u-form-control-hidden u-label"></label>
                               <input placeholder="" id="name-6797" name="name"
-                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1" value="{{patients.current_address}}"required="required"
-                                type="text">
+                                class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-1"
+                                value="{{patients.current_address}}" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -753,17 +827,20 @@
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-9">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-9">
                           <div class="u-container-layout u-container-layout-9">
                             <div class="u-form-group u-form-select u-form-group-5">
                               <label for="select-97ec" class="u-form-control-hidden u-label"></label>
                               <div class="u-form-select-wrapper">
                                 <select id="select-97ec" name="select"
-                                  class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5" required="required">
+                                  class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-5"
+                                  required="required">
                                   <option value="Male">Male</option>
                                   <option value="Female">Female</option>
                                 </select>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
+                                  class="u-caret">
                                   <path fill="currentColor" d="M4 8L0 4h8z"></path>
                                 </svg>
                               </div>
@@ -778,7 +855,8 @@
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-10">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-10">
                           <div class="u-container-layout u-container-layout-10">
                             <div class="u-form-group u-form-phone u-form-group-6">
                               <label for="phone-9f62" class="u-form-control-hidden u-label"></label>
@@ -790,8 +868,8 @@
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-12">
                           <span style="font-size: 0.75rem;"><b>
-                        {% for users in users %}
-                          {% if current_user == users.username  %}
+                              {% for users in users %}
+                              {% if current_user == users.username  %}
                               <span class="u-text-grey-40">EMAIL</span></b>
                             <span class="u-text-grey-25">(Optional)</span><b>&nbsp;&nbsp;</b>
                           </span><span class="u-icon u-text-palette-2-base u-icon-8"><svg class="u-svg-content"
@@ -800,26 +878,27 @@
                 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "></polygon>
                             </svg><img></span>
                         </h3>
-                        <div class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-11">
+                        <div
+                          class="u-align-left u-container-style u-group u-palette-5-light-3 u-radius-50 u-shape-round u-group-11">
                           <div class="u-container-layout u-container-layout-11">
                             <div class="u-form-email u-form-group u-form-group-2">
                               <label for="email-6797" class="u-form-control-hidden u-label"></label>
                               <input type="email" placeholder="" id="email-6797" name="email" value="{{users.email}}"
                                 class="u-input u-input-rectangle u-palette-5-light-3 u-radius-50 u-input-2" required="">
-                          {% endif %}
-                        {% endfor %}
-                            </div>       
+                              {% endif %}
+                              {% endfor %}
+                            </div>
                           </div>
                         </div>
-                        <div
-                          class="u-align-left     u-white u-group-12">
+                        <div class="u-align-left     u-white u-group-12">
                           <input type="checkbox" id="agree-43a8" name="agree" class="u-agree-checkbox" required="">
                           <div class="u-container-layout u-container-layout-12">
                           </div>
                         </div>
                         <h3 class="u-custom-font u-text u-text-black u-text-font u-text-13">
                           <font color="#999999">
-                            <span style="font-size: 12px;"><b>I have read, understood, and accepted the Terms &amp; Conditions and
+                            <span style="font-size: 12px;"><b>I have read, understood, and accepted the Terms &amp;
+                                Conditions and
                                 Privacy Policy</b>
                             </span>
                           </font>
@@ -858,12 +937,15 @@
                             </div>
                           </div>
                         </div>
-                        <img class="u-expanded-width u-image u-image-default u-image-1" src="images/congrats1.PNG" alt=""
-                          data-image-width="423" data-image-height="414">
-                        <h3 class="u-custom-font u-text u-text-font u-text-6" style="text-align: center;">Congratulations!<br>
+                        <img class="u-expanded-width u-image u-image-default u-image-1"
+                          src=" {% static 'images/congrats1.png' %}" alt="" data-image-width="423"
+                          data-image-height="414">
+                        <h3 class="u-custom-font u-text u-text-font u-text-6" style="text-align: center;">
+                          Congratulations!<br>
                           <span style="font-size: 1.25rem;">You have made your own appointment</span>
                         </h3>
-                        <button type="button" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-1">OKAY</a>
+                        <button type="button"
+                          class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-4-base u-palette-4-light-1 u-radius-50 u-text-body-alt-color u-btn-1">OKAY</a>
                       </div>
                     </div>
                   </div>
@@ -877,7 +959,6 @@
   </section>
 
   <script>
-
     let Card1 = document.getElementById("Card1"); // main
     let Card2 = document.getElementById("Card2"); // virtual
     let Card3 = document.getElementById("Card3"); // face-to-face
@@ -946,38 +1027,34 @@
       Card3.style.left = "3000px";
       Card4_1.style.left = "-3500px";
     }
-
   </script>
 
   <script>
-    $("#virtual_reason").keyup(function() {
+    $("#virtual_reason").keyup(function () {
       var len = $('#virtual_reason').val().length;
-      if (len >= 1){
+      if (len >= 1) {
         $("#Next3").prop('disabled', false);
-      }
-      else
-      {
+      } else {
         $("#Next3").prop('disabled', true);
       }
     });
   </script>
 
   <script>
-    $("#clinic_reason").keyup(function() {
+    $("#clinic_reason").keyup(function () {
       var len = $('#clinic_reason').val().length;
-      if (len >= 1){
+      if (len >= 1) {
         $("#Next4").prop('disabled', false);
-      }
-      else
-      {
+      } else {
         $("#Next4").prop('disabled', true);
       }
     });
   </script>
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0">
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-aeb0">
     <div class="u-clearfix u-sheet u-sheet-1">
       <p class="u-small-text u-text u-text-variant u-text-1">MS Team CSIT321-G1 A.Y. 2021-2022</p>
     </div>
   </footer>
 </body>
+
 </html>
