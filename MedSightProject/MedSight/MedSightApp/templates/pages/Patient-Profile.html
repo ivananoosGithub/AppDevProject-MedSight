@@ -145,7 +145,7 @@
                     aria-labelledby="newModalLabel" aria-hidden="true" style="position: absolute; overflow: hidden;">
                     <!-- Modal content -->
                       <div class="modal-content">
-                        <form id="updateForm" method="POST">
+                        <form id="updateForm" method="POST" enctype="multipart/form-data">
                           {% csrf_token %}
                           {{ form.as_p }}
                           <div class="modal-body" style="text-align: center;">
@@ -286,7 +286,7 @@
             <div class="u-align-left u-container-style u-shape-rectangle u-tab-pane" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
               <div class="u-container-layout u-container-layout-3">
                 <div class="u-expanded-width u-table u-table-responsive u-table-1">
-                  <table class="u-table-entity">
+                  <table id="appointments" class="u-table-entity">
                     <colgroup>
                       <col width="20%">
                       <col width="20%">
@@ -303,28 +303,20 @@
                         <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-5">Status</th>
                       </tr>
                     </thead>
+                    {% for appointments in appointments %}
                     <tbody class="u-align-center u-table-body">
                       <tr style="height: 75px;">
-                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-6">Dental Cleaning</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-7">Dr. Lorax Ipsum</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-8">09/18/2021</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-9">01:30 PM</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-10">Attended</td>
+                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-6">{{appointments.apt_reason}}</td>
+                        {% for doctors in doctors %}
+                          {% if appointments.doctor_id_id == doctors.doctor_id %}
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-7">{{doctors.prefix}} {{doctors.first_name}} {{doctors.last_name}}</td>
+                          {% endif %}
+                        {% endfor %}
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-8">{{appointments.date}}</td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-9">{{appointments.time}}</td>
+                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-10">{{appointments.status}}</td>
                       </tr>
-                      <tr style="height: 76px;">
-                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-11">General Checkup</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-12">Dr. Jelly Bean</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-13">10/24/2021</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-14">09:00 AM</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-15">Absent</td>
-                      </tr>
-                      <tr style="height: 76px;">
-                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-16">Tooth Filling</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-17">Dr. Lorax Ipsum</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-18">11/27/2021</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-19">01:30 PM</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-20">Scheduled</td>
-                      </tr>
+                    {% endfor %}
                     </tbody>
                   </table>
                 </div>
@@ -366,6 +358,20 @@
         captionText.innerHTML = element.alt;
       }
     </script>
+
+    <script>
+    $(document).ready(function () {
+      $('#appointments').DataTable({
+        "lengthMenu": [
+          [5, 10, 15, -1],
+          [5, 10, 15, "All"]
+        ],
+        destroy: true,
+        searching: false
+      });
+    });
+    </script>
+
   
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-91e3"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>

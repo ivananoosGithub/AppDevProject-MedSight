@@ -286,11 +286,15 @@ class DProfileView(View):
     def get(self, request): 
         if 'user' in request.session:
             current_user = request.session['user']  
+            patients = Patients.objects.all()
+            appointments = Appointments.objects.all()
             doctors = Doctors.objects.filter(username=current_user)
             user = Users.objects.filter(username=current_user)
             context = {
                 'current_user': current_user,
+                'patients' : patients,
                 'doctors' : doctors,
+                'appointments' : appointments,
                 'user' : user,
             }
             return render(request, 'pages/Doctor-Profile.html', context)
@@ -333,12 +337,13 @@ class DProfileView(View):
 
             # Update uploaded picture doesn't work yet
             elif 'btnPicDoctor' in request.POST:
+                form = DoctorsForm(request.POST, request.FILES)
                 print('Update button clicked!')
-                did = request.POST.get("doctor_id")
+                did = request.POST.get("current_user")
+                dpp = request.FILES['profile_pic']
                 m = Doctors.objects.get(doctor_id=did)
-                m.dpp = request.FILES['profile_pic']
-                update_Doctor = Doctors.objects.filter(doctor_id=did).update(profile_pic=m.dpp)
-                print(update_Doctor)
+                m.profile_pic = dpp
+                m.save()
                 print('Doctor account updated!')
                 return redirect("MedSightApp:dprofile_view")
 
@@ -347,10 +352,14 @@ class PProfileView(View):
         if 'user' in request.session:
             current_user = request.session['user']  
             patients = Patients.objects.filter(username=current_user)
+            appointments = Appointments.objects.all()
+            doctors = Doctors.objects.all()
             user = Users.objects.filter(username=current_user)
             context = {
                 'current_user': current_user,
                 'patients' : patients,
+                'doctors' : doctors,
+                'appointments' : appointments,
                 'user' : user,
             }
             return render(request, 'pages/Patient-Profile.html', context)
@@ -385,11 +394,11 @@ class PProfileView(View):
             # Update uploaded picture doesn't work yet
             elif 'btnPicPatient' in request.POST:
                 print('Update button clicked!')
-                pid = request.POST.get("patient_id")
-                m = Doctors.objects.get(patient_id=pid)
-                m.ppp = request.FILES['profile_pic']
-                update_Patient = Doctors.objects.filter(patient_id=pid).update(profile_pic=m.ppp)
-                print(update_Patient)
+                pid = request.POST.get("current_user")
+                ppp = request.FILES['profile_pic']
+                m = Patients.objects.get(patient_id=pid)
+                m.profile_pic = ppp
+                m.save()
                 print('Patient account updated!')
                 return redirect("MedSightApp:pprofile_view")
          
