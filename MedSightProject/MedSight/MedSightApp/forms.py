@@ -21,5 +21,5 @@ class DoctorsForm(forms.ModelForm):
 
 class AppointmentsForm(forms.ModelForm):
     class Meta:
-        model = Patients
+        model = Appointments
         fields= '__all__' 

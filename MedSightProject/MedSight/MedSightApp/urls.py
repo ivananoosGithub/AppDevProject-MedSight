@@ -33,4 +33,5 @@ urlpatterns = [
     # temporary url for backend purposes
     path('findDoctor/', views.FindDoctorView.as_view(), name="finddoc_view"),
     path('appointmentPage/', views.AppointmentPageView.as_view(), name="appointmentP_view"),
+    path('appointment/', views.FinalAppointmentView.as_view(), name="appointment_view"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

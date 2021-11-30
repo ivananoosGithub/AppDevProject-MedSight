@@ -413,7 +413,7 @@ class FindDoctorView(View):
         if request.method == 'POST':
             current_doctor = request.POST.get("doctor_id")
             request.session['doctor'] = current_doctor
-            return redirect("MedSightApp:appointmentP_view")
+            return redirect("MedSightApp:appointment_view")
         return render(request, 'pages/FindDocPage.html', {})
 
 class AppointmentPageView(View):
@@ -436,19 +436,75 @@ class AppointmentPageView(View):
             return HttpResponse('Please login first to view this page.')
 
     def post(self, request):
-        if request.method == 'POST':
-            form = AppointmentsForm(request.POST, request.FILES)          
-            if 'Next3' in request.POST:                
-                pid = request.POST.get("virtual_patient")
-                did = request.POST.get("virtual_doctor")
-                atype = "Virtual"   
-                date = request.POST.get("virtual_date")
-                time = request.POST.get("virtual_time")
-                areason = request.POST.get("virtual_reason")
-                astatus = "active" 
-                form = Appointments(patient_id = pid, doctor_id = did, apt_type = atype, date = apt_date, time = apt_time, status = astatus, reason = areason)
+        form = AppointmentsForm(request.POST, request.FILES)  
+        if request.method == "POST" and 'virtualform' in request.POST:
+            if request.method == "POST" and 'virtualformcontinue' in request.POST:
+                if request.method == "POST" and 'formsubmit' in request.POST:                   
+                    pid = request.POST.get("virtual_patient")
+                    did = request.POST.get("virtual_doctor")
+                    atype = "Virtual"   
+                    date = request.POST.get("virtual_date")
+                    time = request.POST.get("virtual_time")
+                    areason = request.POST.get("virtual_reason")
+                    astatus = "active"                 
+                    form = Appointments(apt_type = atype, date = apt_date, time = apt_time, status = astatus, doctor_id = did, patient_id = pid, reason = areason)
+                    form.save() 
+                    return redirect('MedSightApp:doctorHome_view')
+
+        if request.method == "POST" and 'clinicform' in request.POST:
+            if request.method == "POST" and 'clinicformcontinue' in request.POST:
+                if request.method == "POST" and 'formsubmit' in request.POST:                   
+                    pid = request.POST.get("clinic_patient")
+                    did = request.POST.get("clinic_doctor")
+                    atype = "Virtual"   
+                    date = request.POST.get("clinic_date")
+                    time = request.POST.get("clinic_time")
+                    areason = request.POST.get("clinic_reason")
+                    astatus = "active"                 
+                    form = Appointments(apt_type = atype, date = apt_date, time = apt_time, status = astatus, doctor_id = did, patient_id = pid, reason = areason)
+                    form.save() 
+                    return redirect('MedSightApp:doctorHome_view')
+
+        else:
+            return HttpResponse('not valid')
+
+
+class FinalAppointmentView(View): 
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            current_doctor = request.session['doctor']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            users = Users.objects.all()
+            context = {
+                'current_user': current_user,
+                'current_doctor': current_doctor,
+                'patients' : patients,
+                'doctors' : doctors,
+                'users' : users,
+            }
+            return render(request, 'pages/FinalAppointmentPage.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')
+
+    def post(self, request):
+        form = AppointmentsForm(request.POST)
+        if request.method == 'POST':        
+            if form.is_valid():
+                pid = request.POST.get("patients_id")
+                did = request.POST.get("doctors_id")
+                astatus = "Active"
+                areason = request.POST.get("appointment_reason")
+                atype = request.POST.get("appointment_type")
+                adate = request.POST.get("appointment_date")
+                atime = request.POST.get("appointment_time")
+                form = Appointments(apt_type = atype, date = adate, time = atime, status = astatus, patient_id_id = pid, doctor_id_id = did, apt_reason = areason)
                 form.save() 
                 return redirect('MedSightApp:index_view')
+            else:
+                print(form.errors)
+                return HttpResponse('not valid')
         else:
-            print(form.errors)
-            return HttpResponse('not valid')
+            form = AppointmentsForm()
+            return render(request, 'pages/FinalAppointmentPage.html', {'form': form})

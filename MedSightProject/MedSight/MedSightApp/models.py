@@ -28,7 +28,10 @@ class Patients(models.Model):
     profile_pic = models.ImageField(upload_to='images', null=True)
     
     class meta:
-        db_table = 'Patients' 
+        db_table = 'Patients'
+
+    def __str__(self):
+        return self.patient_id 
 
 class Doctors(models.Model):
     doctor_id = models.AutoField(primary_key=True)
@@ -46,15 +49,21 @@ class Doctors(models.Model):
     class meta:
         db_table = 'Doctors' 
 
+    def __str__(self):
+        return self.doctor_id
+
 class Appointments(models.Model):
     appointment_id = models.AutoField(primary_key=True)
-    patient_id = models.ForeignKey(Patients, to_field='patient_id', on_delete = models.CASCADE)
-    doctor_id = models.ForeignKey(Doctors, to_field='doctor_id', on_delete = models.CASCADE)
-    apt_type = models.CharField(max_length = 10)
-    apt_reason = models.CharField(max_length = 30)
-    date = models.CharField(max_length = 20)
-    time = models.CharField(max_length = 20)
-    status = models.CharField(max_length = 20)
+    patient_id = models.ForeignKey(Patients, to_field='patient_id', on_delete = models.CASCADE, null=True, blank=True)
+    doctor_id = models.ForeignKey(Doctors, to_field='doctor_id', on_delete = models.CASCADE, null=True, blank=True)
+    apt_type = models.CharField(max_length = 10, null=True, blank=True)
+    apt_reason = models.CharField(max_length = 30, null=True, blank=True)
+    date = models.CharField(max_length = 20, null=True, blank=True)
+    time = models.CharField(max_length = 20, null=True, blank=True)
+    status = models.CharField(max_length = 20, null=True, blank=True)
+
+    class meta:
+        db_table = 'Appointments' 
 
 class Ratings(models.Model):
     rating_id = models.AutoField(primary_key=True)

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html style="font-size: 16px;">
 
@@ -8,10 +9,10 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Appointment Page</title>
-  <link rel="stylesheet" href="nicepage.css" media="screen">
-  <link rel="stylesheet" href="AppointmentPage.css" media="screen">
-  <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-  <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+  <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/FinalAppointmentPage.css' %}" media="screen">
+  <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
   <meta name="generator" content="Nicepage 4.0.3, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
@@ -274,25 +275,36 @@
           <h6 class="u-text u-text-5">Friendly User Interface and Easy Access to Medical Experts</h6>
         </div>
       </div>
+      {% for doctors in doctors %}
+        {% if current_doctor == doctors.username_id %}
       <div class="u-container-style u-group u-shape-rectangle u-white u-group-2">
         <div class="u-container-layout u-container-layout-2">
           <div class="u-image u-image-circle u-preserve-proportions u-image-1" alt="" data-image-width="960"
-            data-image-height="960"></div>
+            data-image-height="960"><img
+                    src="{{ doctors.profile_pic.url }}" alt="Profile" height="110px" width="110px" style="border-radius: 60px;" /></div>
           <h3 class="u-text u-text-default u-text-6">Request Appointment With</h3>
-          <h4 class="u-text u-text-default u-text-7">Dr. Mikole Ken Rosales</h4>
-          <h6 class="u-text u-text-default u-text-8">Genera​l Dentistry</h6>
+          <h4 class="u-text u-text-default u-text-7">{{doctors.prefix}} {{doctors.first_name}} {{doctors.last_name}}s</h4>
+          <h6 class="u-text u-text-default u-text-8">{{doctors.specialization}}</h6>
+              {% endif %}
+            {% endfor %}
           <div class="u-form u-form-1">
-            <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
-              source="custom" name="form-1" style="padding: 10px;">
+            <form method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" autocomplete="off" enctype="multipart/form-data" source="custom" style="padding: 10px;">
+              {{ form.as_p }}
+              {% csrf_token %}
+              {% for doctors in doctors %}
+                {% if current_doctor == doctors.username_id %}
+              <input type="text" id="doctors_id" name="doctors_id" value="{{doctors.doctor_id}}" readonly hidden>
+                {% endif %}
+              {% endfor %}
               <div class="u-form-group u-form-select u-form-group-1">
-                <label for="select-f792" class="u-form-control-hidden u-label"></label>
+                <label for="appointment_type" class="u-form-control-hidden u-label"></label>
                 <div class="u-form-select-wrapper">
-                  <select id="select-f792" name="select"
+                  <select id="appointment_type" name="appointment_type"
                     class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
                     autofocus="autofocus">
-                    <option value="I would like to request for a virtual consult">I would like to request for a virtual
+                    <option value="Virtual">I would like to request for a virtual
                       consult</option>
-                    <option value="I would like to request for a clinic visit">I would like to request for a clinic
+                    <option value="Clinic">I would like to request for a clinic
                       visit</option>
                   </select>
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
@@ -301,28 +313,31 @@
                 </div>
               </div>
               <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-2">
-                <label for="date-fd1d" class="u-form-control-hidden u-label"></label>
-                <input type="date" id="date-fd1d" name="date"
+                <label for="appointment_date">DATE</label>
+                <input type="date" id="appointment_date" name="appointment_date"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""
                   placeholder="MM/DD/YYYY">
               </div>
               <div class="u-form-time u-form-group u-form-partition-factor-2">
-                <label for="time-3f03" class="u-form-control-hidden u-label"></label>
-                <input type="time" placeholder="time" id="time-3f03" name="time"
+                <label for="appointment_time">TIME</label>
+                <input type="time" placeholder="time" id="appointment_time" name="appointment_time"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
+              {% for patients in patients %}
+                {% if current_user == patients.username_id  %}
+              <input type="text" id="patients_id" name="patients_id" value="{{patients.patient_id}}" readonly hidden>
               <div class="u-form-group u-form-name u-form-group-4">
-                <label for="name-7bfc" class="u-form-control-hidden u-label"></label>
-                <input type="text" placeholder="Enter your Name" id="name-7bfc" name="name"
+                <label for="name-7bfc" class="">COMPLETE NAME</label>
+                <input type="text" placeholder="Enter your Name" id="name-7bfc" name="name" value="{{patients.first_name}} {{patients.last_name}}"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
               <div class="u-form-address u-form-group u-form-group-5">
-                <label for="address-14af" class="u-form-control-hidden u-label"></label>
-                <input type="text" placeholder="Enter your address" id="address-14af" name="address"
+                <label for="address-14af">CURRENT ADDRESS</label>
+                <input type="text" placeholder="Enter your address" id="address-14af" name="address" value="{{patients.current_address}}"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
               <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-6">
-                <label for="select-5c25" class="u-form-control-hidden u-label"></label>
+                <label for="select-5c25">GENDER</label>
                 <div class="u-form-select-wrapper">
                   <select id="select-5c25" name="select-1"
                     class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
@@ -334,23 +349,30 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret">
                     <path fill="currentColor" d="M4 8L0 4h8z"></path>
                   </svg>
+
                 </div>
               </div>
               <div class="u-form-group u-form-partition-factor-2 u-form-phone u-form-group-7">
-                <label for="phone-f4d4" class="u-form-control-hidden u-label"></label>
-                <input type="tel" id="phone-f4d4" name="phone"
+                <label for="phone-f4d4">CONTACT NUMBER</label>
+                <input type="text" id="phone-f4d4" name="phone" value="{{patients.contact_number}}"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""
-                  pattern="\+?\d{0,2}[\s\(\-]?([0-9]{3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})"
                   placeholder="Mobile Number">
               </div>
+                  {% endif %}
+                {% endfor %}
+
+              {% for users in users %}
+                {% if current_user == users.username %}
               <div class="u-form-email u-form-group u-form-group-8">
-                <label for="email-a5ec" class="u-form-control-hidden u-label"></label>
-                <input type="email" placeholder="Enter a valid email address" id="email-a5ec" name="email-1"
+                <label for="email-a5ec">EMAIL</label>
+                <input type="email" placeholder="Enter a valid email address" id="email-a5ec" value="{{users.email}}"name="email-1"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
+                {% endif %}
+              {% endfor %}
               <div class="u-form-group u-form-message u-form-group-9">
-                <label for="message-77ab" class="u-form-control-hidden u-label"></label>
-                <textarea placeholder="Reason for appointment" rows="4" cols="50" id="message-77ab" name="message"
+                <label for="appointment_reason" class="u-form-control-hidden u-label"></label>
+                <textarea placeholder="Reason for appointment" rows="4" cols="50" id="appointment_reason" name="appointment_reason"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
               </div>
               <div class="u-form-agree u-form-group u-form-group-10">
@@ -360,21 +382,17 @@
                   Conditions and Privacy Policy</label>
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-                <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-2">Submit</a>
-                <input type="submit" value="submit" class="u-form-control-hidden">
+                <a href="{% url 'MedSightApp:index_view' %}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-2">Submit
+              <button type="submit" value="submit" class="u-form-control-hidden"></a> </button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-              <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then
-                try again. </div>
-              <input type="hidden" value="" name="recaptchaResponse">
+              <div class="u-form-send-error u-form-send-message"> Thank you! Your message has been sent. </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-
 
 
 
