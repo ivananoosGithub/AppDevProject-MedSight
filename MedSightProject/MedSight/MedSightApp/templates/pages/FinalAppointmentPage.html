@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="page_type" content="np-template-header-footer-from-plugin">
   <title>Appointment Page</title>
-  <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/nicepage1.css' %}" media="screen">
   <link rel="stylesheet" href="{% static 'css/FinalAppointmentPage.css' %}" media="screen">
   <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
   <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
@@ -35,9 +35,9 @@
 <body class="u-body">
   <section class="u-clearfix u-section-1" id="sec-145c">
     <div class="u-clearfix u-sheet u-sheet-1">
-      <div class="u-container-style u-custom-color-1 u-group u-group-1" data-href="https://nicepage.com">
+      <div class="u-container-style u-custom-color-1 u-group u-group-1">
         <div class="u-container-layout u-container-layout-1">
-          <a href="{% url 'MedSightApp:index_view' %}"
+          <a href="{% url 'MedSightApp:finddoc_view' %}"
             class="u-active-none u-border-none u-btn u-button-style u-custom-font u-heading-font u-hover-none u-none u-text-hover-grey-5 u-btn-1"><span
               class="u-icon u-icon-1"><svg class="u-svg-content" viewBox="0 0 512 512" style="width: 1em; height: 1em;">
                 <g id="_1">
@@ -47,7 +47,7 @@
                 </g>
               </svg><img></span>&nbsp;​&nbsp;Back
           </a>
-          <h1 class="u-text u-text-1">MedSight Services</h1><span
+          <h1 class="u-text u-text-1"><b>MedSight Services</b></h1><span
             class="u-custom-color-2 u-icon u-icon-circle u-spacing-10 u-text-white u-icon-2"><svg class="u-svg-link"
               preserveAspectRatio="xMidYMin slice" viewBox="0 0 64 64" style="">
               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-995b"></use>
@@ -276,25 +276,27 @@
         </div>
       </div>
       {% for doctors in doctors %}
-        {% if current_doctor == doctors.username_id %}
+      {% if current_doctor == doctors.username_id %}
       <div class="u-container-style u-group u-shape-rectangle u-white u-group-2">
         <div class="u-container-layout u-container-layout-2">
-          <div class="u-image u-image-circle u-preserve-proportions u-image-1" alt="" data-image-width="960"
-            data-image-height="960"><img
-                    src="{{ doctors.profile_pic.url }}" alt="Profile" height="110px" width="110px" style="border-radius: 60px;" /></div>
+          <div class="u-image u-image-circle u-preserve-proportions u-image-1">
+            <img src="{{ doctors.profile_pic.url }}" alt="Profile" height="91px" width="91px"
+              style="border-radius: 60px;" /></div>
           <h3 class="u-text u-text-default u-text-6">Request Appointment With</h3>
-          <h4 class="u-text u-text-default u-text-7">{{doctors.prefix}} {{doctors.first_name}} {{doctors.last_name}}s</h4>
+          <h4 class="u-text u-text-default u-text-7">{{doctors.prefix}} {{doctors.first_name}} {{doctors.last_name}}
+          </h4>
           <h6 class="u-text u-text-default u-text-8">{{doctors.specialization}}</h6>
-              {% endif %}
-            {% endfor %}
+          {% endif %}
+          {% endfor %}
           <div class="u-form u-form-1">
-            <form method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" autocomplete="off" enctype="multipart/form-data" source="custom" style="padding: 10px;">
+            <form method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" autocomplete="off"
+              enctype="multipart/form-data" source="custom" style="padding: 10px;">
               {{ form.as_p }}
               {% csrf_token %}
               {% for doctors in doctors %}
-                {% if current_doctor == doctors.username_id %}
+              {% if current_doctor == doctors.username_id %}
               <input type="text" id="doctors_id" name="doctors_id" value="{{doctors.doctor_id}}" readonly hidden>
-                {% endif %}
+              {% endif %}
               {% endfor %}
               <div class="u-form-group u-form-select u-form-group-1">
                 <label for="appointment_type" class="u-form-control-hidden u-label"></label>
@@ -313,31 +315,33 @@
                 </div>
               </div>
               <div class="u-form-date u-form-group u-form-partition-factor-2 u-form-group-2">
-                <label for="appointment_date">DATE</label>
+                <label for="appointment_date"></label>
                 <input type="date" id="appointment_date" name="appointment_date"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""
                   placeholder="MM/DD/YYYY">
               </div>
               <div class="u-form-time u-form-group u-form-partition-factor-2">
-                <label for="appointment_time">TIME</label>
+                <label for="appointment_time"></label>
                 <input type="time" placeholder="time" id="appointment_time" name="appointment_time"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
               {% for patients in patients %}
-                {% if current_user == patients.username_id  %}
+              {% if current_user == patients.username_id  %}
               <input type="text" id="patients_id" name="patients_id" value="{{patients.patient_id}}" readonly hidden>
               <div class="u-form-group u-form-name u-form-group-4">
-                <label for="name-7bfc" class="">COMPLETE NAME</label>
-                <input type="text" placeholder="Enter your Name" id="name-7bfc" name="name" value="{{patients.first_name}} {{patients.last_name}}"
+                <label for="name-7bfc" class=""></label>
+                <input type="text" placeholder="Enter your Name" id="name-7bfc" name="name"
+                  value="{{patients.first_name}} {{patients.last_name}}"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
               <div class="u-form-address u-form-group u-form-group-5">
-                <label for="address-14af">CURRENT ADDRESS</label>
-                <input type="text" placeholder="Enter your address" id="address-14af" name="address" value="{{patients.current_address}}"
+                <label for="address-14af"></label>
+                <input type="text" placeholder="Enter your address" id="address-14af" name="address"
+                  value="{{patients.current_address}}"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
               <div class="u-form-group u-form-partition-factor-2 u-form-select u-form-group-6">
-                <label for="select-5c25">GENDER</label>
+                <label for="select-5c25"></label>
                 <div class="u-form-select-wrapper">
                   <select id="select-5c25" name="select-1"
                     class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
@@ -353,27 +357,28 @@
                 </div>
               </div>
               <div class="u-form-group u-form-partition-factor-2 u-form-phone u-form-group-7">
-                <label for="phone-f4d4">CONTACT NUMBER</label>
+                <label for="phone-f4d4"></label>
                 <input type="text" id="phone-f4d4" name="phone" value="{{patients.contact_number}}"
                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""
                   placeholder="Mobile Number">
               </div>
-                  {% endif %}
-                {% endfor %}
+              {% endif %}
+              {% endfor %}
 
               {% for users in users %}
-                {% if current_user == users.username %}
+              {% if current_user == users.username %}
               <div class="u-form-email u-form-group u-form-group-8">
-                <label for="email-a5ec">EMAIL</label>
-                <input type="email" placeholder="Enter a valid email address" id="email-a5ec" value="{{users.email}}"name="email-1"
-                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+                <label for="email-a5ec"></label>
+                <input type="email" placeholder="Enter a valid email address" id="email-a5ec" value="{{users.email}}"
+                  name="email-1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
               </div>
-                {% endif %}
+              {% endif %}
               {% endfor %}
               <div class="u-form-group u-form-message u-form-group-9">
                 <label for="appointment_reason" class="u-form-control-hidden u-label"></label>
-                <textarea placeholder="Reason for appointment" rows="4" cols="50" id="appointment_reason" name="appointment_reason"
-                  class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
+                <textarea placeholder="Reason for appointment" rows="4" cols="50" id="appointment_reason"
+                  name="appointment_reason" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white"
+                  required=""></textarea>
               </div>
               <div class="u-form-agree u-form-group u-form-group-10">
                 <input type="checkbox" id="agree-7efd" name="agree" class="u-agree-checkbox" required=""
@@ -382,8 +387,9 @@
                   Conditions and Privacy Policy</label>
               </div>
               <div class="u-align-right u-form-group u-form-submit">
-                <a href="{% url 'MedSightApp:index_view' %}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-2">Submit
-              <button type="submit" value="submit" class="u-form-control-hidden"></a> </button>
+                <a href="{% url 'MedSightApp:index_view' %}"
+                  class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-2 u-btn-2">Submit
+                  <button type="submit" value="submit" class="u-form-control-hidden"></a> </button>
               </div>
               <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
               <div class="u-form-send-error u-form-send-message"> Thank you! Your message has been sent. </div>
