@@ -227,8 +227,11 @@
                   {% csrf_token %}
                   {{ form.as_p }}
                 <input type="text" id="doctor_id" name="doctor_id" value="{{doctors.username}}" readonly hidden>
-                <button type="submit"
-                  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-radius-23 u-text-body-alt-color u-btn-2">Book</button> </form>
+                <button type="submit" id="btnBook" name="btnBook"
+                  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-radius-23 u-text-body-alt-color u-btn-2">Book</button> 
+                <button type="submit" id="btnRate" name="btnRate"
+                  class="u-border-none u-btn u-btn-round u-button-style u-custom-color-1 u-radius-23 u-text-body-alt-color u-btn-2">Rate</button>
+                </form>
                 <a href="https://nicepage.com/website-mockup"
                   class="u-btn u-button-style u-none u-text-custom-color-1 u-text-hover-custom-color-2 u-btn-3">View</a>
                 <p class="u-small-text u-text u-text-default u-text-variant u-text-4"><span class="u-icon u-icon-3"><svg

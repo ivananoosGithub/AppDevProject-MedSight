@@ -70,3 +70,6 @@ class Ratings(models.Model):
     patient_id = models.ForeignKey(Patients, to_field='patient_id', on_delete = models.CASCADE)
     doctor_id = models.ForeignKey(Doctors, to_field='doctor_id', on_delete = models.CASCADE)
     rating = models.IntegerField() 
+
+    class meta:
+        db_table = 'Ratings'

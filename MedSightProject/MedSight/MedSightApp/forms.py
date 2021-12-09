@@ -23,3 +23,8 @@ class AppointmentsForm(forms.ModelForm):
     class Meta:
         model = Appointments
         fields= '__all__' 
+
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Ratings
+        fields= ['rating']

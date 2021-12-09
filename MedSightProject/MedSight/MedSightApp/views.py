@@ -422,7 +422,10 @@ class FindDoctorView(View):
         if request.method == 'POST':
             current_doctor = request.POST.get("doctor_id")
             request.session['doctor'] = current_doctor
-            return redirect("MedSightApp:appointment_view")
+            if 'btnBook' in request.POST:
+                return redirect("MedSightApp:appointment_view")
+            if 'btnRate' in request.POST:
+                return redirect("MedSightApp:rating_view")
         return render(request, 'pages/FindDocPage.html', {})
 
 class AppointmentPageView(View):
@@ -517,3 +520,36 @@ class FinalAppointmentView(View):
         else:
             form = AppointmentsForm()
             return render(request, 'pages/FinalAppointmentPage.html', {'form': form})
+
+class RatingsView(View):
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            current_doctor = request.session['doctor']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            users = Users.objects.all()
+            context = {
+                'current_user': current_user,
+                'current_doctor': current_doctor,
+                'patients' : patients,
+                'doctors' : doctors,
+                'users' : users,
+            }
+            return render(request, 'pages/rating.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')
+    def post(self, request):
+        form = RatingsForm(request.POST)
+        if form.is_valid():
+            pid = request.POST.get("patients_id")
+            did = request.POST.get("doctors_id")
+            pra = request.POST.get("rating")
+            form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra)
+            form.save()
+            return redirect('MedSightApp:index_view')
+
+        else:
+            print(form.errors)
+            return HttpResponse('not valid')
+
