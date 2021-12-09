@@ -22,7 +22,7 @@ class DoctorsForm(forms.ModelForm):
 class AppointmentsForm(forms.ModelForm):
     class Meta:
         model = Appointments
-        fields= '__all__' 
+        exclude = ['patient_id','doctor_id']
 
 class RatingsForm(forms.ModelForm):
     class Meta:

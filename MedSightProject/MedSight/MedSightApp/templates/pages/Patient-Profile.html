@@ -355,6 +355,7 @@ table.dataTable thead th {
                     <thead>
                         <tr>
                             <th>Details</th>
+                            <th>Doctor #</th>
                             <th>Doctor</th>
                             <th>Date</th>
                             <th>Time</th>
@@ -366,6 +367,7 @@ table.dataTable thead th {
                     <tbody>
                       <tr>
                           <td>{{appointments.apt_reason}}</td>
+                          <td>{{appointments.doctor_id_id}}</td>
                           {% for doctors in doctors %}
                             {% if appointments.doctor_id_id == doctors.doctor_id %}
                               <td>{{doctors.prefix}} {{doctors.first_name}} {{doctors.last_name}}</td>
@@ -374,10 +376,10 @@ table.dataTable thead th {
                           <td>{{appointments.date}}</td>
                           <td>{{appointments.time}}</td>
                           <td>{{appointments.status}}</td>
-                          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Rate</button></td>
+                          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rateModal-{{appointments.appointment_id}}">Rate</button></td>
                         </tr>
                       </tbody>
-                          {% endfor %}
+                      {% endfor %}
                       <!-- <tfoot>
                         <tr>
                           <th>Details</th>
@@ -390,7 +392,8 @@ table.dataTable thead th {
                     </tfoot> -->
                 </table>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                {% for appointments in appointments %}
+                <div class="modal fade" id="rateModal-{{appointments.appointment_id}}" tabindex="-1" role="dialog" aria-labelledby="rateModalLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                       <div class="modal-header">
@@ -401,19 +404,13 @@ table.dataTable thead th {
                       </div>
                       <div class="modal-body text-center">
                       <!-- Pwede ra ngali ni iform type diri para dali ra ma sod sa database, hide lang uban elements like doctorID-->
-                      <form method="POST" onsubmit="myFunction()">
+                      <form method="POST" onsubmit="myRating()">
                           {% csrf_token %}
 
-                          {% for doctors in doctors %}
-                          {% if current_doctor == doctors.username_id %}
-                          <input type="text" id="doctors_id" name="doctors_id" value="{{doctors.doctor_id}}" readonly hidden>
-                          {% endif %}
-                          {% endfor %}
+                          <input type="text" id="doctors_id" name="doctors_id" value="{{appointments.doctor_id_id}}" readonly> </input>
 
                           {% for patients in patients %}
-                          {% if current_user == patients.username_id  %}
-                          <input type="text" id="patients_id" name="patients_id" value="{{patients.patient_id}}" readonly hidden>
-                          {% endif %}
+                          <input type="text" id="patients_id" name="patients_id" value="{{current_user.patient_id}}" readonly hidden> </input>
                           {% endfor %}
 
                           <input type='text' id='rating' name="rating" readonly hidden> </input>
@@ -426,12 +423,14 @@ table.dataTable thead th {
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                           <!-- submit rating -->
-                          <button type="submit" class="btn btn-primary">Rate</button>
+                          <button type="submit" class="btn btn-primary" id="btnRateDoctor" name="btnRateDoctor">Rate</button>
+                          </form>
                           </div>
-                      </form>
+                      
                   </div>
-                  </div>
+                  </div>    
               </div>
+              
                   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
                   <script>
                       var ratedIndex = -1;
@@ -466,15 +465,8 @@ table.dataTable thead th {
                           $('.fa-star').css('color', 'grey');
                       }
                   </script>
-                  <script>
-                      function myFunction() {
-                          var rating = document.getElementById('rating');
-                          var doctor = document.getElementById('doctors_id');
-                          var patient = document.getElementById('patients_id');
-                          rating.value = ratedIndex+1;
-                      }
-                  </script>
                   <!-- End Modal Script -->
+                  {% endfor %}
                 </div>
               </div>
             </div>
@@ -506,6 +498,15 @@ table.dataTable thead th {
         var captionText = document.getElementById("caption");
         captionText.innerHTML = element.alt;
       }
+    </script>
+
+    <script>
+        function myRating() {
+            var rating = document.getElementById('rating');
+            var doctor = document.getElementById('tbldoctor');
+            rating.value = ratedIndex+1;
+            alert(rating);
+        }
     </script>
 
   
