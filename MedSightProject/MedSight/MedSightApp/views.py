@@ -586,20 +586,25 @@ class ViewDoctorView(View):
             request.session['doctor'] = current_doctor
             current_doctorid = request.POST.get("doctors_id")
             request.session['doctor_id'] = current_doctorid
+            current_patientid = request.POST.get("curpatients_id")
+            request.session['patients_id'] = current_patientid
             if 'btnBookAppointment' in request.POST:
                 return redirect("MedSightApp:appointment_view")
             elif 'btnRateDoctor' in request.POST:
                 form = RatingsForm(request.POST)
-                if form.is_valid():
-                    pid = request.POST.get("patients_id")
-                    did = request.POST.get("doctors_id")
-                    pra = request.POST.get("rating")
-                    form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra)
-                    form.save()
-                    return redirect("MedSightApp:index_view")
+                if Appointments.objects.filter(patient_id_id=current_patientid) or Appointments.objects.filter(doctor_id_id=current_doctorid):
+                    if form.is_valid():
+                        pid = request.POST.get("patients_id")
+                        did = request.POST.get("doctors_id")
+                        pra = request.POST.get("rating")
+                        form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra)
+                        form.save()
+                        return redirect("MedSightApp:index_view")
 
+                    else:
+                        print(form.errors)
+                        return HttpResponse('not valid')
                 else:
-                    print(form.errors)
-                    return HttpResponse('not valid')
+                    return HttpResponse('You have not set an appointment with this Doctor yet.')
 
         return render(request, 'pages/ViewDocProfile.html', {})    

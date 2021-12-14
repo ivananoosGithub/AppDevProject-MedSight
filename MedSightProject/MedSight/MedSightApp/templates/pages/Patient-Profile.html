@@ -402,6 +402,10 @@ table.dataTable thead th {
                           <input type="text" id="doctor_id" name="doctor_id" value="{{doctors.username_id}}" readonly hidden> </input>
                           {% endif %}
                           {% endfor %}
+
+                          {% for patients in patients %}
+                          <input type="text" id="curpatients_id" name="curpatients_id" value="{{patients.patient_id}}" readonly> </input>
+                          {% endfor %}
                           <button type="submit" class="btn btn-primary" id="btnRateDoctor" name="btnRateDoctor">Proceed to Doctor's Profile</button>
                           </form>
                           </div>                     
