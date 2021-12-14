@@ -396,66 +396,19 @@ table.dataTable thead th {
                       <!-- Pwede ra ngali ni iform type diri para dali ra ma sod sa database, hide lang uban elements like doctorID-->
                       <form method="POST" onsubmit="myRating()">
                           {% csrf_token %}
-                          
-                          <input type="text" id="doctors_id" name="doctors_id" value="{{appointments.doctor_id_id}}" readonly> </input>
 
-                          {% for patients in patients %}
-                          <input type="text" id="patients_id" name="patients_id" value="{{current_user.patient_id}}" readonly hidden> </input>
+                          {% for doctors in doctors %}
+                          {% if appointments.doctor_id_id == doctors.doctor_id %}
+                          <input type="text" id="doctor_id" name="doctor_id" value="{{doctors.username_id}}" readonly hidden> </input>
+                          {% endif %}
                           {% endfor %}
-                          
-                          <input type='text' id='rating' name="rating" readonly hidden> </input>
-                          <i class="fa fa-star fa-2x" data-index="0" value='0'></i>
-                          <i class="fa fa-star fa-2x" data-index="1" value='0'></i>
-                          <i class="fa fa-star fa-2x" data-index="2" value='0'></i>
-                          <i class="fa fa-star fa-2x" data-index="3" value='0'></i>
-                          <i class="fa fa-star fa-2x" data-index="4" value='0'></i>
-                          </div>
-                          <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <!-- submit rating -->
-                          <button type="submit" class="btn btn-primary" id="btnRateDoctor" name="btnRateDoctor">Rate</button>
+                          <button type="submit" class="btn btn-primary" id="btnRateDoctor" name="btnRateDoctor">Proceed to Doctor's Profile</button>
                           </form>
-                          </div>
-                      
+                          </div>                     
                   </div>
                   </div>    
               </div>
               {% endfor %}
-          
-                  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-                  <script>
-                      var ratedIndex = -1;
-                      $(document).ready(function (){
-                          resetStarColors();
-
-                          $('.fa-star').on('click', function(){
-                              ratedIndex = parseInt($(this).data('index'));
-                          });
-
-                          $('.fa-star').mouseover(function(){
-                              resetStarColors();
-
-                              var currentIndex = parseInt($(this).data('index'));
-                              for (var i = 0; i <= currentIndex; i++)
-                                  $('.fa-star:eq('+i+')').css('color', 'gold');
-                                  // console.log('try');
-                          });
-
-                          $('.fa-star').mouseleave(function(){
-                              resetStarColors();
-                              // console.log('try2');
-
-                              if (ratedIndex != -1)
-                              for (var i = 0; i <= ratedIndex; i++)
-                                  $('.fa-star:eq('+i+')').css('color', 'gold');
-                                  // console.log('try');
-                          });
-                      });
-
-                      function resetStarColors() {
-                          $('.fa-star').css('color', 'grey');
-                      }
-                  </script>
                   <!-- End Modal Script -->
                 </div>
               </div>

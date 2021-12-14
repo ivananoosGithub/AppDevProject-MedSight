@@ -403,19 +403,9 @@ class PProfileView(View):
                 return redirect("MedSightApp:pprofile_view")
 
             elif 'btnRateDoctor' in request.POST:
-                form = RatingsForm(request.POST)
-                if form.is_valid():
-                    pid = request.POST.get("patients_id")
-                    did = request.POST.get("doctors_id")
-                    pra = request.POST.get("rating")
-                    form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra)
-                    form.save()
-                    return redirect("MedSightApp:pprofile_view")
-
-                else:
-                    print(form.errors)
-                    return HttpResponse('not valid')
-
+                current_doctor = request.POST.get("doctor_id")
+                request.session['doctor'] = current_doctor
+                return redirect("MedSightApp:viewdoc_view")
          
 # temporary view for backend purposes
 class FindDoctorView(View): 
