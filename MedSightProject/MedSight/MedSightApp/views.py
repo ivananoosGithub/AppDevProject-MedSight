@@ -437,8 +437,10 @@ class FindDoctorView(View):
         if request.method == 'POST':
             current_doctor = request.POST.get("doctor_id")
             request.session['doctor'] = current_doctor
+            current_doctorid = request.POST.get("doctors_id")
+            request.session['doctor_id'] = current_doctorid
             if 'btnBook' in request.POST:
-                return redirect("MedSightApp:appointment_view")
+                return redirect("MedSightApp:viewdoc_view")
             if 'btnRate' in request.POST:
                 return redirect("MedSightApp:rating_view")
         return render(request, 'pages/FindDocPage.html', {})
@@ -568,3 +570,46 @@ class RatingsView(View):
             print(form.errors)
             return HttpResponse('not valid')
 
+class ViewDoctorView(View):
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            current_doctor = request.session['doctor']
+            current_doctorid = request.session['doctor_id']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            appointments = Appointments.objects.all()
+            context = {
+                'current_user': current_user,
+                'current_doctor': current_doctor,
+                'patients' : patients,
+                'doctors' : doctors,
+                'appointments' : appointments,
+            }
+            return render(request, 'pages/ViewDocProfile.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')
+
+    def post(self, request):
+        if request.method == 'POST':
+            current_doctor = request.POST.get("doctor_id")
+            request.session['doctor'] = current_doctor
+            current_doctorid = request.POST.get("doctors_id")
+            request.session['doctor_id'] = current_doctorid
+            if 'btnBookAppointment' in request.POST:
+                return redirect("MedSightApp:appointment_view")
+            elif 'btnRateDoctor' in request.POST:
+                form = RatingsForm(request.POST)
+                if form.is_valid():
+                    pid = request.POST.get("patients_id")
+                    did = request.POST.get("doctors_id")
+                    pra = request.POST.get("rating")
+                    form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra)
+                    form.save()
+                    return redirect("MedSightApp:index_view")
+
+                else:
+                    print(form.errors)
+                    return HttpResponse('not valid')
+
+        return render(request, 'pages/ViewDocProfile.html', {})    

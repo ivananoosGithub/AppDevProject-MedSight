@@ -380,16 +380,6 @@ table.dataTable thead th {
                         </tr>
                       </tbody>
                       {% endfor %}
-                      <!-- <tfoot>
-                        <tr>
-                          <th>Details</th>
-                          <th>Doctor</th>
-                          <th>Date</th>
-                          <th>Time</th>
-                          <th>Status</th>
-                          <th>Action</th>
-                        </tr>
-                    </tfoot> -->
                 </table>
                 <!-- Modal -->
                 {% for appointments in appointments %}
@@ -406,13 +396,13 @@ table.dataTable thead th {
                       <!-- Pwede ra ngali ni iform type diri para dali ra ma sod sa database, hide lang uban elements like doctorID-->
                       <form method="POST" onsubmit="myRating()">
                           {% csrf_token %}
-
+                          
                           <input type="text" id="doctors_id" name="doctors_id" value="{{appointments.doctor_id_id}}" readonly> </input>
 
                           {% for patients in patients %}
                           <input type="text" id="patients_id" name="patients_id" value="{{current_user.patient_id}}" readonly hidden> </input>
                           {% endfor %}
-
+                          
                           <input type='text' id='rating' name="rating" readonly hidden> </input>
                           <i class="fa fa-star fa-2x" data-index="0" value='0'></i>
                           <i class="fa fa-star fa-2x" data-index="1" value='0'></i>
@@ -430,7 +420,8 @@ table.dataTable thead th {
                   </div>
                   </div>    
               </div>
-              
+              {% endfor %}
+          
                   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
                   <script>
                       var ratedIndex = -1;
@@ -466,7 +457,6 @@ table.dataTable thead th {
                       }
                   </script>
                   <!-- End Modal Script -->
-                  {% endfor %}
                 </div>
               </div>
             </div>
