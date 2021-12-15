@@ -606,5 +606,30 @@ class ViewDoctorView(View):
                         return HttpResponse('not valid')
                 else:
                     return HttpResponse('You have not set an appointment with this Doctor yet.')
+            elif 'btnRateDocPage' in request.POST:
+                return redirect("MedSightApp:ratedoc_view")
 
         return render(request, 'pages/ViewDocProfile.html', {})    
+
+class RateDoctorView(View):
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            current_doctor = request.session['doctor']
+            current_doctorid = request.session['doctor_id']
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            appointments = Appointments.objects.all()
+            ratings = Ratings.objects.filter(doctor_id_id=current_doctorid)
+            context = {
+                'current_user': current_user,
+                'current_doctor': current_doctor,
+                'current_doctorid': current_doctorid,
+                'patients' : patients,
+                'doctors' : doctors,
+                'appointments' : appointments,
+                'ratings': ratings,
+            }
+            return render(request, 'pages/RateDocPage.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')

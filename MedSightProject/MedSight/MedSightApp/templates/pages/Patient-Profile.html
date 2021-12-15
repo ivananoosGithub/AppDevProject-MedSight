@@ -314,43 +314,7 @@ table.dataTable thead th {
             <div class="u-align-left u-container-style u-shape-rectangle u-tab-pane" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
               <div class="u-container-layout u-container-layout-3">
                 <div class="u-expanded-width u-table u-table-responsive u-table-1">
-<<<<<<< HEAD
                   <table id="appointmentsdatatable" class="table table-striped table-bordered">
-=======
-                  <!-- <table id="appointments" class="u-table-entity">
->>>>>>> bcc2701a76e43ded2adf191a9f632f4baf35254b
-                    <colgroup>
-                      <col width="20%">
-                      <col width="20%">
-                      <col width="20%">
-                      <col width="20%">
-                      <col width="20%">
-                    </colgroup>
-                    <thead class="u-align-center u-palette-4-base u-table-header u-table-header-1">
-                      <tr style="height: 21px;">
-                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-1">Details</th>
-                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-2">Doctor</th>
-                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-3">Date</th>
-                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-4">Time</th>
-                        <th class="u-border-3 u-border-palette-4-base u-table-cell u-table-cell-5">Status</th>
-                      </tr>
-                    </thead>
-                    {% for appointments in appointments %}
-                    <tbody class="u-align-center u-table-body">
-                      <tr style="height: 75px;">
-                        <td class="u-border-3 u-border-grey-30 u-first-column u-grey-5 u-table-cell u-table-cell-6">{{appointments.apt_reason}}</td>
-                        {% for doctors in doctors %}
-                          {% if appointments.doctor_id_id == doctors.doctor_id %}
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-7">{{doctors.prefix}} {{doctors.first_name}} {{doctors.last_name}}</td>
-                          {% endif %}
-                        {% endfor %}
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-8">{{appointments.date}}</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-9">{{appointments.time}}</td>
-                        <td class="u-border-3 u-border-grey-30 u-table-cell u-table-cell-10">{{appointments.status}}</td>
-                      </tr>
-                    {% endfor %}
-                    </tbody>
-                  </table> -->
                   <table id="appointments" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>

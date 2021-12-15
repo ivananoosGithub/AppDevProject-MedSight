@@ -34,6 +34,7 @@ urlpatterns = [
     path('findDoctor/', views.FindDoctorView.as_view(), name="finddoc_view"),
     path('viewDoctor/', views.ViewDoctorView.as_view(), name="viewdoc_view"),
     path('appointmentPage/', views.AppointmentPageView.as_view(), name="appointmentP_view"),
+    path('rateDoctor/', views.RateDoctorView.as_view(), name="ratedoc_view"),
     path('appointment/', views.FinalAppointmentView.as_view(), name="appointment_view"),
     path('rating/',views.RatingsView.as_view(), name="rating_view"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
