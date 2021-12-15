@@ -635,3 +635,27 @@ class RateDoctorView(View):
             return render(request, 'pages/RateDocPage.html', context)
         else:
             return HttpResponse('Please login first to view this page.')
+
+    def post(self, request):
+        if request.method == 'POST':
+            current_doctor = request.session['doctor']
+            current_doctorid = request.session['doctor_id']
+            current_patientid = request.POST.get("curpatients_id")
+            request.session['patients_id'] = current_patientid
+            if 'btnRateDoctor' in request.POST:
+                form = RatingsForm(request.POST)
+                if Appointments.objects.filter(patient_id_id=current_patientid) or Appointments.objects.filter(doctor_id_id=current_doctorid):
+                    if form.is_valid():
+                        pid = request.POST.get("patients_id")
+                        did = request.POST.get("doctors_id")
+                        pra = request.POST.get("rating")
+                        rat = request.POST.get("rating_text")
+                        rattime = request.POST.get("date-time")
+                        form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra, rating_text = rat, rate_time = rattime)
+                        form.save()
+                        return redirect("MedSightApp:ratedoc_view")
+
+                    else:
+                        print(form.errors)
+                        return HttpResponse('not valid')
+        return render(request, 'pages/RateDocPage.html', {})
