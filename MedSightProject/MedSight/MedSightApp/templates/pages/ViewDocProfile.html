@@ -93,6 +93,11 @@
                           <i class="fa fa-star fa-2x" data-index="2" value='0'></i>
                           <i class="fa fa-star fa-2x" data-index="3" value='0'></i>
                           <i class="fa fa-star fa-2x" data-index="4" value='0'></i>
+
+                          <br>
+                          <textarea type='text' id='rating_text' name="rating_text" placeholder="Enter your review here"></textarea>
+                          <br>
+                          <input type="text" id="date-time" name="date-time" readonly hidden> </input>
                           </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -144,6 +149,10 @@
                       function myRating() {
                           var rating = document.getElementById('rating');
                           var doctor = document.getElementById('tbldoctor');
+                          var dt = new Date();
+                          var date = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
+                          var datetime = document.getElementById("date-time");
+                          datetime.value = date;
                           rating.value = ratedIndex+1;
                       }
                   </script>                  
@@ -523,7 +532,11 @@
       </div>
     </section>
 
-    
+    <script>
+      var dt = new Date();
+      var date = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate();
+      document.getElementById("date-time").innerHTML=date;
+    </script>
     
     
     <section class="u-backlink u-clearfix u-grey-80">

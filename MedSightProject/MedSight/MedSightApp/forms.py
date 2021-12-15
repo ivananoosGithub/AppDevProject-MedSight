@@ -27,4 +27,4 @@ class AppointmentsForm(forms.ModelForm):
 class RatingsForm(forms.ModelForm):
     class Meta:
         model = Ratings
-        fields= ['rating']
+        fields= ['rating', 'rating_text']

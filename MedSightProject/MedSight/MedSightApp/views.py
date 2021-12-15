@@ -597,7 +597,9 @@ class ViewDoctorView(View):
                         pid = request.POST.get("patients_id")
                         did = request.POST.get("doctors_id")
                         pra = request.POST.get("rating")
-                        form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra)
+                        rat = request.POST.get("rating_text")
+                        rattime = request.POST.get("date-time")
+                        form = Ratings(patient_id_id = pid, doctor_id_id = did, rating = pra, rating_text = rat, rate_time = rattime)
                         form.save()
                         return redirect("MedSightApp:index_view")
 
