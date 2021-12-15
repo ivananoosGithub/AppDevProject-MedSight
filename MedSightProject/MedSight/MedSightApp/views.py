@@ -347,6 +347,23 @@ class DProfileView(View):
                 print('Doctor account updated!')
                 return redirect("MedSightApp:dprofile_view")
 
+            elif 'btnUpdateAppointment' in request.POST:
+                current_doctor = request.POST.get("doctor_id")
+                request.session['doctor'] = current_doctor
+                current_patientid = request.POST.get("curpatients_id")
+                request.session['patientid'] = current_patientid
+                current_appointment = request.POST.get("curappointment_id")
+                request.session['appointmentid'] = current_appointment
+                return redirect("MedSightApp:editappointmentD_view")
+
+            elif 'btnCancelAppointment' in request.POST:
+                current_appointment = request.POST.get("curappointment_id")
+                request.session['appointmentid'] = current_appointment
+                form = Appointments.objects.get(appointment_id=current_appointment)
+                form.status = "Canceled"
+                form.save()
+                return redirect("MedSightApp:dprofile_view")
+
 class PProfileView(View): 
     def get(self, request): 
         if 'user' in request.session:
@@ -406,6 +423,25 @@ class PProfileView(View):
                 current_doctor = request.POST.get("doctor_id")
                 request.session['doctor'] = current_doctor
                 return redirect("MedSightApp:viewdoc_view")
+
+            elif 'btnUpdateAppointment' in request.POST:
+                current_doctor = request.POST.get("doctor_id")
+                request.session['doctor'] = current_doctor
+                current_patientid = request.POST.get("curpatients_id")
+                request.session['patientid'] = current_patientid
+                current_appointment = request.POST.get("curappointment_id")
+                request.session['appointmentid'] = current_appointment
+                return redirect("MedSightApp:editappointmentP_view")
+
+            elif 'btnCancelAppointment' in request.POST:
+                current_appointment = request.POST.get("curappointment_id")
+                request.session['appointmentid'] = current_appointment
+                form = Appointments.objects.get(appointment_id=current_appointment)
+                form.status = "Canceled"
+                form.save()
+                return redirect("MedSightApp:pprofile_view")
+
+
          
 # temporary view for backend purposes
 class FindDoctorView(View): 
@@ -659,3 +695,117 @@ class RateDoctorView(View):
                         print(form.errors)
                         return HttpResponse('not valid')
         return render(request, 'pages/RateDocPage.html', {})
+
+class EditAppointmentPView(View): 
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            current_doctor = request.session['doctor']
+            current_patientid = request.session['patientid']
+            current_appointment = request.session['appointmentid'] 
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            users = Users.objects.all()
+            appointments = Appointments.objects.filter(appointment_id = current_appointment)
+            context = {
+                'current_user': current_user,
+                'current_doctor': current_doctor,
+                'current_patientid' : current_patientid,
+                'current_appointment' : current_appointment,
+                'patients' : patients,
+                'doctors' : doctors,
+                'users' : users,
+                'appointments' : appointments,
+            }
+            return render(request, 'pages/EditAppointmentPatient.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')
+
+    def post(self, request):
+        current_appointment = request.session['appointmentid']        
+        form = AppointmentsForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                pid = request.POST.get("patients_id")
+                did = request.POST.get("doctors_id")
+                astatus = "Active"
+                areason = request.POST.get("appointment_reason")
+                atype = request.POST.get("appointment_type")
+                adate = request.POST.get("appointment_date")
+                atime = request.POST.get("appointment_time")
+                form = Appointments.objects.get(appointment_id=current_appointment)
+                #form = Appointments(apt_type = atype, date = adate, time = atime, status = astatus, patient_id_id = pid, doctor_id_id = did, apt_reason = areason)
+                form.apt_type = atype
+                form.date = adate 
+                form.time = atime 
+                form.status = astatus
+                form.patient_id_id = pid 
+                form.doctor_id_id = did 
+                form.apt_reason = areason
+                form.save()
+
+                #update_Appointment = appointments.update(apt_type = atype, date = adate, time = atime, status = astatus, patient_id_id = pid, doctor_id_id = did, apt_reason = areason)
+                #print(update_Appointment)
+                #print('Appointment record updated!')
+                return redirect('MedSightApp:pprofile_view')
+            else:
+                return HttpResponse('not valid')
+        else:
+            return HttpResponse('Please login first to view this page.')
+
+class EditAppointmentDView(View): 
+    def get(self, request):
+        if 'user' in request.session:
+            current_user = request.session['user']
+            current_doctor = request.session['doctor']
+            current_patientid = request.session['patientid']
+            current_appointment = request.session['appointmentid'] 
+            patients = Patients.objects.all()
+            doctors = Doctors.objects.all()
+            users = Users.objects.all()
+            appointments = Appointments.objects.filter(appointment_id = current_appointment)
+            context = {
+                'current_user': current_user,
+                'current_doctor': current_doctor,
+                'current_patientid' : current_patientid,
+                'current_appointment' : current_appointment,
+                'patients' : patients,
+                'doctors' : doctors,
+                'users' : users,
+                'appointments' : appointments,
+            }
+            return render(request, 'pages/EditAppointmentDoctor.html', context)
+        else:
+            return HttpResponse('Please login first to view this page.')
+
+    def post(self, request):
+        current_appointment = request.session['appointmentid']        
+        form = AppointmentsForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                pid = request.POST.get("patients_id")
+                did = request.POST.get("doctors_id")
+                astatus = "Active"
+                areason = request.POST.get("appointment_reason")
+                atype = request.POST.get("appointment_type")
+                adate = request.POST.get("appointment_date")
+                atime = request.POST.get("appointment_time")
+                form = Appointments.objects.get(appointment_id=current_appointment)
+                #form = Appointments(apt_type = atype, date = adate, time = atime, status = astatus, patient_id_id = pid, doctor_id_id = did, apt_reason = areason)
+                form.apt_type = atype
+                form.date = adate 
+                form.time = atime 
+                form.status = astatus
+                form.patient_id_id = pid 
+                form.doctor_id_id = did 
+                form.apt_reason = areason
+                form.save()
+
+                #update_Appointment = appointments.update(apt_type = atype, date = adate, time = atime, status = astatus, patient_id_id = pid, doctor_id_id = did, apt_reason = areason)
+                #print(update_Appointment)
+                #print('Appointment record updated!')
+                return redirect('MedSightApp:pprofile_view')
+            else:
+                return HttpResponse('not valid')
+        else:
+            return HttpResponse('Please login first to view this page.')

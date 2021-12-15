@@ -412,7 +412,7 @@ table.dataTable tfoot th {
                           <td>{{appointments.date}}</td>
                           <td>{{appointments.time}}</td>
                           <td>{{appointments.status}}</td>
-                          <td>action buttons</td>
+                          <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal-{{appointments.appointment_id}}">Edit</button></td>
                         </tr>
                       </tbody>
                           {% endfor %}
@@ -430,6 +430,42 @@ table.dataTable tfoot th {
                 </div>
               </div>
             </div>
+            <!-- Edit Modal -->
+                {% for appointments in appointments %}
+                <div class="modal fade" id="editModal-{{appointments.appointment_id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Update Appointment</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                      <div class="modal-body text-center">
+                      <!-- Pwede ra ngali ni iform type diri para dali ra ma sod sa database, hide lang uban elements like doctorID-->
+                      <form method="POST">
+                          {% csrf_token %}
+
+                          {% for doctors in doctors %}
+                          <input type="text" id="doctor_id" name="doctor_id" value="{{doctors.username_id}}" readonly hidden> </input>
+                          {% endfor %}
+
+                          {% for patients in patients %}
+                          {% if appointments.patient_id_id == patients.patient_id %}
+                          <input type="text" id="curpatients_id" name="curpatients_id" value="{{patients.username_id}}" readonly hidden> </input>
+                          {% endif %}
+                          {% endfor %}
+
+                          <input type="text" id="curappointment_id" name="curappointment_id" value="{{appointments.appointment_id}}" readonly hidden> </input>
+                          <button type="submit" class="btn btn-primary" id="btnUpdateAppointment" name="btnUpdateAppointment">Edit Appointment</button>
+                          <button type="submit" class="btn btn-primary" id="btnCancelAppointment" name="btnCancelAppointment">Cancel Appointment</button>
+                          </form>
+                          </div>                     
+                  </div>
+                  </div>    
+              </div>
+              {% endfor %}
+                  <!-- End Modal Script -->
             <div class="u-container-style u-shape-rectangle u-tab-pane" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
               <div class="u-container-layout u-container-layout-4">
                 <div class="u-border-1 u-border-grey-15 u-container-style u-group u-shape-rectangle u-group-2">
