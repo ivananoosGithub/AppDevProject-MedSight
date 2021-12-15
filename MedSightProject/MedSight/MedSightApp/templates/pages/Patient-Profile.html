@@ -368,7 +368,7 @@ table.dataTable thead th {
                           {% endfor %}
 
                           {% for patients in patients %}
-                          <input type="text" id="curpatients_id" name="curpatients_id" value="{{patients.patient_id}}" readonly> </input>
+                          <input type="text" id="curpatients_id" name="curpatients_id" value="{{patients.patient_id}}" readonly hidden> </input>
                           {% endfor %}
                           <button type="submit" class="btn btn-primary" id="btnRateDoctor" name="btnRateDoctor">Proceed to Doctor's Profile</button>
                           </form>
